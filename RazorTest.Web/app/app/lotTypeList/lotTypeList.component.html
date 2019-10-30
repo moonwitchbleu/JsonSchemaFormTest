@@ -1,0 +1,27 @@
+<p>
+    <a routerLink="/lot-type/0">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Model</th>
+            <th>Color</th>
+            <th>Published Date</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let lotType of lotTypes">
+            <td>{{lotType.Title}}</td>
+            <td>{{lotType.Description}}</td>
+            <td>{{lotType.Model}}</td>
+            <td>{{lotType.Color}}</td>
+            <td>{{lotType.PublishedDate.Day}}/{{lotType.PublishedDate.Month}}/{{lotType.PublishedDate.Year}}</td>
+            <td>
+                <a routerLink="/lot-type/{{lotType.LotTypeId}}">Edit</a>
+            </td>
+        </tr>
+    </tbody>
+</table>

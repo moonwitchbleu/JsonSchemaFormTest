@@ -1,0 +1,13 @@
+C:\AplusProjects\TestApps\JsonSchemaTestApp\RazorTest.Data\bin\Debug\netcoreapp3.0\RazorTest.Data.deps.json
+C:\AplusProjects\TestApps\JsonSchemaTestApp\RazorTest.Data\bin\Debug\netcoreapp3.0\RazorTest.Data.runtimeconfig.json
+C:\AplusProjects\TestApps\JsonSchemaTestApp\RazorTest.Data\bin\Debug\netcoreapp3.0\RazorTest.Data.runtimeconfig.dev.json
+C:\AplusProjects\TestApps\JsonSchemaTestApp\RazorTest.Data\bin\Debug\netcoreapp3.0\RazorTest.Data.dll
+C:\AplusProjects\TestApps\JsonSchemaTestApp\RazorTest.Data\bin\Debug\netcoreapp3.0\RazorTest.Data.pdb
+C:\AplusProjects\TestApps\JsonSchemaTestApp\RazorTest.Data\bin\Debug\netcoreapp3.0\RazorTest.Domain.dll
+C:\AplusProjects\TestApps\JsonSchemaTestApp\RazorTest.Data\bin\Debug\netcoreapp3.0\RazorTest.Domain.pdb
+C:\AplusProjects\TestApps\JsonSchemaTestApp\RazorTest.Data\obj\Debug\netcoreapp3.0\RazorTest.Data.csprojAssemblyReference.cache
+C:\AplusProjects\TestApps\JsonSchemaTestApp\RazorTest.Data\obj\Debug\netcoreapp3.0\RazorTest.Data.AssemblyInfoInputs.cache
+C:\AplusProjects\TestApps\JsonSchemaTestApp\RazorTest.Data\obj\Debug\netcoreapp3.0\RazorTest.Data.AssemblyInfo.cs
+C:\AplusProjects\TestApps\JsonSchemaTestApp\RazorTest.Data\obj\Debug\netcoreapp3.0\RazorTest.Data.csproj.CopyComplete
+C:\AplusProjects\TestApps\JsonSchemaTestApp\RazorTest.Data\obj\Debug\netcoreapp3.0\RazorTest.Data.dll
+C:\AplusProjects\TestApps\JsonSchemaTestApp\RazorTest.Data\obj\Debug\netcoreapp3.0\RazorTest.Data.pdb

@@ -1,0 +1,11 @@
+C:\AplusProjects\TestApps\JsonSchemaTestApp\CoreConsoleApp\bin\Debug\netcoreapp3.0\CoreConsoleApp.exe
+C:\AplusProjects\TestApps\JsonSchemaTestApp\CoreConsoleApp\bin\Debug\netcoreapp3.0\CoreConsoleApp.deps.json
+C:\AplusProjects\TestApps\JsonSchemaTestApp\CoreConsoleApp\bin\Debug\netcoreapp3.0\CoreConsoleApp.runtimeconfig.json
+C:\AplusProjects\TestApps\JsonSchemaTestApp\CoreConsoleApp\bin\Debug\netcoreapp3.0\CoreConsoleApp.runtimeconfig.dev.json
+C:\AplusProjects\TestApps\JsonSchemaTestApp\CoreConsoleApp\bin\Debug\netcoreapp3.0\CoreConsoleApp.dll
+C:\AplusProjects\TestApps\JsonSchemaTestApp\CoreConsoleApp\bin\Debug\netcoreapp3.0\CoreConsoleApp.pdb
+C:\AplusProjects\TestApps\JsonSchemaTestApp\CoreConsoleApp\obj\Debug\netcoreapp3.0\CoreConsoleApp.csprojAssemblyReference.cache
+C:\AplusProjects\TestApps\JsonSchemaTestApp\CoreConsoleApp\obj\Debug\netcoreapp3.0\CoreConsoleApp.AssemblyInfoInputs.cache
+C:\AplusProjects\TestApps\JsonSchemaTestApp\CoreConsoleApp\obj\Debug\netcoreapp3.0\CoreConsoleApp.AssemblyInfo.cs
+C:\AplusProjects\TestApps\JsonSchemaTestApp\CoreConsoleApp\obj\Debug\netcoreapp3.0\CoreConsoleApp.dll
+C:\AplusProjects\TestApps\JsonSchemaTestApp\CoreConsoleApp\obj\Debug\netcoreapp3.0\CoreConsoleApp.pdb

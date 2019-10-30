@@ -1,0 +1,9 @@
+C:\AplusProjects\TestApps\JsonSchemaTestApp\RazorTest\obj\Debug\netcoreapp3.0\RazorTest.csprojAssemblyReference.cache
+C:\AplusProjects\TestApps\JsonSchemaTestApp\RazorTest\obj\Debug\netcoreapp3.0\RazorTest.MvcApplicationPartsAssemblyInfo.cache
+C:\AplusProjects\TestApps\JsonSchemaTestApp\RazorTest\obj\Debug\netcoreapp3.0\RazorTest.AssemblyInfoInputs.cache
+C:\AplusProjects\TestApps\JsonSchemaTestApp\RazorTest\obj\Debug\netcoreapp3.0\RazorTest.AssemblyInfo.cs
+C:\AplusProjects\TestApps\JsonSchemaTestApp\RazorTest\obj\Debug\netcoreapp3.0\RazorTest.TagHelpers.input.cache
+C:\AplusProjects\TestApps\JsonSchemaTestApp\RazorTest\obj\Debug\netcoreapp3.0\RazorTest.TagHelpers.output.cache
+C:\AplusProjects\TestApps\JsonSchemaTestApp\RazorTest\obj\Debug\netcoreapp3.0\RazorTest.dll
+C:\AplusProjects\TestApps\JsonSchemaTestApp\RazorTest\obj\Debug\netcoreapp3.0\RazorTest.pdb
+C:\AplusProjects\TestApps\JsonSchemaTestApp\RazorTest\obj\Debug\netcoreapp3.0\RazorTest.RazorCoreGenerate.cache

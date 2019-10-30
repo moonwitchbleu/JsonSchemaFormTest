@@ -1,0 +1,7 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+    <div ng-controller="lotTypeCtrl" ng-init="init(@ViewData["schema"], @ViewData["model"])">
+        <h1>Schema Form</h1>
+        <form name="myForm" sf-schema="schema" sf-form="form" sf-model="model" ng-submit="onSubmit(myForm)"></form>
+    </div>

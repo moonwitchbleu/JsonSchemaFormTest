@@ -1,0 +1,1 @@
+//# sourceMappingURL=lotType.js.map

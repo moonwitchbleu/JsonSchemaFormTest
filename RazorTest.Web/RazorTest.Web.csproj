@@ -1,0 +1,73 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="app\app\lotTypeList\lotTypeList.component.ts" />
+    <None Remove="app\app\lotType\lotType.component.ts" />
+    <None Remove="app\app\shared\contact.ts" />
+    <None Remove="app\app\shared\data.service.ts" />
+    <None Remove="app\app\shared\date.ts" />
+    <None Remove="app\app\shared\lotType.ts" />
+    <None Remove="app\app\shared\types\array.type.ts" />
+    <None Remove="app\app\shared\types\datepicker.type.ts" />
+    <None Remove="app\app\shared\types\multischema.type.ts" />
+    <None Remove="app\app\shared\types\null.type.ts" />
+    <None Remove="app\app\shared\types\object.type.ts" />
+    <None Remove="app\app\shared\types\textarea.type.ts" />
+    <None Remove="app\app\shared\wrappers\formlyPanel.wrapper.ts" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+    <PackageReference Include="NJsonSchema" Version="10.0.27" />
+    <PackageReference Include="NJsonSchema.CodeGeneration" Version="10.0.27" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\RazorTest.Data\RazorTest.Data.csproj" />
+    <ProjectReference Include="..\RazorTest.Domain\RazorTest.Domain.csproj" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <TypeScriptCompile Include="app\app\lotTypeList\lotTypeList.component.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="app\app\lotType\lotType.component.ts" />
+    <TypeScriptCompile Include="app\app\shared\date.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="app\app\shared\data.service.ts" />
+    <TypeScriptCompile Include="app\app\shared\contact.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="app\app\shared\lotType.ts" />
+    <TypeScriptCompile Include="app\app\shared\types\textarea.type.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="app\app\shared\types\datepicker.type.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="app\app\shared\types\array.type.ts" />
+    <TypeScriptCompile Include="app\app\shared\types\multischema.type.ts" />
+    <TypeScriptCompile Include="app\app\shared\types\null.type.ts" />
+    <TypeScriptCompile Include="app\app\shared\types\object.type.ts" />
+    <TypeScriptCompile Include="app\app\shared\wrappers\formlyPanel.wrapper.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+  </ItemGroup>
+
+</Project>
