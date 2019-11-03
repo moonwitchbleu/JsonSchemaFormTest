@@ -1,13 +1,15 @@
 ﻿import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Route, Router } from '@angular/router'; 
 import { FormlyFieldConfig, FormlyFormOptions, FormlyConfig } from '@ngx-formly/core';
-import { FormBuilder, FormGroup, FormControl, Validators, FormsModule, AsyncValidator } from '@angular/forms';
-import { FormlyJsonschema } from '@ngx-formly/core/json-schema';
+import { FormBuilder, FormGroup, FormControl, Validators, FormsModule, AsyncValidator, ValidationErrors } from '@angular/forms';
+//import { FormlyJsonschema } from '@ngx-formly/core/json-schema';
+import { FormlyJsonschemaService } from '../shared/formly-json-schema.service';
 import { DataService } from '../shared/data.service';
 import { LotType } from '../shared/lotType';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { PickedDate } from '../shared/date';
+import { FormlyJsonschemaOptions } from '@ngx-formly/core/json-schema/formly-json-schema.service';
 
 @Component({
     selector: 'lot-type',
@@ -17,8 +19,9 @@ import { PickedDate } from '../shared/date';
 export class LotTypeComponent implements OnInit {
     title = 'Lot Type';
     form = new FormGroup({});
-    model: {};
-    options: FormlyFormOptions = {};
+    model: LotType;
+    options: FormlyJsonschemaOptions = {
+    };
 
     fields: FormlyFieldConfig[] = [{
         key: "LotTypeId",
@@ -27,7 +30,8 @@ export class LotTypeComponent implements OnInit {
         templateOptions: {
             label: 'Lot Type Id',
             required: true,
-            readonly: true
+            readonly: true,
+            hidden: true
         },
     },
         {
@@ -89,7 +93,7 @@ export class LotTypeComponent implements OnInit {
             maxLength: 150
         }
     },
-    /*{
+    {
         key: "PublishedDate",
         type: "input",
         className: "col-6",
@@ -97,20 +101,6 @@ export class LotTypeComponent implements OnInit {
             label: "Published Date",
             type: "date",
             datepickerPopup: "dd.MM.yyyy"
-        }
-    },*/
-    {
-        key: "PPublishedDate",
-        type: "datepicker",
-        className: "col-6",
-        templateOptions: {
-            label: "Published Date",
-            datepickerPopup: "dd.MM.yyyy",
-            required: true
-        },
-        validation: {
-            messages: {
-            }
         }
     },
     {
@@ -359,7 +349,7 @@ export class LotTypeComponent implements OnInit {
                 }]
         }]
 
-    schema2 = {
+    schema2: {} = {
         "$schema": "http://json-schema.org/draft-04/schema#",
         "title": "LotType",
         "type": "object",
@@ -368,7 +358,7 @@ export class LotTypeComponent implements OnInit {
         "properties": {
             "LotTypeId": {
                 "title": "Lot Type Id",
-                "type": "integer",
+                "type": "hidden",
                 "format": "int32"
             },
             "Title": {
@@ -379,9 +369,10 @@ export class LotTypeComponent implements OnInit {
             },
             "Description": {
                 "title": "Description",
-                "type": "string",
+                "type": "textarea",
                 "maxLength": 500,
-                "minLength": 5
+                "minLength": 5,
+                "rows": 4
             },
             "Model": {
                 "title": "Model",
@@ -393,7 +384,7 @@ export class LotTypeComponent implements OnInit {
                 "type": ["null", "string"],
                 "maxLength": 150
             },
-            "PublishDate": {
+            "PublishedDate": {
                 "title": "Publish Date",
                 "type": "datepicker"
             },
@@ -409,13 +400,18 @@ export class LotTypeComponent implements OnInit {
                 "type": "textarea",
                 "rows": 4
             },
-            "Color": { "title": "Color", "minLength": 1, "allOf": [{ "$ref": "#/definitions/Color" }] }, "Contact": { "title": "Contact", "allOf": [{ "$ref": "#/definitions/Contact" }] }
+            "IsItTrue": {
+                "title": "Is it true?",
+                "default": false,
+                "type": "boolean"
+            },
+            "Color": { "title": "Color", "minLength": 1, "$ref": "#/definitions/Color" }, "Contact": { "title": "Contact", "$ref": "#/definitions/Contact" }
 
         },
         "definitions": { "Color": { "type": "string", "description": "", "x-enumNames": ["Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet", "Purple", "Pink", "White", "Black"], "enum": ["Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet", "Purple", "Pink", "White", "Black"] }, "Contact": { "type": "object", "additionalProperties": false, "properties": { "ContactId": { "title": "Contact Id", "type": "integer", "format": "int32" }, "Name": { "title": "Name", "type": ["null", "string"] }, "Phone": { "title": "Phone Number", "type": ["null", "string"] }, "Email": { "title": "Email Address", "type": ["null", "string"], "pattern": "^([\\w\\.\\-]+)@([\\w\\-]+)((\\.(\\w){2,3})+)$" } } } }
     };
 
-    constructor(private route: ActivatedRoute, private router: Router, private fb: FormBuilder, private formlyJsonschema: FormlyJsonschema, private data: DataService) {
+    constructor(private route: ActivatedRoute, private router: Router, private fb: FormBuilder, private formlyJsonschema: FormlyJsonschemaService, private data: DataService) {
     }
 
     ngOnInit(): void {
@@ -423,17 +419,18 @@ export class LotTypeComponent implements OnInit {
         this.data.loadLotTypeSchema()
             .subscribe(sucess => {
                 if (sucess) {
-                    //this.fields2 = [this.formlyJsonschema.toFieldConfig(this.data.lotTypeSchema)];
+                    this.schema2 = this.data.lotTypeSchema;
                     this.fields2 = [this.formlyJsonschema.toFieldConfig(this.schema2)];
-                    console.log(JSON.stringify(this.fields2));
+                    this.addValidators();
+                    console.log(this.fields2);
                 }
             })
 
         this.data.loadLotType(lotTypeId)
             .subscribe(data => {
                 this.model = this.data.lotType;
-                console.log(this.model);
-                /*if (this.model.publishedDate) {
+                //console.log(this.model);
+                /*if (this.model.PublishedDate) {
                     var pDate = new Date(this.model.PublishedDate);
                     this.model.PublishedDate = {
                         'year': PublishedDate.Year,
@@ -449,7 +446,7 @@ export class LotTypeComponent implements OnInit {
 
     submit() {
         console.log(JSON.stringify(this.model));
-       //if (this.form.valid) {
+       if (this.form.valid) {
             /*var pDate = new Date(this.model.PPublishedDate.year, this.model.PPublishedDate.month - 1, this.model.PPublishedDate.day);
             pDate.setMinutes(pDate.getMinutes() - pDate.getTimezoneOffset());
             this.model.PublishedDate = pDate;
@@ -460,18 +457,30 @@ export class LotTypeComponent implements OnInit {
                         this.router.navigate(['/lot-type-list']);
                     }
                 })
-       // }
+       }
+    }
+
+    addValidators() {
+        let modelField = this.fields2[0].fieldGroup.find(function (m) { return m.key === "Model" });
+        if (modelField) {
+            modelField.validators = {
+                checkAllowedModel: {
+                    expression: this.checkAllowedModel,
+                    message: "Model provided is not allowed."
+                }
+            };
+
+            modelField.validation = {};
+            modelField.validation.checkAllowedModel = function (viewValue, modelValue, scope) { };
+
+        }
     }
 
     checkAllowedModel(vv, mv) {
-        if (vv.value && vv.value.lastIndexOf("M001") >= 0)
-            return false;
-        console.log(mv);
-        return true;
-    }
+        let invalidModels: Array<string> = ['M001', 'M002', 'M003', 'M004', 'M005'];
 
-    validateAgentUser(vv, mv) {
-        agentUsers: [] = ["agent1", "agent2", "agent3"];
+        if (invalidModels.includes(vv.value))
+            return false;
 
         return true;
     }

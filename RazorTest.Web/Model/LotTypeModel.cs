@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using NJsonSchema;
 using NJsonSchema.Annotations;
 using NJsonSchema.Generation;
@@ -19,6 +20,7 @@ namespace RazorTest.Web.Model
     {
         [Required]
         [Display(Name = "Lot Type Id")]
+        [JsonSchemaExtensionData("type", "hiddenFT")]
         public int LotTypeId { get; set; }
 
         [Required]
@@ -31,6 +33,7 @@ namespace RazorTest.Web.Model
         [Display(Name = "Description")]
         [MinLength(5)]
         [MaxLength(500, ErrorMessage = "Exceed max length of 500")]
+        [JsonSchemaExtensionData("type", "textareaFT")]
         public string Description { get; set; }
 
         [Display(Name = "Model")]
@@ -41,9 +44,10 @@ namespace RazorTest.Web.Model
         [MaxLength(150, ErrorMessage = "Exceeds max length of 150")]
         public string AgentUserCode { get; set; }
 
+        [Required]
         [Display(Name = "Publish Date")]
-        [JsonSchemaExtensionData("type", "datepicker")]
-        public Datepicker PublishedDate { get; set; }
+        [JsonSchemaExtensionData("type", "datepickerFT")]
+        public DateTime? PublishedDate { get; set; }
 
         [Display(Name = "Lot Price")]
         [DataType(DataType.Currency), Range(10, 1000)]
@@ -52,10 +56,11 @@ namespace RazorTest.Web.Model
         [Required]
         [Display(Name = "Color")]
         [JsonConverter(typeof(StringEnumConverter))]
+        [JsonSchemaExtensionData("type", "radio")]
         public Color Color { get; set; }
 
         [Display(Name = "Comment")]
-        [JsonSchemaExtensionData("type", "textarea")]
+        [JsonSchemaExtensionData("type", "textareaFT")]
         [JsonSchemaExtensionData("rows", "4")]
         public string Comments { get; set; }
 
@@ -70,14 +75,35 @@ namespace RazorTest.Web.Model
 
             var jsonSchema = JsonSchema.FromType<LotTypeModel>(settings);
 
-            //Add custom schema properties setting
-            Dictionary<string, object> auActions = new Dictionary<string, object>();
-            //auActions["onChange"] = "testValidate(modelValue, form)";
-
-            //jsonSchema.Properties["LotTypeId"].IsReadOnly = true;
-            //jsonSchema.Properties["AgentUserCode"].ExtensionData = auActions;
+            AddSchemaValidators(jsonSchema);
 
             return jsonSchema;
+        }
+
+        private void AddSchemaValidators(JsonSchema jsonSchema)
+        {
+            /*Dictionary<string, object> modelValidators = new Dictionary<string, object>();
+            modelValidators.Add("validators", new
+            {
+                checkAllowedModel = new
+                {
+                    expression = "this.checkAllowedModel",
+                    message = "Model provided is not allowed."
+                }
+            });
+            modelValidators.Add("validation", new
+            {
+                checkAllowedModel = "function (viewValue, modelValue, scope) { }"
+            });
+            jsonSchema.Properties["Model"].ExtensionData = modelValidators;
+            */
+            
+            Dictionary<string, object> agentUserCodeValidators = new Dictionary<string, object>();
+            agentUserCodeValidators.Add("validators", new
+            {
+                validation = new[] { "validateAgentUser" }
+            });
+            jsonSchema.Properties["AgentUserCode"].ExtensionData = agentUserCodeValidators;
         }
 
         public LotType MapToLotType()
@@ -90,6 +116,7 @@ namespace RazorTest.Web.Model
                 Model = Model,
                 AgentUserCode = AgentUserCode,
                 LotPrice = LotPrice,
+                PublishedDate = PublishedDate,
                 Color = Color,
                 Contact = new Contact
                 {
@@ -98,11 +125,6 @@ namespace RazorTest.Web.Model
                     Email = Contact.Email
                 }
             };
-
-            if(lotType.PublishedDate != null)
-            {
-                lotType.PublishedDate = new DateTime(PublishedDate.Year, PublishedDate.Month, PublishedDate.Day);
-            }
 
             return lotType;
             
@@ -119,7 +141,7 @@ namespace RazorTest.Web.Model
                 Description = lotType.Description;
                 Model = lotType.Model;
                 AgentUserCode = lotType.AgentUserCode;
-                PublishedDate = new Datepicker(lotType.PublishedDate);
+                PublishedDate = lotType.PublishedDate;
                 LotPrice = lotType.LotPrice;
                 Color = lotType.Color;
 
@@ -145,5 +167,6 @@ namespace RazorTest.Web.Model
             AgentUserCode = null;
             PublishedDate = null;
         }
+
     }
 }

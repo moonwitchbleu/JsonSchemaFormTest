@@ -2,13 +2,13 @@
 import { PickedDate } from './date';
 
 export interface LotType {
-    lotTypeId: number;
-    title: string;
-    description: string;
-    model: string;
-    agentUserCode: string;
-    publishedDate: PickedDate;
-    lotPrice: number;
-    color: string;
-    contact: Contact;
+    LotTypeId: number;
+    Title: string;
+    Description: string;
+    Model: string;
+    AgentUserCode: string;
+    PublishedDate: PickedDate;
+    LotPrice: number;
+    Color: string;
+    Contact: Contact;
 }

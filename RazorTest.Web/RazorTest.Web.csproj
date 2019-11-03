@@ -11,9 +11,11 @@
     <None Remove="app\app\shared\contact.ts" />
     <None Remove="app\app\shared\data.service.ts" />
     <None Remove="app\app\shared\date.ts" />
+    <None Remove="app\app\shared\formly-json-schema.service.ts" />
     <None Remove="app\app\shared\lotType.ts" />
     <None Remove="app\app\shared\types\array.type.ts" />
     <None Remove="app\app\shared\types\datepicker.type.ts" />
+    <None Remove="app\app\shared\types\hidden.type.ts" />
     <None Remove="app\app\shared\types\multischema.type.ts" />
     <None Remove="app\app\shared\types\null.type.ts" />
     <None Remove="app\app\shared\types\object.type.ts" />
@@ -54,7 +56,9 @@
     <TypeScriptCompile Include="app\app\shared\contact.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="app\app\shared\formly-json-schema.service.ts" />
     <TypeScriptCompile Include="app\app\shared\lotType.ts" />
+    <TypeScriptCompile Include="app\app\shared\types\hidden.type.ts" />
     <TypeScriptCompile Include="app\app\shared\types\textarea.type.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>

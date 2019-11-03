@@ -64,11 +64,14 @@ namespace RazorTest.Web.Utils
 
             foreach (var property in properties)
             {
-                JArray newFields = new JArray();
+                string refValue = "";
                 var fields = GetJObjectCollection(property.Value);
 
                 foreach (var field in fields)
                 {
+                    if (refValue.Length > 0)
+                        break;
+
                     if (field.Key == "oneOf")
                     {
                         var fieldDefs = (JArray)field.Value;
@@ -76,14 +79,14 @@ namespace RazorTest.Web.Utils
                         foreach (var fieldDef in fieldDefs)
                         {
                             if (fieldDef["$ref"] != null)
-                                newFields.Add(fieldDef);
+                                refValue = fieldDef["$ref"].ToString();
                         }
                     }
                 }
 
-                if (newFields.Count > 0)
+                if (refValue.Length > 0)
                 {
-                    dicJsonSchema["properties"][property.Key]["allOf"] = newFields;
+                    dicJsonSchema["properties"][property.Key]["$ref"] = refValue;
                     dicJsonSchema["properties"][property.Key].Remove("oneOf");
                 }
             }

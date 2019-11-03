@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule, FormControl, ValidationErrors } from '@angular/forms';
 import { FormlyModule, FormlyFieldConfig } from '@ngx-formly/core';
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -11,6 +11,9 @@ import { ObjectTypeComponent } from './shared/types/object.type';
 import { MultiSchemaTypeComponent } from './shared/types/multischema.type';
 import { NullTypeComponent } from './shared/types/null.type';
 import { DatepickerTypeComponent } from './shared/types/datepicker.type';
+import { HiddenTypeComponent } from './shared/types/hidden.type';
+import { TextareaTypeComponent } from './shared/types/textarea.type';
+
 import { PanelWrapperComponent } from './shared/wrappers/formlyPanel.wrapper';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -20,6 +23,7 @@ import { LotTypeComponent } from './lotType/lotType.component';
 
 import { APP_BASE_HREF } from '@angular/common';
 import { DataService } from './shared/data.service';
+import { FormlyJsonschemaService } from './shared/formly-json-schema.service';
 
 export function minItemsValidationMessage(err, field: FormlyFieldConfig) {
     return `should NOT have fewer than ${field.templateOptions.minItems} items`;
@@ -65,6 +69,26 @@ export function patternValidationMessage(err, field: FormlyFieldConfig) {
     return `${field.templateOptions.label} is invalid.`;
 }
 
+export function checkValidModelMessage(err, field: FormlyFieldConfig) {
+    return `"${field.formControl.value}" is invalid ${field.templateOptions.label}.`;
+}
+
+export function validateAgentUserMessage(err, field: FormlyFieldConfig) {
+    return `"${field.formControl.value}" is invalid ${field.templateOptions.label}.`;
+}
+
+export function validateAgentUser(control: FormControl): ValidationErrors {
+    let validAgentUsers: Array<string> = ['A001', 'A002', 'A003', 'A004', 'A005'];
+
+    if (control.value) {
+
+        if (validAgentUsers.includes(control.value))
+            return null;
+
+        return { 'validateAgentUser': false }
+    }
+    return null;
+}
 
 @NgModule({
     declarations: [
@@ -76,7 +100,8 @@ export function patternValidationMessage(err, field: FormlyFieldConfig) {
         MultiSchemaTypeComponent,
         NullTypeComponent,
         DatepickerTypeComponent,
-        PanelWrapperComponent,
+        HiddenTypeComponent,
+        TextareaTypeComponent
     ],
     imports: [
         BrowserModule,
@@ -100,7 +125,9 @@ export function patternValidationMessage(err, field: FormlyFieldConfig) {
                 { name: 'maxItems', message: maxItemsValidationMessage },
                 { name: 'uniqueItems', message: 'should NOT have duplicate items' },
                 { name: 'const', message: constValidationMessage },
-                { name: 'pattern', message: patternValidationMessage }
+                { name: 'pattern', message: patternValidationMessage },
+                { name: 'checkValidModel', message: checkValidModelMessage },
+                { name: 'validateAgentUser', message: validateAgentUserMessage }
             ],
             types: [
                 { name: 'string', extends: 'input' },
@@ -128,14 +155,16 @@ export function patternValidationMessage(err, field: FormlyFieldConfig) {
                 { name: 'array', component: ArrayTypeComponent },
                 { name: 'object', component: ObjectTypeComponent },
                 { name: 'multischema', component: MultiSchemaTypeComponent },
-                {
-                    name: 'datepicker',
-                    component: DatepickerTypeComponent,
-                }
+                { name: 'textareaFT', component: TextareaTypeComponent },
+                { name: 'hiddenFT', component: HiddenTypeComponent },
+                { name: 'datepickerFT', component: DatepickerTypeComponent }
             ],
+            validators: [
+                { name: 'validateAgentUser', validation: validateAgentUser }
+            ]
         })
     ],
-    providers: [DataService,
+    providers: [DataService, FormlyJsonschemaService,
         { provide: APP_BASE_HREF, useValue: '/' }
     ],
     bootstrap: [AppComponent]

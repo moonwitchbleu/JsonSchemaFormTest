@@ -7,6 +7,16 @@
     <WebStackScaffolding_DbContextDialogWidth>600</WebStackScaffolding_DbContextDialogWidth>
   </PropertyGroup>
   <ItemGroup>
+    <TypeScriptCompile Update="app\app\shared\formly-json-schema.service.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Update="app\app\shared\types\hidden.type.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+  </ItemGroup>
+  <ItemGroup>
     <TypeScriptCompile Update="app\app\shared\lotType.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>

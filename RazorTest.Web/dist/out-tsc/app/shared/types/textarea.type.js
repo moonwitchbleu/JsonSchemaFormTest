@@ -1,7 +1,7 @@
 import { __decorate } from "tslib";
 import { Component } from '@angular/core';
 import { FieldType } from '@ngx-formly/core';
-let DatepickerTypeComponent = class DatepickerTypeComponent extends FieldType {
+let TextareaTypeComponent = class TextareaTypeComponent extends FieldType {
     constructor() {
         super(...arguments);
         this.defaultOptions = {
@@ -9,27 +9,20 @@ let DatepickerTypeComponent = class DatepickerTypeComponent extends FieldType {
         };
     }
 };
-DatepickerTypeComponent = __decorate([
+TextareaTypeComponent = __decorate([
     Component({
-        selector: 'formly-datepicker-type',
+        selector: 'textarea-field-type',
         template: `
-<div class="form-group">
- <label *ngIf="to.label">{{ to.label }}</label>
-    <p *ngIf="to.description">{{ to.description }}</p>
     <div class="input-group">
-        <input class="form-control" placeholder="{{ to.placeholder }}" [formControl]="formControl" [formlyAttributes]="field"
-               name="dp" ngbDatepicker #d="ngbDatepicker">
-        <div class="input-group-append">
-            <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
-        </div>
+        <label attr.for="{{key}}" *ngIf="to.label" class="col-2">{{ to.label }} {{to.required ? " * " : ""}}</label>
+        <textarea class="form-control" placeholder="{{ to.placeholder }}" [formControl]="formControl" [formlyAttributes]="field" rows="4"></textarea>
     </div>
 
     <div class="invalid-feedback" style="display: block;" *ngIf="showError && formControl.errors">
         <formly-validation-message [field]="field"></formly-validation-message>
     </div>
-</div>
   `,
     })
-], DatepickerTypeComponent);
-export { DatepickerTypeComponent };
+], TextareaTypeComponent);
+export { TextareaTypeComponent };
 //# sourceMappingURL=textarea.type.js.map

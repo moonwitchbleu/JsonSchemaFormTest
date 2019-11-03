@@ -111,7 +111,7 @@ AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*!*******************************!*\
   !*** ./app/app/app.module.ts ***!
   \*******************************/
-/*! exports provided: minItemsValidationMessage, maxItemsValidationMessage, minlengthValidationMessage, maxlengthValidationMessage, minValidationMessage, maxValidationMessage, multipleOfValidationMessage, exclusiveMinimumValidationMessage, exclusiveMaximumValidationMessage, constValidationMessage, patternValidationMessage, AppModule */
+/*! exports provided: minItemsValidationMessage, maxItemsValidationMessage, minlengthValidationMessage, maxlengthValidationMessage, minValidationMessage, maxValidationMessage, multipleOfValidationMessage, exclusiveMinimumValidationMessage, exclusiveMaximumValidationMessage, constValidationMessage, patternValidationMessage, checkValidModelMessage, validateAgentUserMessage, validateAgentUser, AppModule */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -127,6 +127,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "exclusiveMaximumValidationMessage", function() { return exclusiveMaximumValidationMessage; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "constValidationMessage", function() { return constValidationMessage; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "patternValidationMessage", function() { return patternValidationMessage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "checkValidModelMessage", function() { return checkValidModelMessage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "validateAgentUserMessage", function() { return validateAgentUserMessage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "validateAgentUser", function() { return validateAgentUser; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppModule", function() { return AppModule; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm2015/platform-browser.js");
@@ -141,13 +144,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _shared_types_multischema_type__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./shared/types/multischema.type */ "./app/app/shared/types/multischema.type.ts");
 /* harmony import */ var _shared_types_null_type__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./shared/types/null.type */ "./app/app/shared/types/null.type.ts");
 /* harmony import */ var _shared_types_datepicker_type__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./shared/types/datepicker.type */ "./app/app/shared/types/datepicker.type.ts");
-/* harmony import */ var _shared_wrappers_formlyPanel_wrapper__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./shared/wrappers/formlyPanel.wrapper */ "./app/app/shared/wrappers/formlyPanel.wrapper.ts");
-/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./app-routing.module */ "./app/app/app-routing.module.ts");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./app.component */ "./app/app/app.component.ts");
-/* harmony import */ var _lotTypeList_lotTypeList_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./lotTypeList/lotTypeList.component */ "./app/app/lotTypeList/lotTypeList.component.ts");
-/* harmony import */ var _lotType_lotType_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./lotType/lotType.component */ "./app/app/lotType/lotType.component.ts");
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm2015/common.js");
-/* harmony import */ var _shared_data_service__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./shared/data.service */ "./app/app/shared/data.service.ts");
+/* harmony import */ var _shared_types_hidden_type__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./shared/types/hidden.type */ "./app/app/shared/types/hidden.type.ts");
+/* harmony import */ var _shared_types_textarea_type__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./shared/types/textarea.type */ "./app/app/shared/types/textarea.type.ts");
+/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./app-routing.module */ "./app/app/app-routing.module.ts");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./app.component */ "./app/app/app.component.ts");
+/* harmony import */ var _lotTypeList_lotTypeList_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./lotTypeList/lotTypeList.component */ "./app/app/lotTypeList/lotTypeList.component.ts");
+/* harmony import */ var _lotType_lotType_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./lotType/lotType.component */ "./app/app/lotType/lotType.component.ts");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm2015/common.js");
+/* harmony import */ var _shared_data_service__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./shared/data.service */ "./app/app/shared/data.service.ts");
+/* harmony import */ var _shared_formly_json_schema_service__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./shared/formly-json-schema.service */ "./app/app/shared/formly-json-schema.service.ts");
+
+
 
 
 
@@ -201,24 +208,40 @@ function constValidationMessage(err, field) {
 function patternValidationMessage(err, field) {
     return `${field.templateOptions.label} is invalid.`;
 }
+function checkValidModelMessage(err, field) {
+    return `"${field.formControl.value}" is invalid ${field.templateOptions.label}.`;
+}
+function validateAgentUserMessage(err, field) {
+    return `"${field.formControl.value}" is invalid ${field.templateOptions.label}.`;
+}
+function validateAgentUser(control) {
+    let validAgentUsers = ['A001', 'A002', 'A003', 'A004', 'A005'];
+    if (control.value) {
+        if (validAgentUsers.includes(control.value))
+            return null;
+        return { 'validateAgentUser': false };
+    }
+    return null;
+}
 let AppModule = class AppModule {
 };
 AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
         declarations: [
-            _app_component__WEBPACK_IMPORTED_MODULE_15__["AppComponent"],
-            _lotTypeList_lotTypeList_component__WEBPACK_IMPORTED_MODULE_16__["LotTypeListComponent"],
-            _lotType_lotType_component__WEBPACK_IMPORTED_MODULE_17__["LotTypeComponent"],
+            _app_component__WEBPACK_IMPORTED_MODULE_16__["AppComponent"],
+            _lotTypeList_lotTypeList_component__WEBPACK_IMPORTED_MODULE_17__["LotTypeListComponent"],
+            _lotType_lotType_component__WEBPACK_IMPORTED_MODULE_18__["LotTypeComponent"],
             _shared_types_array_type__WEBPACK_IMPORTED_MODULE_8__["ArrayTypeComponent"],
             _shared_types_object_type__WEBPACK_IMPORTED_MODULE_9__["ObjectTypeComponent"],
             _shared_types_multischema_type__WEBPACK_IMPORTED_MODULE_10__["MultiSchemaTypeComponent"],
             _shared_types_null_type__WEBPACK_IMPORTED_MODULE_11__["NullTypeComponent"],
             _shared_types_datepicker_type__WEBPACK_IMPORTED_MODULE_12__["DatepickerTypeComponent"],
-            _shared_wrappers_formlyPanel_wrapper__WEBPACK_IMPORTED_MODULE_13__["PanelWrapperComponent"],
+            _shared_types_hidden_type__WEBPACK_IMPORTED_MODULE_13__["HiddenTypeComponent"],
+            _shared_types_textarea_type__WEBPACK_IMPORTED_MODULE_14__["TextareaTypeComponent"]
         ],
         imports: [
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
-            _app_routing_module__WEBPACK_IMPORTED_MODULE_14__["AppRoutingModule"],
+            _app_routing_module__WEBPACK_IMPORTED_MODULE_15__["AppRoutingModule"],
             _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClientModule"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_4__["ReactiveFormsModule"],
             _ngx_formly_bootstrap__WEBPACK_IMPORTED_MODULE_6__["FormlyBootstrapModule"],
@@ -238,7 +261,9 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
                     { name: 'maxItems', message: maxItemsValidationMessage },
                     { name: 'uniqueItems', message: 'should NOT have duplicate items' },
                     { name: 'const', message: constValidationMessage },
-                    { name: 'pattern', message: patternValidationMessage }
+                    { name: 'pattern', message: patternValidationMessage },
+                    { name: 'checkValidModel', message: checkValidModelMessage },
+                    { name: 'validateAgentUser', message: validateAgentUserMessage }
                 ],
                 types: [
                     { name: 'string', extends: 'input' },
@@ -266,17 +291,19 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
                     { name: 'array', component: _shared_types_array_type__WEBPACK_IMPORTED_MODULE_8__["ArrayTypeComponent"] },
                     { name: 'object', component: _shared_types_object_type__WEBPACK_IMPORTED_MODULE_9__["ObjectTypeComponent"] },
                     { name: 'multischema', component: _shared_types_multischema_type__WEBPACK_IMPORTED_MODULE_10__["MultiSchemaTypeComponent"] },
-                    {
-                        name: 'datepicker',
-                        component: _shared_types_datepicker_type__WEBPACK_IMPORTED_MODULE_12__["DatepickerTypeComponent"],
-                    }
+                    { name: 'textareaFT', component: _shared_types_textarea_type__WEBPACK_IMPORTED_MODULE_14__["TextareaTypeComponent"] },
+                    { name: 'hiddenFT', component: _shared_types_hidden_type__WEBPACK_IMPORTED_MODULE_13__["HiddenTypeComponent"] },
+                    { name: 'datepickerFT', component: _shared_types_datepicker_type__WEBPACK_IMPORTED_MODULE_12__["DatepickerTypeComponent"] }
                 ],
+                validators: [
+                    { name: 'validateAgentUser', validation: validateAgentUser }
+                ]
             })
         ],
-        providers: [_shared_data_service__WEBPACK_IMPORTED_MODULE_19__["DataService"],
-            { provide: _angular_common__WEBPACK_IMPORTED_MODULE_18__["APP_BASE_HREF"], useValue: '/' }
+        providers: [_shared_data_service__WEBPACK_IMPORTED_MODULE_20__["DataService"], _shared_formly_json_schema_service__WEBPACK_IMPORTED_MODULE_21__["FormlyJsonschemaService"],
+            { provide: _angular_common__WEBPACK_IMPORTED_MODULE_19__["APP_BASE_HREF"], useValue: '/' }
         ],
-        bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_15__["AppComponent"]]
+        bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_16__["AppComponent"]]
     })
 ], AppModule);
 
@@ -298,12 +325,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
-/* harmony import */ var _ngx_formly_core_json_schema__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ngx-formly/core/json-schema */ "./node_modules/@ngx-formly/core/fesm2015/ngx-formly-core-json-schema.js");
+/* harmony import */ var _shared_formly_json_schema_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../shared/formly-json-schema.service */ "./app/app/shared/formly-json-schema.service.ts");
 /* harmony import */ var _shared_data_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../shared/data.service */ "./app/app/shared/data.service.ts");
 
 
 
 
+//import { FormlyJsonschema } from '@ngx-formly/core/json-schema';
 
 
 let LotTypeComponent = class LotTypeComponent {
@@ -323,7 +351,8 @@ let LotTypeComponent = class LotTypeComponent {
                 templateOptions: {
                     label: 'Lot Type Id',
                     required: true,
-                    readonly: true
+                    readonly: true,
+                    hidden: true
                 },
             },
             {
@@ -385,7 +414,7 @@ let LotTypeComponent = class LotTypeComponent {
                     maxLength: 150
                 }
             },
-            /*{
+            {
                 key: "PublishedDate",
                 type: "input",
                 className: "col-6",
@@ -393,19 +422,6 @@ let LotTypeComponent = class LotTypeComponent {
                     label: "Published Date",
                     type: "date",
                     datepickerPopup: "dd.MM.yyyy"
-                }
-            },*/
-            {
-                key: "PPublishedDate",
-                type: "datepicker",
-                className: "col-6",
-                templateOptions: {
-                    label: "Published Date",
-                    datepickerPopup: "dd.MM.yyyy",
-                    required: true
-                },
-                validation: {
-                    messages: {}
                 }
             },
             {
@@ -646,7 +662,7 @@ let LotTypeComponent = class LotTypeComponent {
             "properties": {
                 "LotTypeId": {
                     "title": "Lot Type Id",
-                    "type": "integer",
+                    "type": "hidden",
                     "format": "int32"
                 },
                 "Title": {
@@ -657,9 +673,10 @@ let LotTypeComponent = class LotTypeComponent {
                 },
                 "Description": {
                     "title": "Description",
-                    "type": "string",
+                    "type": "textarea",
                     "maxLength": 500,
-                    "minLength": 5
+                    "minLength": 5,
+                    "rows": 4
                 },
                 "Model": {
                     "title": "Model",
@@ -671,7 +688,7 @@ let LotTypeComponent = class LotTypeComponent {
                     "type": ["null", "string"],
                     "maxLength": 150
                 },
-                "PublishDate": {
+                "PublishedDate": {
                     "title": "Publish Date",
                     "type": "datepicker"
                 },
@@ -687,7 +704,12 @@ let LotTypeComponent = class LotTypeComponent {
                     "type": "textarea",
                     "rows": 4
                 },
-                "Color": { "title": "Color", "minLength": 1, "allOf": [{ "$ref": "#/definitions/Color" }] }, "Contact": { "title": "Contact", "allOf": [{ "$ref": "#/definitions/Contact" }] }
+                "IsItTrue": {
+                    "title": "Is it true?",
+                    "default": false,
+                    "type": "boolean"
+                },
+                "Color": { "title": "Color", "minLength": 1, "$ref": "#/definitions/Color" }, "Contact": { "title": "Contact", "$ref": "#/definitions/Contact" }
             },
             "definitions": { "Color": { "type": "string", "description": "", "x-enumNames": ["Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet", "Purple", "Pink", "White", "Black"], "enum": ["Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet", "Purple", "Pink", "White", "Black"] }, "Contact": { "type": "object", "additionalProperties": false, "properties": { "ContactId": { "title": "Contact Id", "type": "integer", "format": "int32" }, "Name": { "title": "Name", "type": ["null", "string"] }, "Phone": { "title": "Phone Number", "type": ["null", "string"] }, "Email": { "title": "Email Address", "type": ["null", "string"], "pattern": "^([\\w\\.\\-]+)@([\\w\\-]+)((\\.(\\w){2,3})+)$" } } } }
         };
@@ -697,16 +719,17 @@ let LotTypeComponent = class LotTypeComponent {
         this.data.loadLotTypeSchema()
             .subscribe(sucess => {
             if (sucess) {
-                //this.fields2 = [this.formlyJsonschema.toFieldConfig(this.data.lotTypeSchema)];
+                this.schema2 = this.data.lotTypeSchema;
                 this.fields2 = [this.formlyJsonschema.toFieldConfig(this.schema2)];
-                console.log(JSON.stringify(this.fields2));
+                this.addValidators();
+                console.log(this.fields2);
             }
         });
         this.data.loadLotType(lotTypeId)
             .subscribe(data => {
             this.model = this.data.lotType;
-            console.log(this.model);
-            /*if (this.model.publishedDate) {
+            //console.log(this.model);
+            /*if (this.model.PublishedDate) {
                 var pDate = new Date(this.model.PublishedDate);
                 this.model.PublishedDate = {
                     'year': PublishedDate.Year,
@@ -719,27 +742,36 @@ let LotTypeComponent = class LotTypeComponent {
     }
     submit() {
         console.log(JSON.stringify(this.model));
-        //if (this.form.valid) {
-        /*var pDate = new Date(this.model.PPublishedDate.year, this.model.PPublishedDate.month - 1, this.model.PPublishedDate.day);
-        pDate.setMinutes(pDate.getMinutes() - pDate.getTimezoneOffset());
-        this.model.PublishedDate = pDate;
-        */
-        this.data.saveLotType(this.model)
-            .subscribe(sucess => {
-            if (sucess) {
-                this.router.navigate(['/lot-type-list']);
-            }
-        });
-        // }
+        if (this.form.valid) {
+            /*var pDate = new Date(this.model.PPublishedDate.year, this.model.PPublishedDate.month - 1, this.model.PPublishedDate.day);
+            pDate.setMinutes(pDate.getMinutes() - pDate.getTimezoneOffset());
+            this.model.PublishedDate = pDate;
+            */
+            this.data.saveLotType(this.model)
+                .subscribe(sucess => {
+                if (sucess) {
+                    this.router.navigate(['/lot-type-list']);
+                }
+            });
+        }
+    }
+    addValidators() {
+        let modelField = this.fields2[0].fieldGroup.find(function (m) { return m.key === "Model"; });
+        if (modelField) {
+            modelField.validators = {
+                checkAllowedModel: {
+                    expression: this.checkAllowedModel,
+                    message: "Model provided is not allowed."
+                }
+            };
+            modelField.validation = {};
+            modelField.validation.checkAllowedModel = function (viewValue, modelValue, scope) { };
+        }
     }
     checkAllowedModel(vv, mv) {
-        if (vv.value && vv.value.lastIndexOf("M001") >= 0)
+        let invalidModels = ['M001', 'M002', 'M003', 'M004', 'M005'];
+        if (invalidModels.includes(vv.value))
             return false;
-        console.log(mv);
-        return true;
-    }
-    validateAgentUser(vv, mv) {
-        agentUsers: [] = ["agent1", "agent2", "agent3"];
         return true;
     }
 };
@@ -747,7 +779,7 @@ LotTypeComponent.ctorParameters = () => [
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"] },
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },
     { type: _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"] },
-    { type: _ngx_formly_core_json_schema__WEBPACK_IMPORTED_MODULE_4__["FormlyJsonschema"] },
+    { type: _shared_formly_json_schema_service__WEBPACK_IMPORTED_MODULE_4__["FormlyJsonschemaService"] },
     { type: _shared_data_service__WEBPACK_IMPORTED_MODULE_5__["DataService"] }
 ];
 LotTypeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -875,6 +907,405 @@ DataService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 /***/ }),
 
+/***/ "./app/app/shared/formly-json-schema.service.ts":
+/*!******************************************************!*\
+  !*** ./app/app/shared/formly-json-schema.service.ts ***!
+  \******************************************************/
+/*! exports provided: FormlyJsonschemaService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FormlyJsonschemaService", function() { return FormlyJsonschemaService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _ngx_formly_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ngx-formly/core */ "./node_modules/@ngx-formly/core/fesm2015/ngx-formly-core.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
+
+
+
+
+
+function isEmpty(v) {
+    return v === '' || v === undefined || v === null;
+}
+function clearFieldModel(field) {
+    if (field.key) {
+        field.formControl.patchValue(undefined);
+        field.formControl.markAsUntouched();
+        delete field.model[field.key];
+    }
+    else if (field.fieldGroup) {
+        field.fieldGroup.forEach(f => clearFieldModel(f));
+    }
+}
+function checkField(field) {
+    field.options._checkField(field);
+}
+function isFieldValid(field) {
+    if (field.key) {
+        return field.formControl.valid;
+    }
+    return field.fieldGroup.every(f => isFieldValid(f));
+}
+let FormlyJsonschemaService = class FormlyJsonschemaService {
+    toFieldConfig(schema, options) {
+        return this._toFieldConfig(schema, { schema, ...(options || {}) });
+    }
+    _toFieldConfig(schema, options) {
+        schema = this.resolveSchema(schema, options);
+        let field = {
+            type: this.guessType(schema),
+            defaultValue: schema.default,
+            templateOptions: {
+                label: schema.title,
+                readonly: schema.readOnly,
+                description: schema.description,
+            },
+        };
+        switch (field.type) {
+            case 'null': {
+                this.addValidator(field, 'null', ({ value }) => value === null);
+                break;
+            }
+            case 'number':
+            case 'integer': {
+                field.parsers = [v => isEmpty(v) ? null : Number(v)];
+                if (schema.hasOwnProperty('minimum')) {
+                    field.templateOptions.min = schema.minimum;
+                }
+                if (schema.hasOwnProperty('maximum')) {
+                    field.templateOptions.max = schema.maximum;
+                }
+                if (schema.hasOwnProperty('exclusiveMinimum')) {
+                    field.templateOptions.exclusiveMinimum = schema.exclusiveMinimum;
+                    this.addValidator(field, 'exclusiveMinimum', ({ value }) => isEmpty(value) || (value > schema.exclusiveMinimum));
+                }
+                if (schema.hasOwnProperty('exclusiveMaximum')) {
+                    field.templateOptions.exclusiveMaximum = schema.exclusiveMaximum;
+                    this.addValidator(field, 'exclusiveMaximum', ({ value }) => isEmpty(value) || (value < schema.exclusiveMaximum));
+                }
+                if (schema.hasOwnProperty('multipleOf')) {
+                    field.templateOptions.step = schema.multipleOf;
+                    this.addValidator(field, 'multipleOf', ({ value }) => isEmpty(value) || (value % schema.multipleOf === 0));
+                }
+                break;
+            }
+            case 'textareaFT':
+            case 'string': {
+                const schemaType = schema.type;
+                if (Array.isArray(schemaType) && schemaType.includes('null')) {
+                    field.parsers = [v => isEmpty(v) ? null : v];
+                }
+                ['minLength', 'maxLength', 'pattern'].forEach(prop => {
+                    if (schema.hasOwnProperty(prop)) {
+                        field.templateOptions[prop] = schema[prop];
+                    }
+                });
+                break;
+            }
+            case 'object': {
+                field.fieldGroup = [];
+                const [propDeps, schemaDeps] = this.resolveDependencies(schema);
+                Object.keys(schema.properties || {}).forEach(key => {
+                    const f = this._toFieldConfig(schema.properties[key], options);
+                    field.fieldGroup.push(f);
+                    f.key = key;
+                    if (Array.isArray(schema.required) && schema.required.indexOf(key) !== -1) {
+                        f.templateOptions.required = true;
+                    }
+                    if (!f.templateOptions.required && propDeps[key]) {
+                        f.expressionProperties = {
+                            'templateOptions.required': m => m && propDeps[key].some(k => !isEmpty(m[k])),
+                        };
+                    }
+                    if (schemaDeps[key]) {
+                        field.fieldGroup.push({
+                            ...this._toFieldConfig(schemaDeps[key], options),
+                            hideExpression: m => !m || isEmpty(m[key]),
+                        });
+                    }
+                });
+                if (schema.oneOf) {
+                    field.fieldGroup.push(this.resolveMultiSchema('oneOf', schema.oneOf, options));
+                }
+                if (schema.anyOf) {
+                    field.fieldGroup.push(this.resolveMultiSchema('anyOf', schema.anyOf, options));
+                }
+                break;
+            }
+            case 'array': {
+                if (schema.hasOwnProperty('minItems')) {
+                    field.templateOptions.minItems = schema.minItems;
+                    this.addValidator(field, 'minItems', ({ value }) => isEmpty(value) || (value.length >= schema.minItems));
+                }
+                if (schema.hasOwnProperty('maxItems')) {
+                    field.templateOptions.maxItems = schema.maxItems;
+                    this.addValidator(field, 'maxItems', ({ value }) => isEmpty(value) || (value.length <= schema.maxItems));
+                }
+                if (schema.hasOwnProperty('uniqueItems')) {
+                    field.templateOptions.uniqueItems = schema.uniqueItems;
+                    this.addValidator(field, 'uniqueItems', ({ value }) => {
+                        if (isEmpty(value) || !schema.uniqueItems) {
+                            return true;
+                        }
+                        const uniqueItems = Array.from(new Set(value.map((v) => JSON.stringify(v))));
+                        return uniqueItems.length === value.length;
+                    });
+                }
+                // resolve items schema needed for isEnum check
+                if (schema.items && !Array.isArray(schema.items)) {
+                    schema.items = this.resolveSchema(schema.items, options);
+                }
+                // TODO: remove isEnum check once adding an option to skip extension
+                if (!this.isEnum(schema)) {
+                    field.fieldGroup = [];
+                    Object.defineProperty(field, 'fieldArray', {
+                        get: () => {
+                            if (!Array.isArray(schema.items)) {
+                                // When items is a single schema, the additionalItems keyword is meaningless, and it should not be used.
+                                return this._toFieldConfig(schema.items, options);
+                            }
+                            const itemSchema = schema.items[field.fieldGroup.length]
+                                ? schema.items[field.fieldGroup.length]
+                                : schema.additionalItems;
+                            return itemSchema
+                                ? this._toFieldConfig(itemSchema, options)
+                                : {};
+                        },
+                        enumerable: true,
+                        configurable: true,
+                    });
+                }
+                break;
+            }
+        }
+        if (field.type && schema.hasOwnProperty('validators')) {
+            Object.keys(schema.validators || {}).forEach(key => {
+                this.addValidator(field, key, schema.validators[key]);
+            });
+        }
+        if (field.type && schema.hasOwnProperty('validation')) {
+            Object.keys(schema.validation || {}).forEach(key => {
+                this.addValidation(field, key, schema.validation[key]);
+            });
+        }
+        if (schema.hasOwnProperty('const')) {
+            field.templateOptions.const = schema.const;
+            this.addValidator(field, 'const', ({ value }) => value === schema.const);
+            if (!field.type) {
+                field.defaultValue = schema.const;
+            }
+        }
+        if (this.isEnum(schema)) {
+            field.templateOptions.multiple = field.type === 'array';
+            field.type = 'enum';
+            field.templateOptions.options = this.toEnumOptions(schema);
+        }
+        // map in possible formlyConfig options from the widget property
+        if (schema['widget'] && schema['widget'].formlyConfig) {
+            field = Object(_ngx_formly_core__WEBPACK_IMPORTED_MODULE_2__["ɵreverseDeepMerge"])(schema['widget'].formlyConfig, field);
+        }
+        // if there is a map function passed in, use it to allow the user to
+        // further customize how fields are being mapped
+        return options.map ? options.map(field, schema) : field;
+    }
+    resolveSchema(schema, options) {
+        if (schema.$ref) {
+            schema = this.resolveDefinition(schema, options);
+        }
+        if (schema.allOf) {
+            schema = this.resolveAllOf(schema, options);
+        }
+        return schema;
+    }
+    resolveAllOf({ allOf, ...baseSchema }, options) {
+        if (!allOf.length) {
+            throw Error(`allOf array can not be empty ${allOf}.`);
+        }
+        return allOf.reduce((base, schema) => {
+            schema = this.resolveSchema(schema, options);
+            if (base.required && schema.required) {
+                base.required = [...base.required, ...schema.required];
+            }
+            if (schema.uniqueItems) {
+                base.uniqueItems = schema.uniqueItems;
+            }
+            // resolve to min value
+            ['maxLength', 'maximum', 'exclusiveMaximum', 'maxItems', 'maxProperties']
+                .forEach(prop => {
+                if (!isEmpty(base[prop]) && !isEmpty(schema[prop])) {
+                    base[prop] = base[prop] < schema[prop] ? base[prop] : schema[prop];
+                }
+            });
+            // resolve to max value
+            ['minLength', 'minimum', 'exclusiveMinimum', 'minItems', 'minProperties']
+                .forEach(prop => {
+                if (!isEmpty(base[prop]) && !isEmpty(schema[prop])) {
+                    base[prop] = base[prop] > schema[prop] ? base[prop] : schema[prop];
+                }
+            });
+            return Object(_ngx_formly_core__WEBPACK_IMPORTED_MODULE_2__["ɵreverseDeepMerge"])(base, schema);
+        }, baseSchema);
+    }
+    resolveMultiSchema(mode, schemas, options) {
+        let subscription = null;
+        return {
+            type: 'multischema',
+            fieldGroup: [
+                {
+                    type: 'enum',
+                    templateOptions: {
+                        multiple: mode === 'anyOf',
+                        options: schemas
+                            .map((s, i) => ({ label: s.title, value: i })),
+                    },
+                    hooks: {
+                        onInit(f) {
+                            const modeField = f.parent.fieldGroup[1];
+                            const value = modeField.fieldGroup
+                                .map((f, i) => isFieldValid(f) ? i : -1)
+                                .filter(v => v !== -1);
+                            const normalizedValue = [value.length === 0 ? 0 : value[0]];
+                            const formattedValue = mode === 'anyOf' ? normalizedValue : normalizedValue[0];
+                            f.formControl = new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](formattedValue);
+                            setTimeout(() => checkField(modeField));
+                            subscription = f.formControl.valueChanges.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["startWith"])(formattedValue), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["pairwise"])()).subscribe(([p, q]) => {
+                                if (Array.isArray(p)) {
+                                    if (p.length >= q.length) {
+                                        const indexToClear = p.find(v => !q.includes(v));
+                                        clearFieldModel(modeField.fieldGroup[indexToClear]);
+                                    }
+                                }
+                                else {
+                                    clearFieldModel(modeField);
+                                }
+                                checkField(modeField);
+                            });
+                        },
+                        onDestroy() {
+                            subscription && subscription.unsubscribe();
+                        },
+                    },
+                },
+                {
+                    fieldGroup: schemas.map((s, i) => ({
+                        ...this._toFieldConfig(s, options),
+                        hideExpression: (m, fs, f) => {
+                            const control = f.parent.parent.fieldGroup[0].formControl;
+                            return !control || (Array.isArray(control.value)
+                                ? !control.value.includes(i)
+                                : control.value !== i);
+                        },
+                    })),
+                },
+            ],
+        };
+    }
+    resolveDefinition(schema, options) {
+        const [uri, pointer] = schema.$ref.split('#/');
+        if (uri) {
+            throw Error(`Remote schemas for ${schema.$ref} not supported yet.`);
+        }
+        const definition = !pointer ? null : pointer.split('/').reduce((def, path) => def && def.hasOwnProperty(path) ? def[path] : null, options.schema);
+        if (!definition) {
+            throw Error(`Cannot find a definition for ${schema.$ref}.`);
+        }
+        if (definition.$ref) {
+            return this.resolveDefinition(definition, options);
+        }
+        return {
+            ...definition,
+            ...['title', 'description', 'default'].reduce((annotation, p) => {
+                if (schema.hasOwnProperty(p)) {
+                    annotation[p] = schema[p];
+                }
+                return annotation;
+            }, {}),
+        };
+    }
+    resolveDependencies(schema) {
+        const deps = {};
+        const schemaDeps = {};
+        Object.keys(schema.dependencies || {}).forEach(prop => {
+            const dependency = schema.dependencies[prop];
+            if (Array.isArray(dependency)) {
+                // Property dependencies
+                dependency.forEach(dep => {
+                    if (!deps[dep]) {
+                        deps[dep] = [prop];
+                    }
+                    else {
+                        deps[dep].push(prop);
+                    }
+                });
+            }
+            else {
+                // schema dependencies
+                schemaDeps[prop] = dependency;
+            }
+        });
+        return [deps, schemaDeps];
+    }
+    guessType(schema) {
+        const type = schema.type;
+        if (!type && schema.properties) {
+            return 'object';
+        }
+        if (Array.isArray(type)) {
+            if (type.length === 1) {
+                return type[0];
+            }
+            if (type.length === 2 && type.indexOf('null') !== -1) {
+                return type[type[0] === 'null' ? 1 : 0];
+            }
+        }
+        return type;
+    }
+    addValidator(field, name, validator) {
+        field.validators = field.validators || {};
+        field.validators[name] = validator;
+        if (field.validators[name].hasOwnProperty("expression")) {
+            field.validators[name].expression = field.validators[name].expression;
+        }
+    }
+    addValidation(field, name, validation) {
+        field.validation = field.validation || {};
+        field.validation[name] = validation;
+    }
+    isEnum(schema) {
+        const isConst = (s) => s.hasOwnProperty('const') || (s.enum && s.enum.length === 1);
+        return schema.enum
+            || (schema.anyOf && schema.anyOf.every(isConst))
+            || (schema.oneOf && schema.oneOf.every(isConst))
+            || schema.uniqueItems && schema.items && !Array.isArray(schema.items) && this.isEnum(schema.items);
+    }
+    toEnumOptions(schema) {
+        if (schema.enum) {
+            return schema.enum.map(value => ({ value, label: value }));
+        }
+        const toEnum = (s) => {
+            const value = s.hasOwnProperty('const') ? s.const : s.enum[0];
+            return { value: value, label: s.title || value };
+        };
+        if (schema.anyOf) {
+            return schema.anyOf.map(toEnum);
+        }
+        if (schema.oneOf) {
+            return schema.oneOf.map(toEnum);
+        }
+        return this.toEnumOptions(schema.items);
+    }
+};
+FormlyJsonschemaService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({ providedIn: 'root' })
+], FormlyJsonschemaService);
+
+
+
+/***/ }),
+
 /***/ "./app/app/shared/types/array.type.ts":
 /*!********************************************!*\
   !*** ./app/app/shared/types/array.type.ts ***!
@@ -950,22 +1381,60 @@ let DatepickerTypeComponent = class DatepickerTypeComponent extends _ngx_formly_
 };
 DatepickerTypeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-        selector: 'formly-datepicker-type',
-        template: `<label *ngIf="to.label">{{ to.label }} {{to.required ? " * " : ""}}</label>
-    <p *ngIf="to.description">{{ to.description }}</p>
+        selector: 'datepicker-field-type',
+        template: `
     <div class="input-group">
-        <input class="form-control" placeholder="{{ to.placeholder }}" [formControl]="formControl" [formlyAttributes]="field"
-               name="dp" ngbDatepicker #d="ngbDatepicker">
-        <div class="input-group-append">
-            <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
-        </div>
+        <label *ngIf="to.label" class="col-2">{{ to.label }} {{to.required ? " * " : ""}}</label>
+        <input class="form-control col-4" placeholder="{{ to.placeholder }}" [formControl]="formControl" [formlyAttributes]="field" type="date">
     </div>
+    <p *ngIf="to.description">{{ to.description }}</p>
 
     <div class="invalid-feedback" style="display: block;" *ngIf="showError && formControl.errors">
         <formly-validation-message [field]="field"></formly-validation-message>
     </div>`,
     })
 ], DatepickerTypeComponent);
+
+
+
+/***/ }),
+
+/***/ "./app/app/shared/types/hidden.type.ts":
+/*!*********************************************!*\
+  !*** ./app/app/shared/types/hidden.type.ts ***!
+  \*********************************************/
+/*! exports provided: HiddenTypeComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HiddenTypeComponent", function() { return HiddenTypeComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _ngx_formly_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ngx-formly/core */ "./node_modules/@ngx-formly/core/fesm2015/ngx-formly-core.js");
+
+
+
+let HiddenTypeComponent = class HiddenTypeComponent extends _ngx_formly_core__WEBPACK_IMPORTED_MODULE_2__["FieldType"] {
+    constructor() {
+        super(...arguments);
+        this.defaultOptions = {
+            defaultValue: {},
+        };
+    }
+};
+HiddenTypeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'hidden-field-type',
+        template: `<label *ngIf="to.label" style="display:none">{{ to.label }} {{to.required ? " * " : ""}}</label>
+    <p *ngIf="to.description">{{ to.description }}</p>
+    <div class="input-group">
+        <input class="form-control" placeholder="{{ to.placeholder }}" [formControl]="formControl" [formlyAttributes]="field"
+              type="hidden">
+    </div>
+`,
+    })
+], HiddenTypeComponent);
 
 
 
@@ -1084,32 +1553,45 @@ ObjectTypeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 /***/ }),
 
-/***/ "./app/app/shared/wrappers/formlyPanel.wrapper.ts":
-/*!********************************************************!*\
-  !*** ./app/app/shared/wrappers/formlyPanel.wrapper.ts ***!
-  \********************************************************/
-/*! exports provided: PanelWrapperComponent */
+/***/ "./app/app/shared/types/textarea.type.ts":
+/*!***********************************************!*\
+  !*** ./app/app/shared/types/textarea.type.ts ***!
+  \***********************************************/
+/*! exports provided: TextareaTypeComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PanelWrapperComponent", function() { return PanelWrapperComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TextareaTypeComponent", function() { return TextareaTypeComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _ngx_formly_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ngx-formly/core */ "./node_modules/@ngx-formly/core/fesm2015/ngx-formly-core.js");
 
 
 
-let PanelWrapperComponent = class PanelWrapperComponent extends _ngx_formly_core__WEBPACK_IMPORTED_MODULE_2__["FieldWrapper"] {
+let TextareaTypeComponent = class TextareaTypeComponent extends _ngx_formly_core__WEBPACK_IMPORTED_MODULE_2__["FieldType"] {
+    constructor() {
+        super(...arguments);
+        this.defaultOptions = {
+            defaultValue: {},
+        };
+    }
 };
-PanelWrapperComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+TextareaTypeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-        selector: 'formly-panel-wrapper',
+        selector: 'textarea-field-type',
         template: `
-    <h3 class="title">{{ to.label }}</h3>
-  `
+    <div class="input-group">
+        <label attr.for="{{key}}" *ngIf="to.label" class="col-2">{{ to.label }} {{to.required ? " * " : ""}}</label>
+        <textarea class="form-control" placeholder="{{ to.placeholder }}" [formControl]="formControl" [formlyAttributes]="field" rows="4"></textarea>
+    </div>
+
+    <div class="invalid-feedback" style="display: block;" *ngIf="showError && formControl.errors">
+        <formly-validation-message [field]="field"></formly-validation-message>
+    </div>
+  `,
     })
-], PanelWrapperComponent);
+], TextareaTypeComponent);
 
 
 
@@ -1195,7 +1677,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<form [formGroup]=\"form\" (ngSubmit)=\"submit()\">\r\n    <formly-form [model]=\"model\" [fields]=\"fields2\" [options]=\"options\" [form]=\"form\"></formly-form>\r\n    <button type=\"submit\" class=\"btn btn-primary\">Save</button>\r\n    <button type=\"button\" routerLink=\"/lot-type-list\" class=\"btn btn-danger\">Cancel</button>\r\n</form>");
+/* harmony default export */ __webpack_exports__["default"] = ("<form [formGroup]=\"form\" (ngSubmit)=\"submit()\">\r\n    <formly-form [model]=\"model\" [fields]=\"fields2\" [options]=\"options\" [form]=\"form\"></formly-form>\r\n    <button type=\"submit\" class=\"btn btn-primary\">Save</button>\r\n    <button type=\"button\" routerLink=\"/lot-type-list\" class=\"btn btn-danger\">Cancel</button>\r\n</form>\r\n");
 
 /***/ }),
 
@@ -1208,7 +1690,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<p>\r\n    <a routerLink=\"/lot-type/0\">Create New</a>\r\n</p>\r\n<table class=\"table\">\r\n    <thead>\r\n        <tr>\r\n            <th>Title</th>\r\n            <th>Description</th>\r\n            <th>Model</th>\r\n            <th>Color</th>\r\n            <th>Published Date</th>\r\n            <th></th>\r\n        </tr>\r\n    </thead>\r\n    <tbody>\r\n        <tr *ngFor=\"let lotType of lotTypes\">\r\n            <td>{{lotType.Title}}</td>\r\n            <td>{{lotType.Description}}</td>\r\n            <td>{{lotType.Model}}</td>\r\n            <td>{{lotType.Color}}</td>\r\n            <td>{{lotType.PublishedDate.Day}}/{{lotType.PublishedDate.Month}}/{{lotType.PublishedDate.Year}}</td>\r\n            <td>\r\n                <a routerLink=\"/lot-type/{{lotType.LotTypeId}}\">Edit</a>\r\n            </td>\r\n        </tr>\r\n    </tbody>\r\n</table>");
+/* harmony default export */ __webpack_exports__["default"] = ("<p>\r\n    <a routerLink=\"/lot-type/0\">Create New</a>\r\n</p>\r\n<table class=\"table\">\r\n    <thead>\r\n        <tr>\r\n            <th>Title</th>\r\n            <th>Description</th>\r\n            <th>Model</th>\r\n            <th>Color</th>\r\n            <th>Published Date</th>\r\n            <th></th>\r\n        </tr>\r\n    </thead>\r\n    <tbody>\r\n        <tr *ngFor=\"let lotType of lotTypes\">\r\n            <td>{{lotType.Title}}</td>\r\n            <td>{{lotType.Description}}</td>\r\n            <td>{{lotType.Model}}</td>\r\n            <td>{{lotType.Color}}</td>\r\n            <td>{{lotType.PublishedDate}}</td>\r\n            <td>\r\n                <a routerLink=\"/lot-type/{{lotType.LotTypeId}}\">Edit</a>\r\n            </td>\r\n        </tr>\r\n    </tbody>\r\n</table>");
 
 /***/ }),
 

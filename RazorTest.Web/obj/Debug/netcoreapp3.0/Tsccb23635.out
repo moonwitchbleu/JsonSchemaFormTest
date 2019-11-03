@@ -8,8 +8,14 @@ C:\AplusProjects\TestApps\JsonSchemaTestApp\RazorTest.Web\dist\out-tsc\app\share
 C:\AplusProjects\TestApps\JsonSchemaTestApp\RazorTest.Web\dist\out-tsc\app\shared\types\null.type.js.map
 C:\AplusProjects\TestApps\JsonSchemaTestApp\RazorTest.Web\dist\out-tsc\app\shared\types\datepicker.type.js
 C:\AplusProjects\TestApps\JsonSchemaTestApp\RazorTest.Web\dist\out-tsc\app\shared\types\datepicker.type.js.map
+C:\AplusProjects\TestApps\JsonSchemaTestApp\RazorTest.Web\dist\out-tsc\app\shared\types\hidden.type.js
+C:\AplusProjects\TestApps\JsonSchemaTestApp\RazorTest.Web\dist\out-tsc\app\shared\types\hidden.type.js.map
+C:\AplusProjects\TestApps\JsonSchemaTestApp\RazorTest.Web\dist\out-tsc\app\shared\types\textarea.type.js
+C:\AplusProjects\TestApps\JsonSchemaTestApp\RazorTest.Web\dist\out-tsc\app\shared\types\textarea.type.js.map
 C:\AplusProjects\TestApps\JsonSchemaTestApp\RazorTest.Web\dist\out-tsc\app\shared\wrappers\formlyPanel.wrapper.js
 C:\AplusProjects\TestApps\JsonSchemaTestApp\RazorTest.Web\dist\out-tsc\app\shared\wrappers\formlyPanel.wrapper.js.map
+C:\AplusProjects\TestApps\JsonSchemaTestApp\RazorTest.Web\dist\out-tsc\app\shared\formly-json-schema.service.js
+C:\AplusProjects\TestApps\JsonSchemaTestApp\RazorTest.Web\dist\out-tsc\app\shared\formly-json-schema.service.js.map
 C:\AplusProjects\TestApps\JsonSchemaTestApp\RazorTest.Web\dist\out-tsc\app\shared\contact.js
 C:\AplusProjects\TestApps\JsonSchemaTestApp\RazorTest.Web\dist\out-tsc\app\shared\contact.js.map
 C:\AplusProjects\TestApps\JsonSchemaTestApp\RazorTest.Web\dist\out-tsc\app\shared\date.js
@@ -36,7 +42,5 @@ C:\AplusProjects\TestApps\JsonSchemaTestApp\RazorTest.Web\dist\out-tsc\polyfills
 C:\AplusProjects\TestApps\JsonSchemaTestApp\RazorTest.Web\dist\out-tsc\polyfills.js.map
 C:\AplusProjects\TestApps\JsonSchemaTestApp\RazorTest.Web\dist\out-tsc\test.js
 C:\AplusProjects\TestApps\JsonSchemaTestApp\RazorTest.Web\dist\out-tsc\test.js.map
-C:\AplusProjects\TestApps\JsonSchemaTestApp\RazorTest.Web\dist\out-tsc\app\shared\types\textarea.type.js
-C:\AplusProjects\TestApps\JsonSchemaTestApp\RazorTest.Web\dist\out-tsc\app\shared\types\textarea.type.js.map
 C:\AplusProjects\TestApps\JsonSchemaTestApp\RazorTest.Web\dist\out-tsc\environments\environment.prod.js
 C:\AplusProjects\TestApps\JsonSchemaTestApp\RazorTest.Web\dist\out-tsc\environments\environment.prod.js.map

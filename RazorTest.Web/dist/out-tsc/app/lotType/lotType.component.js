@@ -18,7 +18,8 @@ let LotTypeComponent = class LotTypeComponent {
                 templateOptions: {
                     label: 'Lot Type Id',
                     required: true,
-                    readonly: true
+                    readonly: true,
+                    hidden: true
                 },
             },
             {
@@ -80,7 +81,7 @@ let LotTypeComponent = class LotTypeComponent {
                     maxLength: 150
                 }
             },
-            /*{
+            {
                 key: "PublishedDate",
                 type: "input",
                 className: "col-6",
@@ -88,19 +89,6 @@ let LotTypeComponent = class LotTypeComponent {
                     label: "Published Date",
                     type: "date",
                     datepickerPopup: "dd.MM.yyyy"
-                }
-            },*/
-            {
-                key: "PPublishedDate",
-                type: "datepicker",
-                className: "col-6",
-                templateOptions: {
-                    label: "Published Date",
-                    datepickerPopup: "dd.MM.yyyy",
-                    required: true
-                },
-                validation: {
-                    messages: {}
                 }
             },
             {
@@ -341,7 +329,7 @@ let LotTypeComponent = class LotTypeComponent {
             "properties": {
                 "LotTypeId": {
                     "title": "Lot Type Id",
-                    "type": "integer",
+                    "type": "hidden",
                     "format": "int32"
                 },
                 "Title": {
@@ -352,9 +340,10 @@ let LotTypeComponent = class LotTypeComponent {
                 },
                 "Description": {
                     "title": "Description",
-                    "type": "string",
+                    "type": "textarea",
                     "maxLength": 500,
-                    "minLength": 5
+                    "minLength": 5,
+                    "rows": 4
                 },
                 "Model": {
                     "title": "Model",
@@ -366,10 +355,9 @@ let LotTypeComponent = class LotTypeComponent {
                     "type": ["null", "string"],
                     "maxLength": 150
                 },
-                "PublishDate": {
+                "PublishedDate": {
                     "title": "Publish Date",
-                    "type": "string",
-                    "format": "date-time"
+                    "type": "datepicker"
                 },
                 "LotPrice": {
                     "title": "Lot Price",
@@ -378,7 +366,17 @@ let LotTypeComponent = class LotTypeComponent {
                     "maximum": 1000.0,
                     "minimum": 10.0
                 },
-                "Color": { "title": "Color", "minLength": 1, "allOf": [{ "$ref": "#/definitions/Color" }] }, "Contact": { "title": "Contact", "allOf": [{ "$ref": "#/definitions/Contact" }] }
+                "Comments": {
+                    "title": "Comments",
+                    "type": "textarea",
+                    "rows": 4
+                },
+                "IsItTrue": {
+                    "title": "Is it true?",
+                    "default": false,
+                    "type": "boolean"
+                },
+                "Color": { "title": "Color", "minLength": 1, "$ref": "#/definitions/Color" }, "Contact": { "title": "Contact", "$ref": "#/definitions/Contact" }
             },
             "definitions": { "Color": { "type": "string", "description": "", "x-enumNames": ["Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet", "Purple", "Pink", "White", "Black"], "enum": ["Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet", "Purple", "Pink", "White", "Black"] }, "Contact": { "type": "object", "additionalProperties": false, "properties": { "ContactId": { "title": "Contact Id", "type": "integer", "format": "int32" }, "Name": { "title": "Name", "type": ["null", "string"] }, "Phone": { "title": "Phone Number", "type": ["null", "string"] }, "Email": { "title": "Email Address", "type": ["null", "string"], "pattern": "^([\\w\\.\\-]+)@([\\w\\-]+)((\\.(\\w){2,3})+)$" } } } }
         };
@@ -388,16 +386,16 @@ let LotTypeComponent = class LotTypeComponent {
         this.data.loadLotTypeSchema()
             .subscribe(sucess => {
             if (sucess) {
-                this.fields2 = [this.formlyJsonschema.toFieldConfig(this.data.lotTypeSchema)];
-                //this.fields2 = [this.formlyJsonschema.toFieldConfig(this.schema2)];
-                console.log(JSON.stringify(this.fields2));
+                this.schema2 = this.data.lotTypeSchema;
+                this.fields2 = [this.formlyJsonschema.toFieldConfig(this.schema2)];
+                console.log(this.fields2);
             }
         });
         this.data.loadLotType(lotTypeId)
             .subscribe(data => {
             this.model = this.data.lotType;
-            console.log(this.model);
-            /*if (this.model.publishedDate) {
+            //console.log(this.model);
+            /*if (this.model.PublishedDate) {
                 var pDate = new Date(this.model.PublishedDate);
                 this.model.PublishedDate = {
                     'year': PublishedDate.Year,
@@ -410,27 +408,25 @@ let LotTypeComponent = class LotTypeComponent {
     }
     submit() {
         console.log(JSON.stringify(this.model));
-        //if (this.form.valid) {
-        /*var pDate = new Date(this.model.PPublishedDate.year, this.model.PPublishedDate.month - 1, this.model.PPublishedDate.day);
-        pDate.setMinutes(pDate.getMinutes() - pDate.getTimezoneOffset());
-        this.model.PublishedDate = pDate;
-        */
-        this.data.saveLotType(this.model)
-            .subscribe(sucess => {
-            if (sucess) {
-                this.router.navigate(['/lot-type-list']);
-            }
-        });
-        // }
+        if (this.form.valid) {
+            /*var pDate = new Date(this.model.PPublishedDate.year, this.model.PPublishedDate.month - 1, this.model.PPublishedDate.day);
+            pDate.setMinutes(pDate.getMinutes() - pDate.getTimezoneOffset());
+            this.model.PublishedDate = pDate;
+            */
+            this.data.saveLotType(this.model)
+                .subscribe(sucess => {
+                if (sucess) {
+                    this.router.navigate(['/lot-type-list']);
+                }
+            });
+        }
+    }
+    addValidators() {
     }
     checkAllowedModel(vv, mv) {
         if (vv.value && vv.value.lastIndexOf("M001") >= 0)
             return false;
         console.log(mv);
-        return true;
-    }
-    validateAgentUser(vv, mv) {
-        agentUsers: [] = ["agent1", "agent2", "agent3"];
         return true;
     }
 };
@@ -442,4 +438,10 @@ LotTypeComponent = __decorate([
     })
 ], LotTypeComponent);
 export { LotTypeComponent };
+export function checkValidModel(control) {
+    let invalidModels = ['M001', 'M002', 'M003', 'M004', 'M005'];
+    if (invalidModels.includes(control.value))
+        return { 'checkValidModel': false };
+    return null;
+}
 //# sourceMappingURL=lotType.component.js.map

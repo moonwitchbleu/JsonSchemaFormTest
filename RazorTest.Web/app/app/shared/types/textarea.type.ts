@@ -3,26 +3,19 @@ import { FieldType } from '@ngx-formly/core';
 import { FormlyField } from '@ngx-formly/core';
 
 @Component({
-    selector: 'formly-datepicker-type',
+    selector: 'textarea-field-type',
     template: `
-<div class="form-group">
- <label *ngIf="to.label">{{ to.label }}</label>
-    <p *ngIf="to.description">{{ to.description }}</p>
     <div class="input-group">
-        <input class="form-control" placeholder="{{ to.placeholder }}" [formControl]="formControl" [formlyAttributes]="field"
-               name="dp" ngbDatepicker #d="ngbDatepicker">
-        <div class="input-group-append">
-            <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
-        </div>
+        <label attr.for="{{key}}" *ngIf="to.label" class="col-2">{{ to.label }} {{to.required ? " * " : ""}}</label>
+        <textarea class="form-control" placeholder="{{ to.placeholder }}" [formControl]="formControl" [formlyAttributes]="field" rows="4"></textarea>
     </div>
 
     <div class="invalid-feedback" style="display: block;" *ngIf="showError && formControl.errors">
         <formly-validation-message [field]="field"></formly-validation-message>
     </div>
-</div>
   `,
 })
-export class DatepickerTypeComponent extends FieldType {
+export class TextareaTypeComponent extends FieldType {
     defaultOptions = {
         defaultValue: {},
     };

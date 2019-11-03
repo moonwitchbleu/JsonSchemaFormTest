@@ -11,16 +11,13 @@ let DatepickerTypeComponent = class DatepickerTypeComponent extends FieldType {
 };
 DatepickerTypeComponent = __decorate([
     Component({
-        selector: 'formly-datepicker-type',
-        template: `<label *ngIf="to.label">{{ to.label }} {{to.required ? " * " : ""}}</label>
-    <p *ngIf="to.description">{{ to.description }}</p>
+        selector: 'datepicker-field-type',
+        template: `
     <div class="input-group">
-        <input class="form-control" placeholder="{{ to.placeholder }}" [formControl]="formControl" [formlyAttributes]="field"
-               name="dp" ngbDatepicker #d="ngbDatepicker">
-        <div class="input-group-append">
-            <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
-        </div>
+        <label *ngIf="to.label" class="col-2">{{ to.label }} {{to.required ? " * " : ""}}</label>
+        <input class="form-control col-4" placeholder="{{ to.placeholder }}" [formControl]="formControl" [formlyAttributes]="field" type="date">
     </div>
+    <p *ngIf="to.description">{{ to.description }}</p>
 
     <div class="invalid-feedback" style="display: block;" *ngIf="showError && formControl.errors">
         <formly-validation-message [field]="field"></formly-validation-message>
