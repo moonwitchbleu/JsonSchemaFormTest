@@ -56,7 +56,6 @@ namespace RazorTest.Web.Model
         [Required]
         [Display(Name = "Color")]
         [JsonConverter(typeof(StringEnumConverter))]
-        [JsonSchemaExtensionData("type", "radio")]
         public Color Color { get; set; }
 
         [Display(Name = "Comment")]
@@ -67,6 +66,9 @@ namespace RazorTest.Web.Model
         [Display(Name = "Contact")]
         [JsonSchemaExtensionData("type", "object")]
         public Contact Contact { get; set; }
+
+        [Display(Name = "Active?")]
+        public bool IsActive { get; set; }
 
         public JsonSchema GetLotJsonSchema()
         {
@@ -98,13 +100,15 @@ namespace RazorTest.Web.Model
             jsonSchema.Properties["Model"].ExtensionData = modelValidators;
             */
             
-            Dictionary<string, object> agentUserCodeValidators = new Dictionary<string, object>();
-            agentUserCodeValidators.Add("validators", new
+            Dictionary<string, object> agentUserCodeExtensionData = new Dictionary<string, object>();
+            agentUserCodeExtensionData.Add("validators", new
             {
                 validation = new[] { "validateAgentUser" }
             });
-            jsonSchema.Properties["AgentUserCode"].ExtensionData = agentUserCodeValidators;
+            jsonSchema.Properties["AgentUserCode"].ExtensionData = agentUserCodeExtensionData;
         }
+
+        
 
         public LotType MapToLotType()
         {
@@ -118,6 +122,7 @@ namespace RazorTest.Web.Model
                 LotPrice = LotPrice,
                 PublishedDate = PublishedDate,
                 Color = Color,
+                IsActive = IsActive,
                 Contact = new Contact
                 {
                     Name = Contact.Name,
@@ -144,6 +149,7 @@ namespace RazorTest.Web.Model
                 PublishedDate = lotType.PublishedDate;
                 LotPrice = lotType.LotPrice;
                 Color = lotType.Color;
+                IsActive = lotType.IsActive;
 
                 if (lotType.Contact != null)
                 {

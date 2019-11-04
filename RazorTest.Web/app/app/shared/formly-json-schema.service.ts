@@ -433,10 +433,6 @@ export class FormlyJsonschemaService {
     private addValidator(field: FormlyFieldConfig, name: string, validator: (control: AbstractControl) => boolean) {
         field.validators = field.validators || {};
         field.validators[name] = validator;
-
-        if (field.validators[name].hasOwnProperty("expression")) {
-            field.validators[name].expression = <ValidatorFn>field.validators[name].expression;
-        }
     }
 
     private addValidation(field: FormlyFieldConfig, name: string, validation: (control: AbstractControl) => boolean) {

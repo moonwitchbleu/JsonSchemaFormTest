@@ -40,10 +40,10 @@ namespace RazorTest.Web
                 {
                     options.SerializerSettings.ContractResolver = new DefaultContractResolver();
                     options.SerializerSettings.DateFormatString = "yyyy-MM-dd";
-                    /*options.SerializerSettings.Converters = new List<JsonConverter>
+                    options.SerializerSettings.Converters = new List<JsonConverter>
                     {
                         new StringEnumConverter()
-                    };*/
+                    };
                 });
             services.Configure<ApiBehaviorOptions>(options =>
             {

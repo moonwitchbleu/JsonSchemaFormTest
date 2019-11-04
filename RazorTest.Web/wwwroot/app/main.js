@@ -1266,9 +1266,6 @@ let FormlyJsonschemaService = class FormlyJsonschemaService {
     addValidator(field, name, validator) {
         field.validators = field.validators || {};
         field.validators[name] = validator;
-        if (field.validators[name].hasOwnProperty("expression")) {
-            field.validators[name].expression = field.validators[name].expression;
-        }
     }
     addValidation(field, name, validation) {
         field.validation = field.validation || {};

@@ -3,36 +3,23 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RazorTest.Data;
 
 namespace RazorTest.Data.Migrations
 {
     [DbContext(typeof(RazorTestContext))]
-    partial class RazorTestContextModelSnapshot : ModelSnapshot
+    [Migration("20191103235701_AddIsActiveCol_LotTypeTble")]
+    partial class AddIsActiveCol_LotTypeTble
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("RazorTest.Domain.Commodity", b =>
-                {
-                    b.Property<int>("CommodityId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("CommodityName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("CommodityId");
-
-                    b.ToTable("Commodities");
-                });
 
             modelBuilder.Entity("RazorTest.Domain.Contact", b =>
                 {

@@ -388,6 +388,7 @@ let LotTypeComponent = class LotTypeComponent {
             if (sucess) {
                 this.schema2 = this.data.lotTypeSchema;
                 this.fields2 = [this.formlyJsonschema.toFieldConfig(this.schema2)];
+                this.addValidators();
                 console.log(this.fields2);
             }
         });
@@ -422,11 +423,22 @@ let LotTypeComponent = class LotTypeComponent {
         }
     }
     addValidators() {
+        let modelField = this.fields2[0].fieldGroup.find(function (m) { return m.key === "Model"; });
+        if (modelField) {
+            modelField.validators = {
+                checkAllowedModel: {
+                    expression: this.checkAllowedModel,
+                    message: "Model provided is not allowed."
+                }
+            };
+            modelField.validation = {};
+            modelField.validation.checkAllowedModel = function (viewValue, modelValue, scope) { };
+        }
     }
     checkAllowedModel(vv, mv) {
-        if (vv.value && vv.value.lastIndexOf("M001") >= 0)
+        let invalidModels = ['M001', 'M002', 'M003', 'M004', 'M005'];
+        if (invalidModels.includes(vv.value))
             return false;
-        console.log(mv);
         return true;
     }
 };
@@ -438,10 +450,4 @@ LotTypeComponent = __decorate([
     })
 ], LotTypeComponent);
 export { LotTypeComponent };
-export function checkValidModel(control) {
-    let invalidModels = ['M001', 'M002', 'M003', 'M004', 'M005'];
-    if (invalidModels.includes(control.value))
-        return { 'checkValidModel': false };
-    return null;
-}
 //# sourceMappingURL=lotType.component.js.map
