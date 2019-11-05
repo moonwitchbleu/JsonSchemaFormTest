@@ -2,27 +2,25 @@ import { __decorate } from "tslib";
 import { Component } from '@angular/core';
 import { FieldType } from '@ngx-formly/core';
 let RadioTypeComponent = class RadioTypeComponent extends FieldType {
-    constructor() {
-        super(...arguments);
-        this.defaultOptions = {
-            defaultValue: {},
-        };
+    isEqual(obj1, obj2) {
+        if (JSON.stringify(obj1) === JSON.stringify(obj2))
+            return true;
+        return false;
     }
 };
 RadioTypeComponent = __decorate([
     Component({
         selector: 'radio-field-type',
         template: `
-    <div class="form-group">
-    <label *ngIf="to.label" class="col-2">{{ to.label }} {{to.required ? " * " : ""}}</label>
-    <div class="input-group">
-        <div *ngFor="let option of to.options;let i = index;" class="col-10">
-          <input placeholder="{{ to.placeholder }}"  [formControl]="formControl" [formlyAttributes]="field" value="{{option}}" type="radio">
+    <div *ngFor="let option of to.options;let i = index;">
+          <input type="radio" 
+           [name]="to.name"
+           [formControl]="formControl" 
+           [formlyAttributes]="field"
+           [value]="option.value" [checked]="this.isEqual(option.value, formControl.value)">
           <label class="col-10">{{option.label}}</label>
         </div>
-    </div>
     <p *ngIf="to.description">{{ to.description }}</p>
-    </div>
   `,
     })
 ], RadioTypeComponent);

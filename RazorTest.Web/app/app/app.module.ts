@@ -15,6 +15,7 @@ import { HiddenTypeComponent } from './shared/types/hidden.type';
 import { TextareaTypeComponent } from './shared/types/textarea.type';
 import { RadioTypeComponent } from './shared/types/radio.type';
 import { StringTypeComponent } from './shared/types/string.type';
+import { SelectTypeComponent } from './shared/types/select.type';
 
 import { FormWrapperComponent } from './shared/wrappers/formlyPanel.wrapper';
 
@@ -106,6 +107,7 @@ export function validateAgentUser(control: FormControl): ValidationErrors {
         TextareaTypeComponent,
         RadioTypeComponent,
         StringTypeComponent,
+        SelectTypeComponent,
         FormWrapperComponent
     ],
     imports: [
@@ -138,8 +140,9 @@ export function validateAgentUser(control: FormControl): ValidationErrors {
                 { name: 'form-wrapper', component: FormWrapperComponent }
             ],
             types: [
-               { name: 'boolean', extends: 'checkbox' },
-                { name: 'enum', extends: 'select' },
+                { name: 'boolean', extends: 'checkbox' },
+                //{ name: 'enum', extends: 'select' },
+                { name: 'enum', component: SelectTypeComponent, wrappers: ['form-wrapper']  },
                 { name: 'null', component: NullTypeComponent},
                 { name: 'array', component: ArrayTypeComponent },
                 { name: 'object', component: ObjectTypeComponent },
@@ -147,7 +150,7 @@ export function validateAgentUser(control: FormControl): ValidationErrors {
                 { name: 'textareaFT', component: TextareaTypeComponent, wrappers: ['form-wrapper'] },
                 { name: 'hidden', component: HiddenTypeComponent },
                 { name: 'datepicker', component: DatepickerTypeComponent, wrappers: ['form-wrapper'] },
-                { name: 'radio', component: RadioTypeComponent },
+                { name: 'radioFT', component: RadioTypeComponent, wrappers: ['form-wrapper']  },
                 { name: 'string', component: StringTypeComponent, wrappers: ['form-wrapper'] },
                 {
                     name: 'number',
@@ -166,6 +169,10 @@ export function validateAgentUser(control: FormControl): ValidationErrors {
                             type: 'number',
                         },
                     },
+                },
+                {
+                    name: 'arrayFT',
+                    extends: 'array'
                 },
 
             ],

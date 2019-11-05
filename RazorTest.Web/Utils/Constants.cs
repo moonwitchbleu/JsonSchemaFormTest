@@ -9,7 +9,8 @@ namespace RazorTest.Web.Utils
     {
         public const string Textarea_Field_Type = "textareaFT";
         public const string Hidden_Field_Type = "hidden";
-        public const string Radio_Field_Type = "radio";
+        public const string Radio_Field_Type = "radioFT";
         public const string Datepicker_Field_Type = "datepicker";
+        public const string Array_Field_Type = "array";
     }
 }

@@ -68,7 +68,7 @@ let FormlyJsonschemaService = class FormlyJsonschemaService {
                 }
                 break;
             }
-            case 'textarea':
+            case 'textareaFT':
             case 'string': {
                 const schemaType = schema.type;
                 if (Array.isArray(schemaType) && schemaType.includes('null')) {
@@ -111,6 +111,7 @@ let FormlyJsonschemaService = class FormlyJsonschemaService {
                 }
                 break;
             }
+            case 'arrayFT':
             case 'array': {
                 if (schema.hasOwnProperty('minItems')) {
                     field.templateOptions.minItems = schema.minItems;
@@ -156,6 +157,7 @@ let FormlyJsonschemaService = class FormlyJsonschemaService {
                 }
                 break;
             }
+            case 'radioFT':
             case 'radio': {
                 if (schema.hasOwnProperty('options')) {
                     field.templateOptions.options = schema.options;

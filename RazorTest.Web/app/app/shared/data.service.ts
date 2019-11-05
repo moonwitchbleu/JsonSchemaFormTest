@@ -2,7 +2,7 @@
 import { Injectable } from "@angular/core";
 import { map, tap } from "rxjs/operators";
 import { LotType } from "./lotType";
-import { Observable } from 'rxjs';
+import { Observable, forkJoin } from 'rxjs';
 
 @Injectable()
 export class DataService {
@@ -17,13 +17,17 @@ export class DataService {
         headers: new HttpHeaders({ 'Content-Type': 'application/json'})
     };
 
-    loadLotTypeSchema(): Observable<boolean> {
+    loadLotTypeData(lotTypeId: number): Observable<any> {
+        return forkJoin([this.loadLotTypeSchema(), this.loadLotType(lotTypeId)]);
+    }
+
+    loadLotTypeSchema(): Observable<any> {
         return this.http.get<any>("/api/lotType/lotTypeSchema")
             .pipe(
                 map((data) => {
                     this.lotTypeSchema = JSON.parse(data);
                     console.log("Schema", this.lotTypeSchema);
-                    return true;
+                    return this.lotTypeSchema;
                 })
             )
     }

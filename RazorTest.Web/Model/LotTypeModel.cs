@@ -72,6 +72,11 @@ namespace RazorTest.Web.Model
         [Display(Name = "Bid Type")]
         public BidTypeModel BidType { get; set; }
 
+        /*
+        [Display(Name = "Bid Types")]
+        public List<BidTypeModel> BidTypes { get; set; }
+        */
+
         public JsonSchema GetLotJsonSchema(List<BidType> bidTypes)
         {
             var settings = new JsonSchemaGeneratorSettings();
@@ -116,12 +121,23 @@ namespace RazorTest.Web.Model
         private void AddBidTypeItems(JsonSchema jsonSchema, List<BidType> bidTypes)
         {
             Dictionary<string, object> bidTypeExtendedData = new Dictionary<string, object>();
+            bidTypeExtendedData.Add("type", Constants.Radio_Field_Type);
             bidTypeExtendedData.Add("options", bidTypes.Select(x => new {
                 value = x,
                 label = x.BidTypeName
             }));
-            bidTypeExtendedData.Add("type", Constants.Radio_Field_Type);
+            
+            /*
+            bidTypeExtendedData.Add("type", Constants.Array_Field_Type);
+            bidTypeExtendedData.Add("items", new {
+                type = "object",
+                required = new[] {
+                    "BidTypeName"
+                }
+            });
+            */
             jsonSchema.Properties["BidType"].ActualTypeSchema.ExtensionData = bidTypeExtendedData;
+            
         }
 
         public LotType MapToLotType()

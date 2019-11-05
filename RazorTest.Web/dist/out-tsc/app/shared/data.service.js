@@ -2,6 +2,7 @@ import { __decorate } from "tslib";
 import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from "@angular/core";
 import { map } from "rxjs/operators";
+import { forkJoin } from 'rxjs';
 let DataService = class DataService {
     constructor(http) {
         this.http = http;
@@ -10,12 +11,15 @@ let DataService = class DataService {
             headers: new HttpHeaders({ 'Content-Type': 'application/json' })
         };
     }
+    loadLotTypeData(lotTypeId) {
+        return forkJoin([this.loadLotTypeSchema(), this.loadLotType(lotTypeId)]);
+    }
     loadLotTypeSchema() {
         return this.http.get("/api/lotType/lotTypeSchema")
             .pipe(map((data) => {
             this.lotTypeSchema = JSON.parse(data);
             console.log("Schema", this.lotTypeSchema);
-            return true;
+            return this.lotTypeSchema;
         }));
     }
     loadLotTypes() {

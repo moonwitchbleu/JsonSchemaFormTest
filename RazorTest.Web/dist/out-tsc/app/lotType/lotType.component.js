@@ -406,29 +406,29 @@ let LotTypeComponent = class LotTypeComponent {
     }
     ngOnInit() {
         const lotTypeId = +this.route.snapshot.paramMap.get('id');
-        this.data.loadLotTypeSchema()
-            .subscribe(sucess => {
-            if (sucess) {
-                this.schema2 = this.data.lotTypeSchema;
-                this.fields2 = [this.formlyJsonschema.toFieldConfig(this.schema2)];
-                this.addValidators();
-                console.log(this.fields2);
-            }
-        });
-        this.data.loadLotType(lotTypeId)
-            .subscribe(data => {
+        /*this.data.loadLotTypeSchema()
+            .subscribe(schema => {
+                if (schema) {
+                    this.schema2 = schema;
+                    this.fields2 = [this.formlyJsonschema.toFieldConfig(this.schema2)];
+                    this.addValidators();
+                    console.log(this.fields2);
+
+                    this.data.loadLotType(lotTypeId)
+                        .subscribe(data => {
+                            this.model = this.data.lotType;
+                        })
+                }
+            })
+        */
+        this.data.loadLotTypeData(lotTypeId).subscribe(([schema, data]) => {
+            this.schema2 = schema;
+            this.fields2 = [this.formlyJsonschema.toFieldConfig(this.schema2)];
             this.model = this.data.lotType;
-            //console.log(this.model);
-            /*if (this.model.PublishedDate) {
-                var pDate = new Date(this.model.PublishedDate);
-                this.model.PublishedDate = {
-                    'year': PublishedDate.Year,
-                    'month': pDate.getMonth() + 1,
-                    'day': pDate.getDate()
-                };
-            }*/
+            this.addValidators();
+            console.log("fields: ", this.fields2);
         });
-        console.log('Form:', this.form);
+        console.log('Form: ', this.form);
     }
     submit() {
         console.log(JSON.stringify(this.model));

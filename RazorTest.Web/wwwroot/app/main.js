@@ -148,14 +148,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _shared_types_textarea_type__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./shared/types/textarea.type */ "./app/app/shared/types/textarea.type.ts");
 /* harmony import */ var _shared_types_radio_type__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./shared/types/radio.type */ "./app/app/shared/types/radio.type.ts");
 /* harmony import */ var _shared_types_string_type__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./shared/types/string.type */ "./app/app/shared/types/string.type.ts");
-/* harmony import */ var _shared_wrappers_formlyPanel_wrapper__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./shared/wrappers/formlyPanel.wrapper */ "./app/app/shared/wrappers/formlyPanel.wrapper.ts");
-/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./app-routing.module */ "./app/app/app-routing.module.ts");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./app.component */ "./app/app/app.component.ts");
-/* harmony import */ var _lotTypeList_lotTypeList_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./lotTypeList/lotTypeList.component */ "./app/app/lotTypeList/lotTypeList.component.ts");
-/* harmony import */ var _lotType_lotType_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./lotType/lotType.component */ "./app/app/lotType/lotType.component.ts");
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm2015/common.js");
-/* harmony import */ var _shared_data_service__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./shared/data.service */ "./app/app/shared/data.service.ts");
-/* harmony import */ var _shared_formly_json_schema_service__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./shared/formly-json-schema.service */ "./app/app/shared/formly-json-schema.service.ts");
+/* harmony import */ var _shared_types_select_type__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./shared/types/select.type */ "./app/app/shared/types/select.type.ts");
+/* harmony import */ var _shared_wrappers_formlyPanel_wrapper__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./shared/wrappers/formlyPanel.wrapper */ "./app/app/shared/wrappers/formlyPanel.wrapper.ts");
+/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./app-routing.module */ "./app/app/app-routing.module.ts");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./app.component */ "./app/app/app.component.ts");
+/* harmony import */ var _lotTypeList_lotTypeList_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./lotTypeList/lotTypeList.component */ "./app/app/lotTypeList/lotTypeList.component.ts");
+/* harmony import */ var _lotType_lotType_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./lotType/lotType.component */ "./app/app/lotType/lotType.component.ts");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm2015/common.js");
+/* harmony import */ var _shared_data_service__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./shared/data.service */ "./app/app/shared/data.service.ts");
+/* harmony import */ var _shared_formly_json_schema_service__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./shared/formly-json-schema.service */ "./app/app/shared/formly-json-schema.service.ts");
+
 
 
 
@@ -234,9 +236,9 @@ let AppModule = class AppModule {
 AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
         declarations: [
-            _app_component__WEBPACK_IMPORTED_MODULE_19__["AppComponent"],
-            _lotTypeList_lotTypeList_component__WEBPACK_IMPORTED_MODULE_20__["LotTypeListComponent"],
-            _lotType_lotType_component__WEBPACK_IMPORTED_MODULE_21__["LotTypeComponent"],
+            _app_component__WEBPACK_IMPORTED_MODULE_20__["AppComponent"],
+            _lotTypeList_lotTypeList_component__WEBPACK_IMPORTED_MODULE_21__["LotTypeListComponent"],
+            _lotType_lotType_component__WEBPACK_IMPORTED_MODULE_22__["LotTypeComponent"],
             _shared_types_array_type__WEBPACK_IMPORTED_MODULE_8__["ArrayTypeComponent"],
             _shared_types_object_type__WEBPACK_IMPORTED_MODULE_9__["ObjectTypeComponent"],
             _shared_types_multischema_type__WEBPACK_IMPORTED_MODULE_10__["MultiSchemaTypeComponent"],
@@ -246,11 +248,12 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _shared_types_textarea_type__WEBPACK_IMPORTED_MODULE_14__["TextareaTypeComponent"],
             _shared_types_radio_type__WEBPACK_IMPORTED_MODULE_15__["RadioTypeComponent"],
             _shared_types_string_type__WEBPACK_IMPORTED_MODULE_16__["StringTypeComponent"],
-            _shared_wrappers_formlyPanel_wrapper__WEBPACK_IMPORTED_MODULE_17__["FormWrapperComponent"]
+            _shared_types_select_type__WEBPACK_IMPORTED_MODULE_17__["SelectTypeComponent"],
+            _shared_wrappers_formlyPanel_wrapper__WEBPACK_IMPORTED_MODULE_18__["FormWrapperComponent"]
         ],
         imports: [
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
-            _app_routing_module__WEBPACK_IMPORTED_MODULE_18__["AppRoutingModule"],
+            _app_routing_module__WEBPACK_IMPORTED_MODULE_19__["AppRoutingModule"],
             _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClientModule"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_4__["ReactiveFormsModule"],
             _ngx_formly_bootstrap__WEBPACK_IMPORTED_MODULE_6__["FormlyBootstrapModule"],
@@ -275,11 +278,12 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
                     { name: 'validateAgentUser', message: validateAgentUserMessage }
                 ],
                 wrappers: [
-                    { name: 'form-wrapper', component: _shared_wrappers_formlyPanel_wrapper__WEBPACK_IMPORTED_MODULE_17__["FormWrapperComponent"] }
+                    { name: 'form-wrapper', component: _shared_wrappers_formlyPanel_wrapper__WEBPACK_IMPORTED_MODULE_18__["FormWrapperComponent"] }
                 ],
                 types: [
                     { name: 'boolean', extends: 'checkbox' },
-                    { name: 'enum', extends: 'select' },
+                    //{ name: 'enum', extends: 'select' },
+                    { name: 'enum', component: _shared_types_select_type__WEBPACK_IMPORTED_MODULE_17__["SelectTypeComponent"], wrappers: ['form-wrapper'] },
                     { name: 'null', component: _shared_types_null_type__WEBPACK_IMPORTED_MODULE_11__["NullTypeComponent"] },
                     { name: 'array', component: _shared_types_array_type__WEBPACK_IMPORTED_MODULE_8__["ArrayTypeComponent"] },
                     { name: 'object', component: _shared_types_object_type__WEBPACK_IMPORTED_MODULE_9__["ObjectTypeComponent"] },
@@ -287,7 +291,7 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
                     { name: 'textareaFT', component: _shared_types_textarea_type__WEBPACK_IMPORTED_MODULE_14__["TextareaTypeComponent"], wrappers: ['form-wrapper'] },
                     { name: 'hidden', component: _shared_types_hidden_type__WEBPACK_IMPORTED_MODULE_13__["HiddenTypeComponent"] },
                     { name: 'datepicker', component: _shared_types_datepicker_type__WEBPACK_IMPORTED_MODULE_12__["DatepickerTypeComponent"], wrappers: ['form-wrapper'] },
-                    { name: 'radio', component: _shared_types_radio_type__WEBPACK_IMPORTED_MODULE_15__["RadioTypeComponent"] },
+                    { name: 'radioFT', component: _shared_types_radio_type__WEBPACK_IMPORTED_MODULE_15__["RadioTypeComponent"], wrappers: ['form-wrapper'] },
                     { name: 'string', component: _shared_types_string_type__WEBPACK_IMPORTED_MODULE_16__["StringTypeComponent"], wrappers: ['form-wrapper'] },
                     {
                         name: 'number',
@@ -307,16 +311,20 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
                             },
                         },
                     },
+                    {
+                        name: 'arrayFT',
+                        extends: 'array'
+                    },
                 ],
                 validators: [
                     { name: 'validateAgentUser', validation: validateAgentUser }
                 ]
             })
         ],
-        providers: [_shared_data_service__WEBPACK_IMPORTED_MODULE_23__["DataService"], _shared_formly_json_schema_service__WEBPACK_IMPORTED_MODULE_24__["FormlyJsonschemaService"],
-            { provide: _angular_common__WEBPACK_IMPORTED_MODULE_22__["APP_BASE_HREF"], useValue: '/' }
+        providers: [_shared_data_service__WEBPACK_IMPORTED_MODULE_24__["DataService"], _shared_formly_json_schema_service__WEBPACK_IMPORTED_MODULE_25__["FormlyJsonschemaService"],
+            { provide: _angular_common__WEBPACK_IMPORTED_MODULE_23__["APP_BASE_HREF"], useValue: '/' }
         ],
-        bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_19__["AppComponent"]]
+        bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_20__["AppComponent"]]
     })
 ], AppModule);
 
@@ -752,29 +760,29 @@ let LotTypeComponent = class LotTypeComponent {
     }
     ngOnInit() {
         const lotTypeId = +this.route.snapshot.paramMap.get('id');
-        this.data.loadLotTypeSchema()
-            .subscribe(sucess => {
-            if (sucess) {
-                this.schema2 = this.data.lotTypeSchema;
-                this.fields2 = [this.formlyJsonschema.toFieldConfig(this.schema2)];
-                this.addValidators();
-                console.log(this.fields2);
-            }
-        });
-        this.data.loadLotType(lotTypeId)
-            .subscribe(data => {
+        /*this.data.loadLotTypeSchema()
+            .subscribe(schema => {
+                if (schema) {
+                    this.schema2 = schema;
+                    this.fields2 = [this.formlyJsonschema.toFieldConfig(this.schema2)];
+                    this.addValidators();
+                    console.log(this.fields2);
+
+                    this.data.loadLotType(lotTypeId)
+                        .subscribe(data => {
+                            this.model = this.data.lotType;
+                        })
+                }
+            })
+        */
+        this.data.loadLotTypeData(lotTypeId).subscribe(([schema, data]) => {
+            this.schema2 = schema;
+            this.fields2 = [this.formlyJsonschema.toFieldConfig(this.schema2)];
             this.model = this.data.lotType;
-            //console.log(this.model);
-            /*if (this.model.PublishedDate) {
-                var pDate = new Date(this.model.PublishedDate);
-                this.model.PublishedDate = {
-                    'year': PublishedDate.Year,
-                    'month': pDate.getMonth() + 1,
-                    'day': pDate.getDate()
-                };
-            }*/
+            this.addValidators();
+            console.log("fields: ", this.fields2);
         });
-        console.log('Form:', this.form);
+        console.log('Form: ', this.form);
     }
     submit() {
         console.log(JSON.stringify(this.model));
@@ -888,6 +896,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
+
 
 
 
@@ -900,12 +910,15 @@ let DataService = class DataService {
             headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({ 'Content-Type': 'application/json' })
         };
     }
+    loadLotTypeData(lotTypeId) {
+        return Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["forkJoin"])([this.loadLotTypeSchema(), this.loadLotType(lotTypeId)]);
+    }
     loadLotTypeSchema() {
         return this.http.get("/api/lotType/lotTypeSchema")
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])((data) => {
             this.lotTypeSchema = JSON.parse(data);
             console.log("Schema", this.lotTypeSchema);
-            return true;
+            return this.lotTypeSchema;
         }));
     }
     loadLotTypes() {
@@ -1028,7 +1041,7 @@ let FormlyJsonschemaService = class FormlyJsonschemaService {
                 }
                 break;
             }
-            case 'textarea':
+            case 'textareaFT':
             case 'string': {
                 const schemaType = schema.type;
                 if (Array.isArray(schemaType) && schemaType.includes('null')) {
@@ -1071,6 +1084,7 @@ let FormlyJsonschemaService = class FormlyJsonschemaService {
                 }
                 break;
             }
+            case 'arrayFT':
             case 'array': {
                 if (schema.hasOwnProperty('minItems')) {
                     field.templateOptions.minItems = schema.minItems;
@@ -1116,6 +1130,7 @@ let FormlyJsonschemaService = class FormlyJsonschemaService {
                 }
                 break;
             }
+            case 'radioFT':
             case 'radio': {
                 if (schema.hasOwnProperty('options')) {
                     field.templateOptions.options = schema.options;
@@ -1606,6 +1621,50 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let RadioTypeComponent = class RadioTypeComponent extends _ngx_formly_core__WEBPACK_IMPORTED_MODULE_2__["FieldType"] {
+    isEqual(obj1, obj2) {
+        if (JSON.stringify(obj1) === JSON.stringify(obj2))
+            return true;
+        return false;
+    }
+};
+RadioTypeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'radio-field-type',
+        template: `
+    <div *ngFor="let option of to.options;let i = index;">
+          <input type="radio" 
+           [name]="to.name"
+           [formControl]="formControl" 
+           [formlyAttributes]="field"
+           [value]="option.value" [checked]="this.isEqual(option.value, formControl.value)">
+          <label class="col-10">{{option.label}}</label>
+        </div>
+    <p *ngIf="to.description">{{ to.description }}</p>
+  `,
+    })
+], RadioTypeComponent);
+
+
+
+/***/ }),
+
+/***/ "./app/app/shared/types/select.type.ts":
+/*!*********************************************!*\
+  !*** ./app/app/shared/types/select.type.ts ***!
+  \*********************************************/
+/*! exports provided: SelectTypeComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SelectTypeComponent", function() { return SelectTypeComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _ngx_formly_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ngx-formly/core */ "./node_modules/@ngx-formly/core/fesm2015/ngx-formly-core.js");
+
+
+
+let SelectTypeComponent = class SelectTypeComponent extends _ngx_formly_core__WEBPACK_IMPORTED_MODULE_2__["FieldType"] {
     constructor() {
         super(...arguments);
         this.defaultOptions = {
@@ -1613,23 +1672,17 @@ let RadioTypeComponent = class RadioTypeComponent extends _ngx_formly_core__WEBP
         };
     }
 };
-RadioTypeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+SelectTypeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-        selector: 'radio-field-type',
+        selector: 'select-field-type',
         template: `
-    <div class="form-group">
-    <label *ngIf="to.label" class="col-2">{{ to.label }} {{to.required ? " * " : ""}}</label>
-    <div class="input-group">
-        <div *ngFor="let option of to.options;let i = index;" class="col-10">
-          <input placeholder="{{ to.placeholder }}"  [formControl]="formControl" [formlyAttributes]="field" value="{{option}}" type="radio">
-          <label class="col-10">{{option.label}}</label>
-        </div>
-    </div>
+<select [formControl]="formControl" [formlyAttributes]="field" class="form-control col-4">
+    <option *ngFor="let option of to.options;let i = index;" [value]="option.value" ng-reflect-ng-value="Black">{{option.value}}</option>
+    </select>
     <p *ngIf="to.description">{{ to.description }}</p>
-    </div>
   `,
     })
-], RadioTypeComponent);
+], SelectTypeComponent);
 
 
 
