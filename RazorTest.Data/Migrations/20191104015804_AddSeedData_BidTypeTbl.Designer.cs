@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RazorTest.Data;
 
 namespace RazorTest.Data.Migrations
 {
     [DbContext(typeof(RazorTestContext))]
-    partial class RazorTestContextModelSnapshot : ModelSnapshot
+    [Migration("20191104015804_AddSeedData_BidTypeTbl")]
+    partial class AddSeedData_BidTypeTbl
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

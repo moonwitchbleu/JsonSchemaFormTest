@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace RazorTest.Domain
+﻿namespace RazorTest.Domain
 {
     public enum Color
     {
@@ -18,5 +13,13 @@ namespace RazorTest.Domain
         Pink,
         White,
         Black
+    }
+
+    public enum FieldType
+    {
+        textFieldFT,
+        hidden,
+        datepicker,
+        radio
     }
 }

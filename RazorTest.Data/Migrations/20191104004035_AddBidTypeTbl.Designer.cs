@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RazorTest.Data;
 
 namespace RazorTest.Data.Migrations
 {
     [DbContext(typeof(RazorTestContext))]
-    partial class RazorTestContextModelSnapshot : ModelSnapshot
+    [Migration("20191104004035_AddBidTypeTbl")]
+    partial class AddBidTypeTbl
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -65,9 +67,6 @@ namespace RazorTest.Data.Migrations
                     b.Property<string>("AgentUserCode")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("BidTypeId")
-                        .HasColumnType("int");
-
                     b.Property<int>("Color")
                         .HasColumnType("int");
 
@@ -94,8 +93,6 @@ namespace RazorTest.Data.Migrations
 
                     b.HasKey("LotTypeId");
 
-                    b.HasIndex("BidTypeId");
-
                     b.HasIndex("ContactId");
 
                     b.ToTable("LotType");
@@ -103,10 +100,6 @@ namespace RazorTest.Data.Migrations
 
             modelBuilder.Entity("RazorTest.Domain.LotType", b =>
                 {
-                    b.HasOne("RazorTest.Domain.BidType", "BidType")
-                        .WithMany()
-                        .HasForeignKey("BidTypeId");
-
                     b.HasOne("RazorTest.Domain.Contact", "Contact")
                         .WithMany()
                         .HasForeignKey("ContactId");

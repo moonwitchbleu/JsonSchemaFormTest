@@ -30,7 +30,7 @@ namespace RazorTest.Web.Pages
                 Description = "test Desc",
                 Color = Color.Orange
             };
-            var lotModelSchema = lotModel.GetLotJsonSchema();
+            var lotModelSchema = lotModel.GetLotJsonSchema(null);
 
             ViewData["schema"] = JsonSchemaHelper.JsonSchemaResolveDefinitions(lotModelSchema);
             ViewData["model"] = JsonConvert.SerializeObject(lotModel);

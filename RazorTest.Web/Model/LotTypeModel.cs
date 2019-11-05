@@ -20,7 +20,7 @@ namespace RazorTest.Web.Model
     {
         [Required]
         [Display(Name = "Lot Type Id")]
-        [JsonSchemaExtensionData("type", "hiddenFT")]
+        [JsonSchemaExtensionData("type", Constants.Hidden_Field_Type)]
         public int LotTypeId { get; set; }
 
         [Required]
@@ -33,7 +33,7 @@ namespace RazorTest.Web.Model
         [Display(Name = "Description")]
         [MinLength(5)]
         [MaxLength(500, ErrorMessage = "Exceed max length of 500")]
-        [JsonSchemaExtensionData("type", "textareaFT")]
+        [JsonSchemaExtensionData("type", Constants.Textarea_Field_Type)]
         public string Description { get; set; }
 
         [Display(Name = "Model")]
@@ -46,7 +46,7 @@ namespace RazorTest.Web.Model
 
         [Required]
         [Display(Name = "Publish Date")]
-        [JsonSchemaExtensionData("type", "datepickerFT")]
+        [JsonSchemaExtensionData("type", Constants.Datepicker_Field_Type)]
         public DateTime? PublishedDate { get; set; }
 
         [Display(Name = "Lot Price")]
@@ -59,18 +59,20 @@ namespace RazorTest.Web.Model
         public Color Color { get; set; }
 
         [Display(Name = "Comment")]
-        [JsonSchemaExtensionData("type", "textareaFT")]
+        [JsonSchemaExtensionData("type", Constants.Textarea_Field_Type)]
         [JsonSchemaExtensionData("rows", "4")]
         public string Comments { get; set; }
 
         [Display(Name = "Contact")]
-        [JsonSchemaExtensionData("type", "object")]
-        public Contact Contact { get; set; }
+        public ContactModel Contact { get; set; }
 
         [Display(Name = "Active?")]
         public bool IsActive { get; set; }
 
-        public JsonSchema GetLotJsonSchema()
+        [Display(Name = "Bid Type")]
+        public BidTypeModel BidType { get; set; }
+
+        public JsonSchema GetLotJsonSchema(List<BidType> bidTypes)
         {
             var settings = new JsonSchemaGeneratorSettings();
             //settings.DefaultEnumHandling = EnumHandling.String;
@@ -78,6 +80,9 @@ namespace RazorTest.Web.Model
             var jsonSchema = JsonSchema.FromType<LotTypeModel>(settings);
 
             AddSchemaValidators(jsonSchema);
+
+            if(bidTypes != null)
+                AddBidTypeItems(jsonSchema, bidTypes);
 
             return jsonSchema;
         }
@@ -108,7 +113,16 @@ namespace RazorTest.Web.Model
             jsonSchema.Properties["AgentUserCode"].ExtensionData = agentUserCodeExtensionData;
         }
 
-        
+        private void AddBidTypeItems(JsonSchema jsonSchema, List<BidType> bidTypes)
+        {
+            Dictionary<string, object> bidTypeExtendedData = new Dictionary<string, object>();
+            bidTypeExtendedData.Add("options", bidTypes.Select(x => new {
+                value = x,
+                label = x.BidTypeName
+            }));
+            bidTypeExtendedData.Add("type", Constants.Radio_Field_Type);
+            jsonSchema.Properties["BidType"].ActualTypeSchema.ExtensionData = bidTypeExtendedData;
+        }
 
         public LotType MapToLotType()
         {
@@ -130,6 +144,13 @@ namespace RazorTest.Web.Model
                     Email = Contact.Email
                 }
             };
+
+            if (BidType != null)
+                lotType.BidType = new BidType
+                {
+                    BidTypeId = BidType.BidTypeId,
+                    BidTypeName = BidType.BidTypeName
+                };
 
             return lotType;
             
@@ -153,12 +174,21 @@ namespace RazorTest.Web.Model
 
                 if (lotType.Contact != null)
                 {
-                    Contact = new Contact()
+                    Contact = new ContactModel()
                     {
                         ContactId = lotType.Contact.ContactId,
                         Name = lotType.Contact.Name,
                         Phone = lotType.Contact.Phone,
                         Email = lotType.Contact.Email
+                    };
+                }
+
+                if(lotType.BidType != null)
+                {
+                    BidType = new BidTypeModel()
+                    {
+                        BidTypeId = lotType.BidType.BidTypeId,
+                        BidTypeName = lotType.BidType.BidTypeName
                     };
                 }
             }

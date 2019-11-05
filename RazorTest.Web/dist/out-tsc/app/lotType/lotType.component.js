@@ -92,6 +92,29 @@ let LotTypeComponent = class LotTypeComponent {
                 }
             },
             {
+                key: "Options",
+                type: "radio",
+                className: "col-6",
+                templateOptions: {
+                    label: "Radio",
+                    options: [
+                        { value: 1, label: 'test 1' }
+                    ]
+                }
+            },
+            {
+                key: "Options2",
+                type: "radioFT",
+                className: "col-6",
+                templateOptions: {
+                    label: "Radio FT",
+                    options: [
+                        { value: 1, label: 'test 1' },
+                        { value: 1, label: 'test 2' }
+                    ]
+                }
+            },
+            {
                 key: "LotPrice",
                 type: "input",
                 className: "col-6",

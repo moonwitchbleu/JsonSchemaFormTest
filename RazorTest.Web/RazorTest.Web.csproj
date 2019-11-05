@@ -19,6 +19,8 @@
     <None Remove="app\app\shared\types\multischema.type.ts" />
     <None Remove="app\app\shared\types\null.type.ts" />
     <None Remove="app\app\shared\types\object.type.ts" />
+    <None Remove="app\app\shared\types\radio.type.ts" />
+    <None Remove="app\app\shared\types\string.type.ts" />
     <None Remove="app\app\shared\types\textarea.type.ts" />
     <None Remove="app\app\shared\wrappers\formlyPanel.wrapper.ts" />
   </ItemGroup>
@@ -58,7 +60,13 @@
     </TypeScriptCompile>
     <TypeScriptCompile Include="app\app\shared\formly-json-schema.service.ts" />
     <TypeScriptCompile Include="app\app\shared\lotType.ts" />
+    <TypeScriptCompile Include="app\app\shared\types\radio.type.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="app\app\shared\types\hidden.type.ts" />
+    <TypeScriptCompile Include="app\app\shared\types\string.type.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="app\app\shared\types\textarea.type.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>

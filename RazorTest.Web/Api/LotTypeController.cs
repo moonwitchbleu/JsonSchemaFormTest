@@ -43,6 +43,7 @@ namespace RazorTest.Web.api
                 lotTypeModel.MapFromLotType(lotType);
                 lotTypesModel.Add(lotTypeModel);
             });
+
             return Json(lotTypesModel);
         }
 
@@ -57,6 +58,7 @@ namespace RazorTest.Web.api
             {
                 var lotType = await _context.LotType
                     .Include(x => x.Contact)
+                    .Include(x => x.BidType)
                     .FirstOrDefaultAsync(m => m.LotTypeId == id);
 
                 lotModel.MapFromLotType(lotType);
@@ -89,7 +91,9 @@ namespace RazorTest.Web.api
         public ActionResult GetLotTypeSchema()
         {
             var lotModel = new Model.LotTypeModel();
-            var lotModelSchema = lotModel.GetLotJsonSchema();
+            var bidTypes = _context.BidTypes.ToListAsync().Result;
+
+            var lotModelSchema = lotModel.GetLotJsonSchema(bidTypes);
 
             return Json(JsonSchemaHelper.JsonSchemaResolveOneOfDefinitions(lotModelSchema));
         }

@@ -13,6 +13,9 @@ import { NullTypeComponent } from './shared/types/null.type';
 import { DatepickerTypeComponent } from './shared/types/datepicker.type';
 import { HiddenTypeComponent } from './shared/types/hidden.type';
 import { TextareaTypeComponent } from './shared/types/textarea.type';
+import { RadioTypeComponent } from './shared/types/radio.type';
+import { StringTypeComponent } from './shared/types/string.type';
+import { FormWrapperComponent } from './shared/wrappers/formlyPanel.wrapper';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LotTypeListComponent } from './lotTypeList/lotTypeList.component';
@@ -82,7 +85,10 @@ AppModule = __decorate([
             NullTypeComponent,
             DatepickerTypeComponent,
             HiddenTypeComponent,
-            TextareaTypeComponent
+            TextareaTypeComponent,
+            RadioTypeComponent,
+            StringTypeComponent,
+            FormWrapperComponent
         ],
         imports: [
             BrowserModule,
@@ -110,11 +116,24 @@ AppModule = __decorate([
                     { name: 'checkValidModel', message: checkValidModelMessage },
                     { name: 'validateAgentUser', message: validateAgentUserMessage }
                 ],
+                wrappers: [
+                    { name: 'form-wrapper', component: FormWrapperComponent }
+                ],
                 types: [
-                    { name: 'string', extends: 'input' },
+                    { name: 'boolean', extends: 'checkbox' },
+                    { name: 'enum', extends: 'select' },
+                    { name: 'null', component: NullTypeComponent },
+                    { name: 'array', component: ArrayTypeComponent },
+                    { name: 'object', component: ObjectTypeComponent },
+                    { name: 'multischema', component: MultiSchemaTypeComponent },
+                    { name: 'textareaFT', component: TextareaTypeComponent, wrappers: ['form-wrapper'] },
+                    { name: 'hidden', component: HiddenTypeComponent },
+                    { name: 'datepicker', component: DatepickerTypeComponent, wrappers: ['form-wrapper'] },
+                    //{ name: 'radio', component: RadioTypeComponent },
+                    { name: 'string', component: StringTypeComponent, wrappers: ['form-wrapper'] },
                     {
                         name: 'number',
-                        extends: 'input',
+                        extends: 'string',
                         defaultOptions: {
                             templateOptions: {
                                 type: 'number',
@@ -123,22 +142,13 @@ AppModule = __decorate([
                     },
                     {
                         name: 'integer',
-                        extends: 'input',
+                        extends: 'string',
                         defaultOptions: {
                             templateOptions: {
                                 type: 'number',
                             },
                         },
                     },
-                    { name: 'boolean', extends: 'checkbox' },
-                    { name: 'enum', extends: 'select' },
-                    { name: 'null', component: NullTypeComponent, wrappers: ['form-field'] },
-                    { name: 'array', component: ArrayTypeComponent },
-                    { name: 'object', component: ObjectTypeComponent },
-                    { name: 'multischema', component: MultiSchemaTypeComponent },
-                    { name: 'textareaFT', component: TextareaTypeComponent },
-                    { name: 'hiddenFT', component: HiddenTypeComponent },
-                    { name: 'datepickerFT', component: DatepickerTypeComponent }
                 ],
                 validators: [
                     { name: 'validateAgentUser', validation: validateAgentUser }

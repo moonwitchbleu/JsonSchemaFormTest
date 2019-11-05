@@ -16,6 +16,6 @@ namespace RazorTest.Data
 
         public DbSet<LotType> LotType { get; set; }
         public DbSet<Contact> Contacts { get; set; }
-        public DbSet<Commodity> Commodities { get; set; }
+        public DbSet<BidType> BidTypes { get; set; }
     }
 }

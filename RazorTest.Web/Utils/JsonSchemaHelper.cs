@@ -33,7 +33,7 @@ namespace RazorTest.Web.Utils
                             {
                                 var defName = ((string)fieldDef["$ref"]).Replace("#/definitions/", "");
 
-                                if (fields["title"] != null)
+                                if (fields.ContainsKey("title"))
                                     definitions[defName]["title"] = fields["title"];
 
                                 dicJsonSchema["properties"][property.Key] = definitions[defName];

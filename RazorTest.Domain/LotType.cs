@@ -20,6 +20,7 @@ namespace RazorTest.Domain
         public decimal LotPrice { get; set; }
         public Color Color { get; set; }
         public Contact Contact { get; set; }
+        public BidType BidType { get; set; }
         public bool IsActive { get; set; }
     }
 }

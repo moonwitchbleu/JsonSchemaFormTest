@@ -146,13 +146,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _shared_types_datepicker_type__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./shared/types/datepicker.type */ "./app/app/shared/types/datepicker.type.ts");
 /* harmony import */ var _shared_types_hidden_type__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./shared/types/hidden.type */ "./app/app/shared/types/hidden.type.ts");
 /* harmony import */ var _shared_types_textarea_type__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./shared/types/textarea.type */ "./app/app/shared/types/textarea.type.ts");
-/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./app-routing.module */ "./app/app/app-routing.module.ts");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./app.component */ "./app/app/app.component.ts");
-/* harmony import */ var _lotTypeList_lotTypeList_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./lotTypeList/lotTypeList.component */ "./app/app/lotTypeList/lotTypeList.component.ts");
-/* harmony import */ var _lotType_lotType_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./lotType/lotType.component */ "./app/app/lotType/lotType.component.ts");
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm2015/common.js");
-/* harmony import */ var _shared_data_service__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./shared/data.service */ "./app/app/shared/data.service.ts");
-/* harmony import */ var _shared_formly_json_schema_service__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./shared/formly-json-schema.service */ "./app/app/shared/formly-json-schema.service.ts");
+/* harmony import */ var _shared_types_radio_type__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./shared/types/radio.type */ "./app/app/shared/types/radio.type.ts");
+/* harmony import */ var _shared_types_string_type__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./shared/types/string.type */ "./app/app/shared/types/string.type.ts");
+/* harmony import */ var _shared_wrappers_formlyPanel_wrapper__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./shared/wrappers/formlyPanel.wrapper */ "./app/app/shared/wrappers/formlyPanel.wrapper.ts");
+/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./app-routing.module */ "./app/app/app-routing.module.ts");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./app.component */ "./app/app/app.component.ts");
+/* harmony import */ var _lotTypeList_lotTypeList_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./lotTypeList/lotTypeList.component */ "./app/app/lotTypeList/lotTypeList.component.ts");
+/* harmony import */ var _lotType_lotType_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./lotType/lotType.component */ "./app/app/lotType/lotType.component.ts");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm2015/common.js");
+/* harmony import */ var _shared_data_service__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./shared/data.service */ "./app/app/shared/data.service.ts");
+/* harmony import */ var _shared_formly_json_schema_service__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./shared/formly-json-schema.service */ "./app/app/shared/formly-json-schema.service.ts");
+
+
+
 
 
 
@@ -228,20 +234,23 @@ let AppModule = class AppModule {
 AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
         declarations: [
-            _app_component__WEBPACK_IMPORTED_MODULE_16__["AppComponent"],
-            _lotTypeList_lotTypeList_component__WEBPACK_IMPORTED_MODULE_17__["LotTypeListComponent"],
-            _lotType_lotType_component__WEBPACK_IMPORTED_MODULE_18__["LotTypeComponent"],
+            _app_component__WEBPACK_IMPORTED_MODULE_19__["AppComponent"],
+            _lotTypeList_lotTypeList_component__WEBPACK_IMPORTED_MODULE_20__["LotTypeListComponent"],
+            _lotType_lotType_component__WEBPACK_IMPORTED_MODULE_21__["LotTypeComponent"],
             _shared_types_array_type__WEBPACK_IMPORTED_MODULE_8__["ArrayTypeComponent"],
             _shared_types_object_type__WEBPACK_IMPORTED_MODULE_9__["ObjectTypeComponent"],
             _shared_types_multischema_type__WEBPACK_IMPORTED_MODULE_10__["MultiSchemaTypeComponent"],
             _shared_types_null_type__WEBPACK_IMPORTED_MODULE_11__["NullTypeComponent"],
             _shared_types_datepicker_type__WEBPACK_IMPORTED_MODULE_12__["DatepickerTypeComponent"],
             _shared_types_hidden_type__WEBPACK_IMPORTED_MODULE_13__["HiddenTypeComponent"],
-            _shared_types_textarea_type__WEBPACK_IMPORTED_MODULE_14__["TextareaTypeComponent"]
+            _shared_types_textarea_type__WEBPACK_IMPORTED_MODULE_14__["TextareaTypeComponent"],
+            _shared_types_radio_type__WEBPACK_IMPORTED_MODULE_15__["RadioTypeComponent"],
+            _shared_types_string_type__WEBPACK_IMPORTED_MODULE_16__["StringTypeComponent"],
+            _shared_wrappers_formlyPanel_wrapper__WEBPACK_IMPORTED_MODULE_17__["FormWrapperComponent"]
         ],
         imports: [
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
-            _app_routing_module__WEBPACK_IMPORTED_MODULE_15__["AppRoutingModule"],
+            _app_routing_module__WEBPACK_IMPORTED_MODULE_18__["AppRoutingModule"],
             _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClientModule"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_4__["ReactiveFormsModule"],
             _ngx_formly_bootstrap__WEBPACK_IMPORTED_MODULE_6__["FormlyBootstrapModule"],
@@ -265,11 +274,24 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
                     { name: 'checkValidModel', message: checkValidModelMessage },
                     { name: 'validateAgentUser', message: validateAgentUserMessage }
                 ],
+                wrappers: [
+                    { name: 'form-wrapper', component: _shared_wrappers_formlyPanel_wrapper__WEBPACK_IMPORTED_MODULE_17__["FormWrapperComponent"] }
+                ],
                 types: [
-                    { name: 'string', extends: 'input' },
+                    { name: 'boolean', extends: 'checkbox' },
+                    { name: 'enum', extends: 'select' },
+                    { name: 'null', component: _shared_types_null_type__WEBPACK_IMPORTED_MODULE_11__["NullTypeComponent"] },
+                    { name: 'array', component: _shared_types_array_type__WEBPACK_IMPORTED_MODULE_8__["ArrayTypeComponent"] },
+                    { name: 'object', component: _shared_types_object_type__WEBPACK_IMPORTED_MODULE_9__["ObjectTypeComponent"] },
+                    { name: 'multischema', component: _shared_types_multischema_type__WEBPACK_IMPORTED_MODULE_10__["MultiSchemaTypeComponent"] },
+                    { name: 'textareaFT', component: _shared_types_textarea_type__WEBPACK_IMPORTED_MODULE_14__["TextareaTypeComponent"], wrappers: ['form-wrapper'] },
+                    { name: 'hidden', component: _shared_types_hidden_type__WEBPACK_IMPORTED_MODULE_13__["HiddenTypeComponent"] },
+                    { name: 'datepicker', component: _shared_types_datepicker_type__WEBPACK_IMPORTED_MODULE_12__["DatepickerTypeComponent"], wrappers: ['form-wrapper'] },
+                    { name: 'radio', component: _shared_types_radio_type__WEBPACK_IMPORTED_MODULE_15__["RadioTypeComponent"] },
+                    { name: 'string', component: _shared_types_string_type__WEBPACK_IMPORTED_MODULE_16__["StringTypeComponent"], wrappers: ['form-wrapper'] },
                     {
                         name: 'number',
-                        extends: 'input',
+                        extends: 'string',
                         defaultOptions: {
                             templateOptions: {
                                 type: 'number',
@@ -278,32 +300,23 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
                     },
                     {
                         name: 'integer',
-                        extends: 'input',
+                        extends: 'string',
                         defaultOptions: {
                             templateOptions: {
                                 type: 'number',
                             },
                         },
                     },
-                    { name: 'boolean', extends: 'checkbox' },
-                    { name: 'enum', extends: 'select' },
-                    { name: 'null', component: _shared_types_null_type__WEBPACK_IMPORTED_MODULE_11__["NullTypeComponent"], wrappers: ['form-field'] },
-                    { name: 'array', component: _shared_types_array_type__WEBPACK_IMPORTED_MODULE_8__["ArrayTypeComponent"] },
-                    { name: 'object', component: _shared_types_object_type__WEBPACK_IMPORTED_MODULE_9__["ObjectTypeComponent"] },
-                    { name: 'multischema', component: _shared_types_multischema_type__WEBPACK_IMPORTED_MODULE_10__["MultiSchemaTypeComponent"] },
-                    { name: 'textareaFT', component: _shared_types_textarea_type__WEBPACK_IMPORTED_MODULE_14__["TextareaTypeComponent"] },
-                    { name: 'hiddenFT', component: _shared_types_hidden_type__WEBPACK_IMPORTED_MODULE_13__["HiddenTypeComponent"] },
-                    { name: 'datepickerFT', component: _shared_types_datepicker_type__WEBPACK_IMPORTED_MODULE_12__["DatepickerTypeComponent"] }
                 ],
                 validators: [
                     { name: 'validateAgentUser', validation: validateAgentUser }
                 ]
             })
         ],
-        providers: [_shared_data_service__WEBPACK_IMPORTED_MODULE_20__["DataService"], _shared_formly_json_schema_service__WEBPACK_IMPORTED_MODULE_21__["FormlyJsonschemaService"],
-            { provide: _angular_common__WEBPACK_IMPORTED_MODULE_19__["APP_BASE_HREF"], useValue: '/' }
+        providers: [_shared_data_service__WEBPACK_IMPORTED_MODULE_23__["DataService"], _shared_formly_json_schema_service__WEBPACK_IMPORTED_MODULE_24__["FormlyJsonschemaService"],
+            { provide: _angular_common__WEBPACK_IMPORTED_MODULE_22__["APP_BASE_HREF"], useValue: '/' }
         ],
-        bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_16__["AppComponent"]]
+        bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_19__["AppComponent"]]
     })
 ], AppModule);
 
@@ -422,6 +435,29 @@ let LotTypeComponent = class LotTypeComponent {
                     label: "Published Date",
                     type: "date",
                     datepickerPopup: "dd.MM.yyyy"
+                }
+            },
+            {
+                key: "Options",
+                type: "radio",
+                className: "col-6",
+                templateOptions: {
+                    label: "Radio",
+                    options: [
+                        { value: 1, label: 'test 1' }
+                    ]
+                }
+            },
+            {
+                key: "Options2",
+                type: "radioFT",
+                className: "col-6",
+                templateOptions: {
+                    label: "Radio FT",
+                    options: [
+                        { value: 1, label: 'test 1' },
+                        { value: 1, label: 'test 2' }
+                    ]
                 }
             },
             {
@@ -992,7 +1028,7 @@ let FormlyJsonschemaService = class FormlyJsonschemaService {
                 }
                 break;
             }
-            case 'textareaFT':
+            case 'textarea':
             case 'string': {
                 const schemaType = schema.type;
                 if (Array.isArray(schemaType) && schemaType.includes('null')) {
@@ -1077,6 +1113,12 @@ let FormlyJsonschemaService = class FormlyJsonschemaService {
                         enumerable: true,
                         configurable: true,
                     });
+                }
+                break;
+            }
+            case 'radio': {
+                if (schema.hasOwnProperty('options')) {
+                    field.templateOptions.options = schema.options;
                 }
                 break;
             }
@@ -1380,10 +1422,7 @@ DatepickerTypeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'datepicker-field-type',
         template: `
-    <div class="input-group">
-        <label *ngIf="to.label" class="col-2">{{ to.label }} {{to.required ? " * " : ""}}</label>
-        <input class="form-control col-4" placeholder="{{ to.placeholder }}" [formControl]="formControl" [formlyAttributes]="field" type="date">
-    </div>
+    <input class="form-control col-4" placeholder="{{ to.placeholder }}" [formControl]="formControl" [formlyAttributes]="field" type="date">
     <p *ngIf="to.description">{{ to.description }}</p>
 
     <div class="invalid-feedback" style="display: block;" *ngIf="showError && formControl.errors">
@@ -1550,6 +1589,93 @@ ObjectTypeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 /***/ }),
 
+/***/ "./app/app/shared/types/radio.type.ts":
+/*!********************************************!*\
+  !*** ./app/app/shared/types/radio.type.ts ***!
+  \********************************************/
+/*! exports provided: RadioTypeComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RadioTypeComponent", function() { return RadioTypeComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _ngx_formly_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ngx-formly/core */ "./node_modules/@ngx-formly/core/fesm2015/ngx-formly-core.js");
+
+
+
+let RadioTypeComponent = class RadioTypeComponent extends _ngx_formly_core__WEBPACK_IMPORTED_MODULE_2__["FieldType"] {
+    constructor() {
+        super(...arguments);
+        this.defaultOptions = {
+            defaultValue: {},
+        };
+    }
+};
+RadioTypeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'radio-field-type',
+        template: `
+    <div class="form-group">
+    <label *ngIf="to.label" class="col-2">{{ to.label }} {{to.required ? " * " : ""}}</label>
+    <div class="input-group">
+        <div *ngFor="let option of to.options;let i = index;" class="col-10">
+          <input placeholder="{{ to.placeholder }}"  [formControl]="formControl" [formlyAttributes]="field" value="{{option}}" type="radio">
+          <label class="col-10">{{option.label}}</label>
+        </div>
+    </div>
+    <p *ngIf="to.description">{{ to.description }}</p>
+    </div>
+  `,
+    })
+], RadioTypeComponent);
+
+
+
+/***/ }),
+
+/***/ "./app/app/shared/types/string.type.ts":
+/*!*********************************************!*\
+  !*** ./app/app/shared/types/string.type.ts ***!
+  \*********************************************/
+/*! exports provided: StringTypeComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StringTypeComponent", function() { return StringTypeComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _ngx_formly_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ngx-formly/core */ "./node_modules/@ngx-formly/core/fesm2015/ngx-formly-core.js");
+
+
+
+let StringTypeComponent = class StringTypeComponent extends _ngx_formly_core__WEBPACK_IMPORTED_MODULE_2__["FieldType"] {
+    constructor() {
+        super(...arguments);
+        this.defaultOptions = {
+            defaultValue: {},
+        };
+    }
+};
+StringTypeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'string-field-type',
+        template: `
+    <input class="form-control" placeholder="{{ to.placeholder }}" [formControl]="formControl" [formlyAttributes]="field" [type]="field.type" >
+
+    <div class="invalid-feedback" style="display: block;" *ngIf="showError && formControl.errors">
+        <formly-validation-message [field]="field"></formly-validation-message>
+    </div>
+  `,
+    })
+], StringTypeComponent);
+
+
+
+/***/ }),
+
 /***/ "./app/app/shared/types/textarea.type.ts":
 /*!***********************************************!*\
   !*** ./app/app/shared/types/textarea.type.ts ***!
@@ -1578,10 +1704,7 @@ TextareaTypeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'textarea-field-type',
         template: `
-    <div class="input-group">
-        <label attr.for="{{key}}" *ngIf="to.label" class="col-2">{{ to.label }} {{to.required ? " * " : ""}}</label>
-        <textarea class="form-control" placeholder="{{ to.placeholder }}" [formControl]="formControl" [formlyAttributes]="field" rows="4"></textarea>
-    </div>
+    <textarea class="form-control" placeholder="{{ to.placeholder }}" [formControl]="formControl" [formlyAttributes]="field" rows="4"></textarea>
 
     <div class="invalid-feedback" style="display: block;" *ngIf="showError && formControl.errors">
         <formly-validation-message [field]="field"></formly-validation-message>
@@ -1589,6 +1712,47 @@ TextareaTypeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
   `,
     })
 ], TextareaTypeComponent);
+
+
+
+/***/ }),
+
+/***/ "./app/app/shared/wrappers/formlyPanel.wrapper.ts":
+/*!********************************************************!*\
+  !*** ./app/app/shared/wrappers/formlyPanel.wrapper.ts ***!
+  \********************************************************/
+/*! exports provided: FormWrapperComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FormWrapperComponent", function() { return FormWrapperComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _ngx_formly_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ngx-formly/core */ "./node_modules/@ngx-formly/core/fesm2015/ngx-formly-core.js");
+
+
+
+let FormWrapperComponent = class FormWrapperComponent extends _ngx_formly_core__WEBPACK_IMPORTED_MODULE_2__["FieldWrapper"] {
+};
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('fieldComponent', { read: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], static: true })
+], FormWrapperComponent.prototype, "fieldComponent", void 0);
+FormWrapperComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'form-wrapper',
+        template: `
+    <div class="form-group">
+    <div class="input-group">
+        <label attr.for="{{key}}" *ngIf="to.label" class="col-2">{{ to.label }} {{to.required ? " * " : ""}}</label>
+        
+        <div class="col-10"><ng-container #fieldComponent></ng-container></div>
+    </div>
+    
+    </div>
+  `
+    })
+], FormWrapperComponent);
 
 
 

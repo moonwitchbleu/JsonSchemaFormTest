@@ -5,10 +5,7 @@ import { FormBuilder, FormGroup, FormControl, Validators, FormsModule } from '@a
 @Component({
     selector: 'datepicker-field-type',
     template: `
-    <div class="input-group">
-        <label *ngIf="to.label" class="col-2">{{ to.label }} {{to.required ? " * " : ""}}</label>
-        <input class="form-control col-4" placeholder="{{ to.placeholder }}" [formControl]="formControl" [formlyAttributes]="field" type="date">
-    </div>
+    <input class="form-control col-4" placeholder="{{ to.placeholder }}" [formControl]="formControl" [formlyAttributes]="field" type="date">
     <p *ngIf="to.description">{{ to.description }}</p>
 
     <div class="invalid-feedback" style="display: block;" *ngIf="showError && formControl.errors">

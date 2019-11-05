@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 namespace RazorTest.Domain
 {
 
-    public class Commodity
+    public class BidType
     {
-        public int CommodityId { get; set; }
-        public string CommodityName { get; set; }
+        public int BidTypeId { get; set; }
+        public string BidTypeName { get; set; }
     }
 }

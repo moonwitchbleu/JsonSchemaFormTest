@@ -1,15 +1,25 @@
 import { __decorate } from "tslib";
-import { Component } from '@angular/core';
+import { Component, ViewChild, ViewContainerRef } from '@angular/core';
 import { FieldWrapper } from '@ngx-formly/core';
-let PanelWrapperComponent = class PanelWrapperComponent extends FieldWrapper {
+let FormWrapperComponent = class FormWrapperComponent extends FieldWrapper {
 };
-PanelWrapperComponent = __decorate([
+__decorate([
+    ViewChild('fieldComponent', { read: ViewContainerRef, static: true })
+], FormWrapperComponent.prototype, "fieldComponent", void 0);
+FormWrapperComponent = __decorate([
     Component({
-        selector: 'formly-panel-wrapper',
+        selector: 'form-wrapper',
         template: `
-    <h3 class="title">{{ to.label }}</h3>
+    <div class="form-group">
+    <div class="input-group">
+        <label attr.for="{{key}}" *ngIf="to.label" class="col-2">{{ to.label }} {{to.required ? " * " : ""}}</label>
+        
+        <div class="col-10"><ng-container #fieldComponent></ng-container></div>
+    </div>
+    
+    </div>
   `
     })
-], PanelWrapperComponent);
-export { PanelWrapperComponent };
+], FormWrapperComponent);
+export { FormWrapperComponent };
 //# sourceMappingURL=formlyPanel.wrapper.js.map
