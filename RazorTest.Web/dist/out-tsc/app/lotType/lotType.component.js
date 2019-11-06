@@ -133,11 +133,11 @@ let LotTypeComponent = class LotTypeComponent {
             },
             {
                 key: "Color",
-                type: "selectFT",
+                type: "multicheckbox",
                 className: "col-12",
                 templateOptions: {
                     label: "Color",
-                    multiple: true,
+                    //multiple: true,
                     required: true,
                     options: [
                         { value: 0, label: "Red" },
@@ -193,6 +193,7 @@ let LotTypeComponent = class LotTypeComponent {
                         type: "input",
                         className: "col-8",
                         templateOptions: {
+                            type: "email",
                             label: "Email Address",
                             pattern: "^([\\w\\.\\-]+)@([\\w\\-]+)((\\.(\\w){2,3})+)$"
                         }

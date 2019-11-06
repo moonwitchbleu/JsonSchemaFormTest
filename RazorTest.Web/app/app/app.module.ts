@@ -16,6 +16,7 @@ import { TextareaTypeComponent } from './shared/types/textarea.type';
 import { RadioTypeComponent } from './shared/types/radio.type';
 import { StringTypeComponent } from './shared/types/string.type';
 import { SelectTypeComponent } from './shared/types/select.type';
+import { MulticheckboxTypeComponent } from './shared/types/multicheckbox.type';
 
 import { FormWrapperComponent } from './shared/wrappers/formlyPanel.wrapper';
 
@@ -108,6 +109,7 @@ export function validateAgentUser(control: FormControl): ValidationErrors {
         RadioTypeComponent,
         StringTypeComponent,
         SelectTypeComponent,
+        MulticheckboxTypeComponent,
         FormWrapperComponent
     ],
     imports: [
@@ -142,6 +144,7 @@ export function validateAgentUser(control: FormControl): ValidationErrors {
             types: [
                 { name: 'boolean', extends: 'checkbox' },
                 { name: 'selectFT', component: SelectTypeComponent, wrappers: ['form-wrapper'] },
+                //{ name: 'selectFT', extends: 'select', wrappers: ['form-wrapper']  },
                 { name: 'enum', extends: 'selectFT' },
                 { name: 'null', component: NullTypeComponent},
                 { name: 'array', component: ArrayTypeComponent },
@@ -150,7 +153,8 @@ export function validateAgentUser(control: FormControl): ValidationErrors {
                 { name: 'textareaFT', component: TextareaTypeComponent, wrappers: ['form-wrapper'] },
                 { name: 'hidden', component: HiddenTypeComponent },
                 { name: 'datepicker', component: DatepickerTypeComponent, wrappers: ['form-wrapper'] },
-                { name: 'radioFT', component: RadioTypeComponent, wrappers: ['form-wrapper']  },
+                { name: 'radioFT', component: RadioTypeComponent, wrappers: ['form-wrapper'] },
+                { name: 'multicheckboxFT', component: MulticheckboxTypeComponent, wrappers: ['form-wrapper'] },
                 { name: 'string', component: StringTypeComponent, wrappers: ['form-wrapper'] },
                 {
                     name: 'number',

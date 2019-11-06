@@ -149,14 +149,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _shared_types_radio_type__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./shared/types/radio.type */ "./app/app/shared/types/radio.type.ts");
 /* harmony import */ var _shared_types_string_type__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./shared/types/string.type */ "./app/app/shared/types/string.type.ts");
 /* harmony import */ var _shared_types_select_type__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./shared/types/select.type */ "./app/app/shared/types/select.type.ts");
-/* harmony import */ var _shared_wrappers_formlyPanel_wrapper__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./shared/wrappers/formlyPanel.wrapper */ "./app/app/shared/wrappers/formlyPanel.wrapper.ts");
-/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./app-routing.module */ "./app/app/app-routing.module.ts");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./app.component */ "./app/app/app.component.ts");
-/* harmony import */ var _lotTypeList_lotTypeList_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./lotTypeList/lotTypeList.component */ "./app/app/lotTypeList/lotTypeList.component.ts");
-/* harmony import */ var _lotType_lotType_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./lotType/lotType.component */ "./app/app/lotType/lotType.component.ts");
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm2015/common.js");
-/* harmony import */ var _shared_data_service__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./shared/data.service */ "./app/app/shared/data.service.ts");
-/* harmony import */ var _shared_formly_json_schema_service__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./shared/formly-json-schema.service */ "./app/app/shared/formly-json-schema.service.ts");
+/* harmony import */ var _shared_types_multicheckbox_type__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./shared/types/multicheckbox.type */ "./app/app/shared/types/multicheckbox.type.ts");
+/* harmony import */ var _shared_wrappers_formlyPanel_wrapper__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./shared/wrappers/formlyPanel.wrapper */ "./app/app/shared/wrappers/formlyPanel.wrapper.ts");
+/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./app-routing.module */ "./app/app/app-routing.module.ts");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./app.component */ "./app/app/app.component.ts");
+/* harmony import */ var _lotTypeList_lotTypeList_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./lotTypeList/lotTypeList.component */ "./app/app/lotTypeList/lotTypeList.component.ts");
+/* harmony import */ var _lotType_lotType_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./lotType/lotType.component */ "./app/app/lotType/lotType.component.ts");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm2015/common.js");
+/* harmony import */ var _shared_data_service__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./shared/data.service */ "./app/app/shared/data.service.ts");
+/* harmony import */ var _shared_formly_json_schema_service__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./shared/formly-json-schema.service */ "./app/app/shared/formly-json-schema.service.ts");
+
 
 
 
@@ -236,9 +238,9 @@ let AppModule = class AppModule {
 AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
         declarations: [
-            _app_component__WEBPACK_IMPORTED_MODULE_20__["AppComponent"],
-            _lotTypeList_lotTypeList_component__WEBPACK_IMPORTED_MODULE_21__["LotTypeListComponent"],
-            _lotType_lotType_component__WEBPACK_IMPORTED_MODULE_22__["LotTypeComponent"],
+            _app_component__WEBPACK_IMPORTED_MODULE_21__["AppComponent"],
+            _lotTypeList_lotTypeList_component__WEBPACK_IMPORTED_MODULE_22__["LotTypeListComponent"],
+            _lotType_lotType_component__WEBPACK_IMPORTED_MODULE_23__["LotTypeComponent"],
             _shared_types_array_type__WEBPACK_IMPORTED_MODULE_8__["ArrayTypeComponent"],
             _shared_types_object_type__WEBPACK_IMPORTED_MODULE_9__["ObjectTypeComponent"],
             _shared_types_multischema_type__WEBPACK_IMPORTED_MODULE_10__["MultiSchemaTypeComponent"],
@@ -249,11 +251,12 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _shared_types_radio_type__WEBPACK_IMPORTED_MODULE_15__["RadioTypeComponent"],
             _shared_types_string_type__WEBPACK_IMPORTED_MODULE_16__["StringTypeComponent"],
             _shared_types_select_type__WEBPACK_IMPORTED_MODULE_17__["SelectTypeComponent"],
-            _shared_wrappers_formlyPanel_wrapper__WEBPACK_IMPORTED_MODULE_18__["FormWrapperComponent"]
+            _shared_types_multicheckbox_type__WEBPACK_IMPORTED_MODULE_18__["MulticheckboxTypeComponent"],
+            _shared_wrappers_formlyPanel_wrapper__WEBPACK_IMPORTED_MODULE_19__["FormWrapperComponent"]
         ],
         imports: [
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
-            _app_routing_module__WEBPACK_IMPORTED_MODULE_19__["AppRoutingModule"],
+            _app_routing_module__WEBPACK_IMPORTED_MODULE_20__["AppRoutingModule"],
             _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClientModule"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_4__["ReactiveFormsModule"],
             _ngx_formly_bootstrap__WEBPACK_IMPORTED_MODULE_6__["FormlyBootstrapModule"],
@@ -278,11 +281,12 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
                     { name: 'validateAgentUser', message: validateAgentUserMessage }
                 ],
                 wrappers: [
-                    { name: 'form-wrapper', component: _shared_wrappers_formlyPanel_wrapper__WEBPACK_IMPORTED_MODULE_18__["FormWrapperComponent"] }
+                    { name: 'form-wrapper', component: _shared_wrappers_formlyPanel_wrapper__WEBPACK_IMPORTED_MODULE_19__["FormWrapperComponent"] }
                 ],
                 types: [
                     { name: 'boolean', extends: 'checkbox' },
                     { name: 'selectFT', component: _shared_types_select_type__WEBPACK_IMPORTED_MODULE_17__["SelectTypeComponent"], wrappers: ['form-wrapper'] },
+                    //{ name: 'selectFT', extends: 'select', wrappers: ['form-wrapper']  },
                     { name: 'enum', extends: 'selectFT' },
                     { name: 'null', component: _shared_types_null_type__WEBPACK_IMPORTED_MODULE_11__["NullTypeComponent"] },
                     { name: 'array', component: _shared_types_array_type__WEBPACK_IMPORTED_MODULE_8__["ArrayTypeComponent"] },
@@ -292,6 +296,7 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
                     { name: 'hidden', component: _shared_types_hidden_type__WEBPACK_IMPORTED_MODULE_13__["HiddenTypeComponent"] },
                     { name: 'datepicker', component: _shared_types_datepicker_type__WEBPACK_IMPORTED_MODULE_12__["DatepickerTypeComponent"], wrappers: ['form-wrapper'] },
                     { name: 'radioFT', component: _shared_types_radio_type__WEBPACK_IMPORTED_MODULE_15__["RadioTypeComponent"], wrappers: ['form-wrapper'] },
+                    { name: 'multicheckboxFT', component: _shared_types_multicheckbox_type__WEBPACK_IMPORTED_MODULE_18__["MulticheckboxTypeComponent"], wrappers: ['form-wrapper'] },
                     { name: 'string', component: _shared_types_string_type__WEBPACK_IMPORTED_MODULE_16__["StringTypeComponent"], wrappers: ['form-wrapper'] },
                     {
                         name: 'number',
@@ -321,10 +326,10 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
                 ]
             })
         ],
-        providers: [_shared_data_service__WEBPACK_IMPORTED_MODULE_24__["DataService"], _shared_formly_json_schema_service__WEBPACK_IMPORTED_MODULE_25__["FormlyJsonschemaService"],
-            { provide: _angular_common__WEBPACK_IMPORTED_MODULE_23__["APP_BASE_HREF"], useValue: '/' }
+        providers: [_shared_data_service__WEBPACK_IMPORTED_MODULE_25__["DataService"], _shared_formly_json_schema_service__WEBPACK_IMPORTED_MODULE_26__["FormlyJsonschemaService"],
+            { provide: _angular_common__WEBPACK_IMPORTED_MODULE_24__["APP_BASE_HREF"], useValue: '/' }
         ],
-        bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_20__["AppComponent"]]
+        bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_21__["AppComponent"]]
     })
 ], AppModule);
 
@@ -487,11 +492,11 @@ let LotTypeComponent = class LotTypeComponent {
             },
             {
                 key: "Color",
-                type: "selectFT",
+                type: "multicheckbox",
                 className: "col-12",
                 templateOptions: {
                     label: "Color",
-                    multiple: true,
+                    //multiple: true,
                     required: true,
                     options: [
                         { value: 0, label: "Red" },
@@ -547,6 +552,7 @@ let LotTypeComponent = class LotTypeComponent {
                         type: "input",
                         className: "col-8",
                         templateOptions: {
+                            type: "email",
                             label: "Email Address",
                             pattern: "^([\\w\\.\\-]+)@([\\w\\-]+)((\\.(\\w){2,3})+)$"
                         }
@@ -1139,6 +1145,7 @@ let FormlyJsonschemaService = class FormlyJsonschemaService {
                 }
                 break;
             }
+            case 'multicheckboxFT':
             case 'radioFT':
             case 'radio': {
                 if (schema.hasOwnProperty('options')) {
@@ -1500,6 +1507,64 @@ HiddenTypeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 /***/ }),
 
+/***/ "./app/app/shared/types/multicheckbox.type.ts":
+/*!****************************************************!*\
+  !*** ./app/app/shared/types/multicheckbox.type.ts ***!
+  \****************************************************/
+/*! exports provided: MulticheckboxTypeComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MulticheckboxTypeComponent", function() { return MulticheckboxTypeComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _ngx_formly_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ngx-formly/core */ "./node_modules/@ngx-formly/core/fesm2015/ngx-formly-core.js");
+
+
+
+let MulticheckboxTypeComponent = class MulticheckboxTypeComponent extends _ngx_formly_core__WEBPACK_IMPORTED_MODULE_2__["FieldType"] {
+    onChange(value, checked) {
+        if (checked) {
+            this.formControl.value.push(value);
+        }
+        else {
+            let index = this.formControl.value.findIndex(o => JSON.stringify(o) === JSON.stringify(value));
+            if (index >= 0)
+                this.formControl.value.splice(index, 1);
+        }
+    }
+    isChecked(fcValue, optValue) {
+        if (fcValue) {
+            let fcOption = fcValue.find(function (o) { return JSON.stringify(o) === JSON.stringify(optValue); });
+            if (fcOption)
+                return true;
+        }
+        return false;
+    }
+};
+MulticheckboxTypeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'multicheckbox-field-type',
+        template: `
+    <div *ngFor="let option of to.options;let i = index;">
+          <input type="checkbox"
+           [id]="id + '_' + i"
+           [formlyAttributes]="field"
+           [value]="option.value"
+           [checked]="isChecked(formControl.value, option.value)"
+           (change)="onChange(option.value, $event.target.checked)">
+          <label class="col-10">{{option.label}}</label>
+        </div>
+    <p *ngIf="to.description">{{ to.description }}</p>
+  `,
+    })
+], MulticheckboxTypeComponent);
+
+
+
+/***/ }),
+
 /***/ "./app/app/shared/types/multischema.type.ts":
 /*!**************************************************!*\
   !*** ./app/app/shared/types/multischema.type.ts ***!
@@ -1630,8 +1695,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let RadioTypeComponent = class RadioTypeComponent extends _ngx_formly_core__WEBPACK_IMPORTED_MODULE_2__["FieldType"] {
-    isEqual(obj1, obj2) {
-        if (JSON.stringify(obj1) === JSON.stringify(obj2))
+    isEqual(optValue, fcValue) {
+        if (JSON.stringify(optValue) === JSON.stringify(fcValue))
             return true;
         return false;
     }
@@ -1674,19 +1739,21 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let SelectTypeComponent = class SelectTypeComponent extends _ngx_formly_core__WEBPACK_IMPORTED_MODULE_2__["FieldType"] {
-    constructor() {
-        super(...arguments);
-        this.defaultOptions = {
-            defaultValue: {},
-        };
+    compareFn(val1, val2) {
+        return (JSON.stringify(val1) === JSON.stringify(val2));
     }
 };
 SelectTypeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'select-field-type',
         template: `
-<select [formControl]="formControl" [formlyAttributes]="field" class="form-control col-4" [multiple]="to.multiple">
-    <option *ngFor="let option of to.options;let i = index;" [value]="option.value" ng-reflect-ng-value="Black">{{option.label}}</option>
+    <select [formControl]="formControl" [formlyAttributes]="field" class="form-control col-4" multiple *ngIf="to.multiple" [compareWith]="compareFn">
+        <option *ngFor="let option of to.options;let i = index;" [ngValue]="option.value" 
+            >{{option.label}}</option>
+    </select>
+    <select [formControl]="formControl" [formlyAttributes]="field" class="form-control col-4" *ngIf="!to.multiple" [compareWith]="compareFn">
+        <option *ngFor="let option of to.options;let i = index;" [ngValue]="option.value" 
+            >{{option.label}}</option>
     </select>
     <p *ngIf="to.description">{{ to.description }}</p>
   `,
@@ -1806,7 +1873,7 @@ FormWrapperComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         template: `
     <div class="form-group">
     <div class="input-group">
-        <label attr.for="{{key}}" *ngIf="to.label" class="col-2">{{ to.label }} {{to.required ? " * " : ""}}</label>
+        <label [for]="id" *ngIf="to.label" class="col-2">{{ to.label }} {{to.required ? " * " : ""}}</label>
         
         <div class="col-10"><ng-container #fieldComponent></ng-container></div>
     </div>

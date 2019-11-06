@@ -218,6 +218,7 @@ export class FormlyJsonschemaService {
 
                 break;
             }
+            case 'multicheckboxFT':
             case 'radioFT':
             case 'radio':{
                 if (schema.hasOwnProperty('options')) {

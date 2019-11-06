@@ -139,7 +139,8 @@ namespace RazorTest.Web.Model
         private void DefineExtensionData_BidType(JsonSchema jsonSchema, List<BidType> bidTypes = null)
         {
             Dictionary<string, object> extensionData = new Dictionary<string, object>();
-            extensionData.Add("type", Constants.Select_Field_Type);
+            extensionData.Add("type", Constants.Radio_Field_Type);
+            //extensionData.Add("type", Constants.Select_Field_Type);
 
             if (bidTypes != null)
             {
@@ -156,8 +157,12 @@ namespace RazorTest.Web.Model
         private void DefineExtensionData_BidTypes(JsonSchema jsonSchema, List<BidType> bidTypes = null)
         {
             Dictionary<string, object> extensionData = new Dictionary<string, object>();
-            extensionData.Add("type", Constants.Select_Field_Type);
-            extensionData.Add("multiple", true);
+            //extensionData.Add("type", Constants.Select_Field_Type);
+            //extensionData.Add("multiple", true);
+
+            //extensionData.Add("type", Constants.Array_Field_Type);
+
+            extensionData.Add("type", Constants.Multicheckbox_Field_Type);
 
             if (bidTypes != null)
             {

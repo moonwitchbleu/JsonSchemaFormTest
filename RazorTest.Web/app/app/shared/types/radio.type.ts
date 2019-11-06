@@ -16,8 +16,8 @@ import { FieldType } from '@ngx-formly/core';
   `,
 })
 export class RadioTypeComponent extends FieldType {
-    isEqual(obj1, obj2) {
-        if (JSON.stringify(obj1) === JSON.stringify(obj2))
+    isEqual(optValue, fcValue) {
+        if (JSON.stringify(optValue) === JSON.stringify(fcValue))
             return true;
 
         return false;

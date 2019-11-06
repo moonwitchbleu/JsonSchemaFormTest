@@ -13,5 +13,6 @@ namespace RazorTest.Web.Utils
         public const string Datepicker_Field_Type = "datepicker";
         public const string Array_Field_Type = "array";
         public const string Select_Field_Type = "selectFT";
+        public const string Multicheckbox_Field_Type = "multicheckboxFT";
     }
 }

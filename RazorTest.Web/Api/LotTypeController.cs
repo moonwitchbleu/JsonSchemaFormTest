@@ -11,6 +11,7 @@ using RazorTest.Data;
 using RazorTest.Domain;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
+using System.Linq;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -62,6 +63,19 @@ namespace RazorTest.Web.api
                     .FirstOrDefaultAsync(m => m.LotTypeId == id);
 
                 lotModel.MapFromLotType(lotType);
+
+                lotModel.BidTypes = new List<BidTypeModel>();
+                lotModel.BidTypes.Add(new BidTypeModel
+                {
+                    BidTypeId = 2,
+                    BidTypeName = "c/kg Live"
+                });
+
+                lotModel.BidTypes.Add(new BidTypeModel
+                {
+                    BidTypeId = 3,
+                    BidTypeName = "c/kg Dressed"
+                });
             };
 
             return Json(lotModel);

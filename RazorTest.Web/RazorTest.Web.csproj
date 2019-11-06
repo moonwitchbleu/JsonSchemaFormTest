@@ -16,6 +16,7 @@
     <None Remove="app\app\shared\types\array.type.ts" />
     <None Remove="app\app\shared\types\datepicker.type.ts" />
     <None Remove="app\app\shared\types\hidden.type.ts" />
+    <None Remove="app\app\shared\types\multicheckbox.type.ts" />
     <None Remove="app\app\shared\types\multischema.type.ts" />
     <None Remove="app\app\shared\types\null.type.ts" />
     <None Remove="app\app\shared\types\object.type.ts" />
@@ -61,6 +62,9 @@
     </TypeScriptCompile>
     <TypeScriptCompile Include="app\app\shared\formly-json-schema.service.ts" />
     <TypeScriptCompile Include="app\app\shared\lotType.ts" />
+    <TypeScriptCompile Include="app\app\shared\types\multicheckbox.type.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="app\app\shared\types\select.type.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>

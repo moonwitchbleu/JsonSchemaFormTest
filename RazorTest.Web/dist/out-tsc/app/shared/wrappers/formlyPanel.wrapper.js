@@ -12,7 +12,7 @@ FormWrapperComponent = __decorate([
         template: `
     <div class="form-group">
     <div class="input-group">
-        <label attr.for="{{key}}" *ngIf="to.label" class="col-2">{{ to.label }} {{to.required ? " * " : ""}}</label>
+        <label [for]="id" *ngIf="to.label" class="col-2">{{ to.label }} {{to.required ? " * " : ""}}</label>
         
         <div class="col-10"><ng-container #fieldComponent></ng-container></div>
     </div>
