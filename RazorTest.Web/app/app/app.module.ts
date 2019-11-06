@@ -141,8 +141,8 @@ export function validateAgentUser(control: FormControl): ValidationErrors {
             ],
             types: [
                 { name: 'boolean', extends: 'checkbox' },
-                //{ name: 'enum', extends: 'select' },
-                { name: 'enum', component: SelectTypeComponent, wrappers: ['form-wrapper']  },
+                { name: 'selectFT', component: SelectTypeComponent, wrappers: ['form-wrapper'] },
+                { name: 'enum', extends: 'selectFT' },
                 { name: 'null', component: NullTypeComponent},
                 { name: 'array', component: ArrayTypeComponent },
                 { name: 'object', component: ObjectTypeComponent },

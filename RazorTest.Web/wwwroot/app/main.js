@@ -282,8 +282,8 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
                 ],
                 types: [
                     { name: 'boolean', extends: 'checkbox' },
-                    //{ name: 'enum', extends: 'select' },
-                    { name: 'enum', component: _shared_types_select_type__WEBPACK_IMPORTED_MODULE_17__["SelectTypeComponent"], wrappers: ['form-wrapper'] },
+                    { name: 'selectFT', component: _shared_types_select_type__WEBPACK_IMPORTED_MODULE_17__["SelectTypeComponent"], wrappers: ['form-wrapper'] },
+                    { name: 'enum', extends: 'selectFT' },
                     { name: 'null', component: _shared_types_null_type__WEBPACK_IMPORTED_MODULE_11__["NullTypeComponent"] },
                     { name: 'array', component: _shared_types_array_type__WEBPACK_IMPORTED_MODULE_8__["ArrayTypeComponent"] },
                     { name: 'object', component: _shared_types_object_type__WEBPACK_IMPORTED_MODULE_9__["ObjectTypeComponent"] },
@@ -487,11 +487,11 @@ let LotTypeComponent = class LotTypeComponent {
             },
             {
                 key: "Color",
-                type: "select",
+                type: "selectFT",
                 className: "col-12",
                 templateOptions: {
                     label: "Color",
-                    multiple: false,
+                    multiple: true,
                     required: true,
                     options: [
                         { value: 0, label: "Red" },
@@ -1130,6 +1130,15 @@ let FormlyJsonschemaService = class FormlyJsonschemaService {
                 }
                 break;
             }
+            case 'selectFT': {
+                if (schema.hasOwnProperty('multiple')) {
+                    field.templateOptions.multiple = schema.multiple;
+                }
+                if (schema.hasOwnProperty('options')) {
+                    field.templateOptions.options = schema.options;
+                }
+                break;
+            }
             case 'radioFT':
             case 'radio': {
                 if (schema.hasOwnProperty('options')) {
@@ -1676,8 +1685,8 @@ SelectTypeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'select-field-type',
         template: `
-<select [formControl]="formControl" [formlyAttributes]="field" class="form-control col-4">
-    <option *ngFor="let option of to.options;let i = index;" [value]="option.value" ng-reflect-ng-value="Black">{{option.value}}</option>
+<select [formControl]="formControl" [formlyAttributes]="field" class="form-control col-4" [multiple]="to.multiple">
+    <option *ngFor="let option of to.options;let i = index;" [value]="option.value" ng-reflect-ng-value="Black">{{option.label}}</option>
     </select>
     <p *ngIf="to.description">{{ to.description }}</p>
   `,

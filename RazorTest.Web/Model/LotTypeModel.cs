@@ -59,8 +59,6 @@ namespace RazorTest.Web.Model
         public Color Color { get; set; }
 
         [Display(Name = "Comment")]
-        [JsonSchemaExtensionData("type", Constants.Textarea_Field_Type)]
-        [JsonSchemaExtensionData("rows", "4")]
         public string Comments { get; set; }
 
         [Display(Name = "Contact")]
@@ -72,10 +70,9 @@ namespace RazorTest.Web.Model
         [Display(Name = "Bid Type")]
         public BidTypeModel BidType { get; set; }
 
-        /*
+        
         [Display(Name = "Bid Types")]
         public List<BidTypeModel> BidTypes { get; set; }
-        */
 
         public JsonSchema GetLotJsonSchema(List<BidType> bidTypes)
         {
@@ -84,15 +81,36 @@ namespace RazorTest.Web.Model
 
             var jsonSchema = JsonSchema.FromType<LotTypeModel>(settings);
 
-            AddSchemaValidators(jsonSchema);
-
-            if(bidTypes != null)
-                AddBidTypeItems(jsonSchema, bidTypes);
+            DefineExtensionData_Comments(jsonSchema);
+            //DefineExtensionData_Color(jsonSchema);
+            DefineExtensionData_AgentUserCode(jsonSchema);
+            DefineExtensionData_BidType(jsonSchema, bidTypes);
+            DefineExtensionData_BidTypes(jsonSchema, bidTypes);
 
             return jsonSchema;
         }
 
-        private void AddSchemaValidators(JsonSchema jsonSchema)
+        private void DefineExtensionData_Comments(JsonSchema jsonSchema)
+        {
+            Dictionary<string, object> extensionData = new Dictionary<string, object>();
+            extensionData.Add("type", Constants.Textarea_Field_Type);
+            extensionData.Add("rows", "4");
+            jsonSchema.Properties["Comments"].ExtensionData = extensionData;
+        }
+
+        private void DefineExtensionData_Color(JsonSchema jsonSchema)
+        {
+            //trying multi select for enum
+            Dictionary<string, object> extensionData = new Dictionary<string, object>();
+            extensionData.Add("type", Constants.Array_Field_Type);
+            jsonSchema.Properties["Color"].ExtensionData = extensionData;
+
+            extensionData = new Dictionary<string, object>();
+            extensionData.Add("multiple", true);
+            jsonSchema.Properties["Color"].ActualSchema.ExtensionData = extensionData;
+        }
+
+        private void DefineExtensionData_AgentUserCode(JsonSchema jsonSchema)
         {
             /*Dictionary<string, object> modelValidators = new Dictionary<string, object>();
             modelValidators.Add("validators", new
@@ -110,34 +128,47 @@ namespace RazorTest.Web.Model
             jsonSchema.Properties["Model"].ExtensionData = modelValidators;
             */
             
-            Dictionary<string, object> agentUserCodeExtensionData = new Dictionary<string, object>();
-            agentUserCodeExtensionData.Add("validators", new
+            Dictionary<string, object> extensionData = new Dictionary<string, object>();
+            extensionData.Add("validators", new
             {
                 validation = new[] { "validateAgentUser" }
             });
-            jsonSchema.Properties["AgentUserCode"].ExtensionData = agentUserCodeExtensionData;
+            jsonSchema.Properties["AgentUserCode"].ExtensionData = extensionData;
         }
 
-        private void AddBidTypeItems(JsonSchema jsonSchema, List<BidType> bidTypes)
+        private void DefineExtensionData_BidType(JsonSchema jsonSchema, List<BidType> bidTypes = null)
         {
-            Dictionary<string, object> bidTypeExtendedData = new Dictionary<string, object>();
-            bidTypeExtendedData.Add("type", Constants.Radio_Field_Type);
-            bidTypeExtendedData.Add("options", bidTypes.Select(x => new {
-                value = x,
-                label = x.BidTypeName
-            }));
-            
-            /*
-            bidTypeExtendedData.Add("type", Constants.Array_Field_Type);
-            bidTypeExtendedData.Add("items", new {
-                type = "object",
-                required = new[] {
-                    "BidTypeName"
-                }
-            });
-            */
-            jsonSchema.Properties["BidType"].ActualTypeSchema.ExtensionData = bidTypeExtendedData;
-            
+            Dictionary<string, object> extensionData = new Dictionary<string, object>();
+            extensionData.Add("type", Constants.Select_Field_Type);
+
+            if (bidTypes != null)
+            {
+                extensionData.Add("options", bidTypes.Select(x => new
+                {
+                    value = x,
+                    label = x.BidTypeName
+                }));
+            }
+
+            jsonSchema.Properties["BidType"].ActualTypeSchema.ExtensionData = extensionData;
+        }
+
+        private void DefineExtensionData_BidTypes(JsonSchema jsonSchema, List<BidType> bidTypes = null)
+        {
+            Dictionary<string, object> extensionData = new Dictionary<string, object>();
+            extensionData.Add("type", Constants.Select_Field_Type);
+            extensionData.Add("multiple", true);
+
+            if (bidTypes != null)
+            {
+                extensionData.Add("options", bidTypes.Select(x => new
+                {
+                    value = x,
+                    label = x.BidTypeName
+                }));
+            }
+
+            jsonSchema.Properties["BidTypes"].ActualTypeSchema.ExtensionData = extensionData;
         }
 
         public LotType MapToLotType()

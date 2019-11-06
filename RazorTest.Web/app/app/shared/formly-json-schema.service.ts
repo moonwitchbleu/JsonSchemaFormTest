@@ -207,6 +207,17 @@ export class FormlyJsonschemaService {
 
                 break;
             }
+            case 'selectFT': {
+                if (schema.hasOwnProperty('multiple')) {
+                    field.templateOptions.multiple = schema.multiple;
+                }
+
+                if (schema.hasOwnProperty('options')) {
+                    field.templateOptions.options = schema.options;
+                }
+
+                break;
+            }
             case 'radioFT':
             case 'radio':{
                 if (schema.hasOwnProperty('options')) {

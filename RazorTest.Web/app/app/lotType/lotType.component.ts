@@ -145,11 +145,11 @@ export class LotTypeComponent implements OnInit {
     },
     {
         key: "Color",
-        type: "select",
+        type: "selectFT",
         className: "col-12",
         templateOptions: {
             label: "Color",
-            multiple: false,
+            multiple: true,
             required: true,
             options: [
                 { value: 0, label: "Red" }
