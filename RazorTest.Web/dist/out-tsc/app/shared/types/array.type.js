@@ -21,7 +21,6 @@ ArrayTypeComponent = __decorate([
         <button class="btn btn-danger" type="button" (click)="remove(i)">-</button>
       </div>
     </div>
-
     <div class="d-flex flex-row-reverse">
       <button class="btn btn-primary" type="button" (click)="add()">+</button>
     </div>

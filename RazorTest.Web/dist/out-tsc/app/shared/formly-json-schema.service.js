@@ -74,7 +74,7 @@ let FormlyJsonschemaService = class FormlyJsonschemaService {
                 if (Array.isArray(schemaType) && schemaType.includes('null')) {
                     field.parsers = [v => isEmpty(v) ? null : v];
                 }
-                ['minLength', 'maxLength', 'pattern'].forEach(prop => {
+                ['minLength', 'maxLength', 'pattern', 'readonly'].forEach(prop => {
                     if (schema.hasOwnProperty(prop)) {
                         field.templateOptions[prop] = schema[prop];
                     }

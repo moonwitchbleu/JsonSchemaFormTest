@@ -63,4 +63,8 @@ export class DataService {
                 })
             )
     }
+
+    getAgentDetails(agentUserCode: string): string {
+        return agentUserCode + " Name";
+    }
 }

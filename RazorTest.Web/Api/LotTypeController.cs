@@ -64,18 +64,22 @@ namespace RazorTest.Web.api
 
                 lotModel.MapFromLotType(lotType);
 
-                lotModel.BidTypes = new List<BidTypeModel>();
-                lotModel.BidTypes.Add(new BidTypeModel
+                lotModel.BidTypes_m = new List<BidTypeModel>();
+                lotModel.BidTypes_ms = new List<BidTypeModel>();
+
+                lotModel.BidTypes_m.Add(new BidTypeModel
                 {
                     BidTypeId = 2,
                     BidTypeName = "c/kg Live"
                 });
 
-                lotModel.BidTypes.Add(new BidTypeModel
+                lotModel.BidTypes_m.Add(new BidTypeModel
                 {
                     BidTypeId = 3,
                     BidTypeName = "c/kg Dressed"
                 });
+
+                lotModel.BidTypes_ms = lotModel.BidTypes_m.GetRange(0, lotModel.BidTypes_m.Count);
             };
 
             return Json(lotModel);

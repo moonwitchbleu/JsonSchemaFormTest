@@ -440,27 +440,13 @@ export class LotTypeComponent implements OnInit {
 
     ngOnInit(): void {
         const lotTypeId = +this.route.snapshot.paramMap.get('id');
-        /*this.data.loadLotTypeSchema()
-            .subscribe(schema => {
-                if (schema) {
-                    this.schema2 = schema;
-                    this.fields2 = [this.formlyJsonschema.toFieldConfig(this.schema2)];
-                    this.addValidators();
-                    console.log(this.fields2);
-
-                    this.data.loadLotType(lotTypeId)
-                        .subscribe(data => {
-                            this.model = this.data.lotType;
-                        })
-                }
-            })
-        */
         this.data.loadLotTypeData(lotTypeId).subscribe(([schema, data]) => {
             this.schema2 = schema;
             this.fields2 = [this.formlyJsonschema.toFieldConfig(this.schema2)];
             this.model = this.data.lotType;
 
             this.addValidators();
+            this.addEvents();
             console.log("fields: ", this.fields2);
         })
 
@@ -470,10 +456,6 @@ export class LotTypeComponent implements OnInit {
     submit() {
         console.log(JSON.stringify(this.model));
        if (this.form.valid) {
-            /*var pDate = new Date(this.model.PPublishedDate.year, this.model.PPublishedDate.month - 1, this.model.PPublishedDate.day);
-            pDate.setMinutes(pDate.getMinutes() - pDate.getTimezoneOffset());
-            this.model.PublishedDate = pDate;
-            */
             this.data.saveLotType(this.model)
                 .subscribe(sucess => {
                     if (sucess) {
@@ -499,6 +481,16 @@ export class LotTypeComponent implements OnInit {
         }
     }
 
+    addEvents() {
+        let agentNameField = this.fields2[0].fieldGroup.find(function (m) { return m.key === "AgentName" });
+        let agentUserCodeField = this.fields2[0].fieldGroup.find(function (m) { return m.key === "AgentUserCode" });
+
+        if (agentNameField && agentUserCodeField) {
+            agentUserCodeField.templateOptions.getAgentDetails = "this.getAgentDetails(field, $event)"; 
+            agentUserCodeField.templateOptions.change = Function('field', '$event', agentUserCodeField.templateOptions.getAgentDetails).bind(this);
+        }
+    }
+
     checkAllowedModel(vv, mv) {
         let invalidModels: Array<string> = ['M001', 'M002', 'M003', 'M004', 'M005'];
 
@@ -506,5 +498,13 @@ export class LotTypeComponent implements OnInit {
             return false;
 
         return true;
+    }
+
+    getAgentDetails(field, event) {
+        if (field) {
+            if (field.formControl.valid && field.formControl.value.length > 0) {
+                this.form.get('AgentName').setValue(this.data.getAgentDetails(field.formControl.value));
+            }
+        }
     }
 }

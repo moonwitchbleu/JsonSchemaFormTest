@@ -6,7 +6,9 @@ export interface LotType {
     Title: string;
     Description: string;
     Model: string;
+    ModelDescription: string;
     AgentUserCode: string;
+    AgentName: string;
     PublishedDate: PickedDate;
     LotPrice: number;
     Color: string;

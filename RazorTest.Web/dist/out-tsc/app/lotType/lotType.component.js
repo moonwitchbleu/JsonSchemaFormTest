@@ -427,6 +427,7 @@ let LotTypeComponent = class LotTypeComponent {
             this.fields2 = [this.formlyJsonschema.toFieldConfig(this.schema2)];
             this.model = this.data.lotType;
             this.addValidators();
+            this.addEvent();
             console.log("fields: ", this.fields2);
         });
         console.log('Form: ', this.form);
@@ -459,11 +460,26 @@ let LotTypeComponent = class LotTypeComponent {
             modelField.validation.checkAllowedModel = function (viewValue, modelValue, scope) { };
         }
     }
+    addEvent() {
+        let agentNameField = this.fields2[0].fieldGroup.find(function (m) { return m.key === "AgentName"; });
+        let agentUserCodeField = this.fields2[0].fieldGroup.find(function (m) { return m.key === "AgentUserCode"; });
+        if (agentNameField && agentUserCodeField) {
+            agentUserCodeField.templateOptions.getAgentDetails = "this.getAgentDetails(field, $event)";
+            agentUserCodeField.templateOptions.change = Function('field', '$event', agentUserCodeField.templateOptions.getAgentDetails).bind(this);
+        }
+    }
     checkAllowedModel(vv, mv) {
         let invalidModels = ['M001', 'M002', 'M003', 'M004', 'M005'];
         if (invalidModels.includes(vv.value))
             return false;
         return true;
+    }
+    getAgentDetails(field, event) {
+        if (field) {
+            if (field.formControl.valid && this.model.AgentUserCode.length > 0) {
+                this.model.AgentName = this.model.AgentUserCode + " Name";
+            }
+        }
     }
 };
 LotTypeComponent = __decorate([

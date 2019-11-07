@@ -766,26 +766,12 @@ let LotTypeComponent = class LotTypeComponent {
     }
     ngOnInit() {
         const lotTypeId = +this.route.snapshot.paramMap.get('id');
-        /*this.data.loadLotTypeSchema()
-            .subscribe(schema => {
-                if (schema) {
-                    this.schema2 = schema;
-                    this.fields2 = [this.formlyJsonschema.toFieldConfig(this.schema2)];
-                    this.addValidators();
-                    console.log(this.fields2);
-
-                    this.data.loadLotType(lotTypeId)
-                        .subscribe(data => {
-                            this.model = this.data.lotType;
-                        })
-                }
-            })
-        */
         this.data.loadLotTypeData(lotTypeId).subscribe(([schema, data]) => {
             this.schema2 = schema;
             this.fields2 = [this.formlyJsonschema.toFieldConfig(this.schema2)];
             this.model = this.data.lotType;
             this.addValidators();
+            this.addEvents();
             console.log("fields: ", this.fields2);
         });
         console.log('Form: ', this.form);
@@ -793,10 +779,6 @@ let LotTypeComponent = class LotTypeComponent {
     submit() {
         console.log(JSON.stringify(this.model));
         if (this.form.valid) {
-            /*var pDate = new Date(this.model.PPublishedDate.year, this.model.PPublishedDate.month - 1, this.model.PPublishedDate.day);
-            pDate.setMinutes(pDate.getMinutes() - pDate.getTimezoneOffset());
-            this.model.PublishedDate = pDate;
-            */
             this.data.saveLotType(this.model)
                 .subscribe(sucess => {
                 if (sucess) {
@@ -818,11 +800,26 @@ let LotTypeComponent = class LotTypeComponent {
             modelField.validation.checkAllowedModel = function (viewValue, modelValue, scope) { };
         }
     }
+    addEvents() {
+        let agentNameField = this.fields2[0].fieldGroup.find(function (m) { return m.key === "AgentName"; });
+        let agentUserCodeField = this.fields2[0].fieldGroup.find(function (m) { return m.key === "AgentUserCode"; });
+        if (agentNameField && agentUserCodeField) {
+            agentUserCodeField.templateOptions.getAgentDetails = "this.getAgentDetails(field, $event)";
+            agentUserCodeField.templateOptions.change = Function('field', '$event', agentUserCodeField.templateOptions.getAgentDetails).bind(this);
+        }
+    }
     checkAllowedModel(vv, mv) {
         let invalidModels = ['M001', 'M002', 'M003', 'M004', 'M005'];
         if (invalidModels.includes(vv.value))
             return false;
         return true;
+    }
+    getAgentDetails(field, event) {
+        if (field) {
+            if (field.formControl.valid && field.formControl.value.length > 0) {
+                this.form.get('AgentName').setValue(this.data.getAgentDetails(field.formControl.value));
+            }
+        }
     }
 };
 LotTypeComponent.ctorParameters = () => [
@@ -950,6 +947,9 @@ let DataService = class DataService {
             return true;
         }));
     }
+    getAgentDetails(agentUserCode) {
+        return agentUserCode + " Name";
+    }
 };
 DataService.ctorParameters = () => [
     { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"] }
@@ -1053,7 +1053,7 @@ let FormlyJsonschemaService = class FormlyJsonschemaService {
                 if (Array.isArray(schemaType) && schemaType.includes('null')) {
                     field.parsers = [v => isEmpty(v) ? null : v];
                 }
-                ['minLength', 'maxLength', 'pattern'].forEach(prop => {
+                ['minLength', 'maxLength', 'pattern', 'readonly'].forEach(prop => {
                     if (schema.hasOwnProperty(prop)) {
                         field.templateOptions[prop] = schema[prop];
                     }
@@ -1407,12 +1407,12 @@ ArrayTypeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     </div>
 
     <div *ngFor="let field of field.fieldGroup;let i = index;" class="row">
+    <hr/>
       <formly-field class="col-10" [field]="field"></formly-field>
       <div class="col-2 text-right">
         <button class="btn btn-danger" type="button" (click)="remove(i)">-</button>
       </div>
     </div>
-
     <div class="d-flex flex-row-reverse">
       <button class="btn btn-primary" type="button" (click)="add()">+</button>
     </div>

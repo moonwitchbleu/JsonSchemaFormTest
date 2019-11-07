@@ -40,9 +40,17 @@ namespace RazorTest.Web.Model
         [MaxLength(150, ErrorMessage = "Exceeds max length of 150")]
         public string Model { get; set; }
 
+        [ReadOnly(true)]
+        [Display(Name = "Model Description")]
+        public string ModelDescription { get; set; }
+
         [Display(Name = "Agent Usercode")]
         [MaxLength(150, ErrorMessage = "Exceeds max length of 150")]
         public string AgentUserCode { get; set; }
+
+        [ReadOnly(true)]
+        [Display(Name = "Agent Name")]
+        public string AgentName { get; set; }
 
         [Required]
         [Display(Name = "Publish Date")]
@@ -64,6 +72,9 @@ namespace RazorTest.Web.Model
         [Display(Name = "Contact")]
         public ContactModel Contact { get; set; }
 
+        [Display(Name = "Contacts - array")]
+        public List<ContactModel> Contacts_a { get; set; }
+
         [Display(Name = "Active?")]
         public bool IsActive { get; set; }
 
@@ -71,8 +82,12 @@ namespace RazorTest.Web.Model
         public BidTypeModel BidType { get; set; }
 
         
-        [Display(Name = "Bid Types")]
-        public List<BidTypeModel> BidTypes { get; set; }
+        [Display(Name = "Bid Types - Multicheckbox")]
+        public List<BidTypeModel> BidTypes_m { get; set; }
+
+
+        [Display(Name = "Bid Types - Multiselect")]
+        public List<BidTypeModel> BidTypes_ms { get; set; }
 
         public JsonSchema GetLotJsonSchema(List<BidType> bidTypes)
         {
@@ -85,7 +100,9 @@ namespace RazorTest.Web.Model
             //DefineExtensionData_Color(jsonSchema);
             DefineExtensionData_AgentUserCode(jsonSchema);
             DefineExtensionData_BidType(jsonSchema, bidTypes);
-            DefineExtensionData_BidTypes(jsonSchema, bidTypes);
+            DefineExtensionData_BidTypes_m(jsonSchema, bidTypes);
+            DefineExtensionData_BidTypes_ms(jsonSchema, bidTypes);
+            DefineExtensionData_Contacts_a(jsonSchema);
 
             return jsonSchema;
         }
@@ -154,14 +171,9 @@ namespace RazorTest.Web.Model
             jsonSchema.Properties["BidType"].ActualTypeSchema.ExtensionData = extensionData;
         }
 
-        private void DefineExtensionData_BidTypes(JsonSchema jsonSchema, List<BidType> bidTypes = null)
+        private void DefineExtensionData_BidTypes_m(JsonSchema jsonSchema, List<BidType> bidTypes = null)
         {
             Dictionary<string, object> extensionData = new Dictionary<string, object>();
-            //extensionData.Add("type", Constants.Select_Field_Type);
-            //extensionData.Add("multiple", true);
-
-            //extensionData.Add("type", Constants.Array_Field_Type);
-
             extensionData.Add("type", Constants.Multicheckbox_Field_Type);
 
             if (bidTypes != null)
@@ -173,7 +185,30 @@ namespace RazorTest.Web.Model
                 }));
             }
 
-            jsonSchema.Properties["BidTypes"].ActualTypeSchema.ExtensionData = extensionData;
+            jsonSchema.Properties["BidTypes_m"].ActualTypeSchema.ExtensionData = extensionData;
+        }
+
+        private void DefineExtensionData_BidTypes_ms(JsonSchema jsonSchema, List<BidType> bidTypes = null)
+        {
+            Dictionary<string, object> extensionData = new Dictionary<string, object>();
+            extensionData.Add("type", Constants.Select_Field_Type);
+            extensionData.Add("multiple", true);
+            if (bidTypes != null)
+            {
+                extensionData.Add("options", bidTypes.Select(x => new
+                {
+                    value = x,
+                    label = x.BidTypeName
+                }));
+            }
+            jsonSchema.Properties["BidTypes_ms"].ActualTypeSchema.ExtensionData = extensionData;
+        }
+
+        private void DefineExtensionData_Contacts_a(JsonSchema jsonSchema, List<BidType> bidTypes = null)
+        {
+            Dictionary<string, object> extensionData = new Dictionary<string, object>();
+            extensionData.Add("type", Constants.Array_Field_Type);
+            jsonSchema.Properties["Contacts_a"].ActualTypeSchema.ExtensionData = extensionData;
         }
 
         public LotType MapToLotType()
