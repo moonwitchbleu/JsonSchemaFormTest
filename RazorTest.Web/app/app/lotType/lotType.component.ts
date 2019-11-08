@@ -74,7 +74,7 @@ export class LotTypeComponent implements OnInit {
                 placeholder: "Enter Model here",
                 maxLength: 150
             },
-            validators: {
+            asyncValidators: {
                 checkAllowedModel: {
                     expression: this.checkAllowedModel,
                     message: "Model provided is not allowed."

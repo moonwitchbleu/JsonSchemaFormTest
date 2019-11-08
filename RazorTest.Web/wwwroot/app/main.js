@@ -277,7 +277,6 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
                     { name: 'uniqueItems', message: 'should NOT have duplicate items' },
                     { name: 'const', message: constValidationMessage },
                     { name: 'pattern', message: patternValidationMessage },
-                    { name: 'checkValidModel', message: checkValidModelMessage },
                     { name: 'validateAgentUser', message: validateAgentUserMessage }
                 ],
                 wrappers: [
@@ -298,6 +297,7 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
                     { name: 'radioFT', component: _shared_types_radio_type__WEBPACK_IMPORTED_MODULE_15__["RadioTypeComponent"], wrappers: ['form-wrapper'] },
                     { name: 'multicheckboxFT', component: _shared_types_multicheckbox_type__WEBPACK_IMPORTED_MODULE_18__["MulticheckboxTypeComponent"], wrappers: ['form-wrapper'] },
                     { name: 'string', component: _shared_types_string_type__WEBPACK_IMPORTED_MODULE_16__["StringTypeComponent"], wrappers: ['form-wrapper'] },
+                    //{ name: 'string', extends: 'input' },
                     {
                         name: 'number',
                         extends: 'string',
@@ -421,7 +421,7 @@ let LotTypeComponent = class LotTypeComponent {
                     placeholder: "Enter Model here",
                     maxLength: 150
                 },
-                validators: {
+                asyncValidators: {
                     checkAllowedModel: {
                         expression: this.checkAllowedModel,
                         message: "Model provided is not allowed."

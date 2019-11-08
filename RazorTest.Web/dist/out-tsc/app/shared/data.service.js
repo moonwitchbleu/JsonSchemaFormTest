@@ -45,6 +45,9 @@ let DataService = class DataService {
             return true;
         }));
     }
+    getAgentDetails(agentUserCode) {
+        return agentUserCode + " Name";
+    }
 };
 DataService = __decorate([
     Injectable()

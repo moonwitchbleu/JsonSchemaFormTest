@@ -16,6 +16,7 @@ ArrayTypeComponent = __decorate([
     </div>
 
     <div *ngFor="let field of field.fieldGroup;let i = index;" class="row">
+    <hr/>
       <formly-field class="col-10" [field]="field"></formly-field>
       <div class="col-2 text-right">
         <button class="btn btn-danger" type="button" (click)="remove(i)">-</button>

@@ -80,6 +80,9 @@ namespace RazorTest.Web.api
                 });
 
                 lotModel.BidTypes_ms = lotModel.BidTypes_m.GetRange(0, lotModel.BidTypes_m.Count);
+
+                if(lotType.Content != null && lotType.Content.Length > 0)
+                    lotModel = JsonConvert.DeserializeObject<LotTypeModel>(lotType.Content);
             };
 
             return Json(lotModel);
@@ -124,11 +127,14 @@ namespace RazorTest.Web.api
                 if (model.LotTypeId > 0)
                 {
                     var lotType = model.MapToLotType();
+                    lotType.Content = JsonConvert.SerializeObject(model);
                     _context.LotType.Attach(lotType).State = EntityState.Modified;
                 }
                 else
                 {
-                    _context.LotType.Add(model.MapToLotType());
+                    var lotType = model.MapToLotType();
+                    lotType.Content = JsonConvert.SerializeObject(model);
+                    _context.LotType.Add(lotType);
                 }
                 _context.SaveChanges();
             }

@@ -49,6 +49,7 @@ namespace RazorTest.Web.Model
         public string AgentUserCode { get; set; }
 
         [ReadOnly(true)]
+        [JsonIgnore]
         [Display(Name = "Agent Name")]
         public string AgentName { get; set; }
 
@@ -128,23 +129,7 @@ namespace RazorTest.Web.Model
         }
 
         private void DefineExtensionData_AgentUserCode(JsonSchema jsonSchema)
-        {
-            /*Dictionary<string, object> modelValidators = new Dictionary<string, object>();
-            modelValidators.Add("validators", new
-            {
-                checkAllowedModel = new
-                {
-                    expression = "this.checkAllowedModel",
-                    message = "Model provided is not allowed."
-                }
-            });
-            modelValidators.Add("validation", new
-            {
-                checkAllowedModel = "function (viewValue, modelValue, scope) { }"
-            });
-            jsonSchema.Properties["Model"].ExtensionData = modelValidators;
-            */
-            
+        {   
             Dictionary<string, object> extensionData = new Dictionary<string, object>();
             extensionData.Add("validators", new
             {

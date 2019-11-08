@@ -62,7 +62,7 @@ let LotTypeComponent = class LotTypeComponent {
                     placeholder: "Enter Model here",
                     maxLength: 150
                 },
-                validators: {
+                asyncValidators: {
                     checkAllowedModel: {
                         expression: this.checkAllowedModel,
                         message: "Model provided is not allowed."
@@ -407,27 +407,12 @@ let LotTypeComponent = class LotTypeComponent {
     }
     ngOnInit() {
         const lotTypeId = +this.route.snapshot.paramMap.get('id');
-        /*this.data.loadLotTypeSchema()
-            .subscribe(schema => {
-                if (schema) {
-                    this.schema2 = schema;
-                    this.fields2 = [this.formlyJsonschema.toFieldConfig(this.schema2)];
-                    this.addValidators();
-                    console.log(this.fields2);
-
-                    this.data.loadLotType(lotTypeId)
-                        .subscribe(data => {
-                            this.model = this.data.lotType;
-                        })
-                }
-            })
-        */
         this.data.loadLotTypeData(lotTypeId).subscribe(([schema, data]) => {
             this.schema2 = schema;
             this.fields2 = [this.formlyJsonschema.toFieldConfig(this.schema2)];
             this.model = this.data.lotType;
             this.addValidators();
-            this.addEvent();
+            this.addEvents();
             console.log("fields: ", this.fields2);
         });
         console.log('Form: ', this.form);
@@ -435,10 +420,6 @@ let LotTypeComponent = class LotTypeComponent {
     submit() {
         console.log(JSON.stringify(this.model));
         if (this.form.valid) {
-            /*var pDate = new Date(this.model.PPublishedDate.year, this.model.PPublishedDate.month - 1, this.model.PPublishedDate.day);
-            pDate.setMinutes(pDate.getMinutes() - pDate.getTimezoneOffset());
-            this.model.PublishedDate = pDate;
-            */
             this.data.saveLotType(this.model)
                 .subscribe(sucess => {
                 if (sucess) {
@@ -460,7 +441,7 @@ let LotTypeComponent = class LotTypeComponent {
             modelField.validation.checkAllowedModel = function (viewValue, modelValue, scope) { };
         }
     }
-    addEvent() {
+    addEvents() {
         let agentNameField = this.fields2[0].fieldGroup.find(function (m) { return m.key === "AgentName"; });
         let agentUserCodeField = this.fields2[0].fieldGroup.find(function (m) { return m.key === "AgentUserCode"; });
         if (agentNameField && agentUserCodeField) {
@@ -476,8 +457,8 @@ let LotTypeComponent = class LotTypeComponent {
     }
     getAgentDetails(field, event) {
         if (field) {
-            if (field.formControl.valid && this.model.AgentUserCode.length > 0) {
-                this.model.AgentName = this.model.AgentUserCode + " Name";
+            if (field.formControl.valid && field.formControl.value.length > 0) {
+                this.form.get('AgentName').setValue(this.data.getAgentDetails(field.formControl.value));
             }
         }
     }

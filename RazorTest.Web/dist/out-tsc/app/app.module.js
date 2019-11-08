@@ -117,7 +117,6 @@ AppModule = __decorate([
                     { name: 'uniqueItems', message: 'should NOT have duplicate items' },
                     { name: 'const', message: constValidationMessage },
                     { name: 'pattern', message: patternValidationMessage },
-                    { name: 'checkValidModel', message: checkValidModelMessage },
                     { name: 'validateAgentUser', message: validateAgentUserMessage }
                 ],
                 wrappers: [
@@ -138,6 +137,7 @@ AppModule = __decorate([
                     { name: 'radioFT', component: RadioTypeComponent, wrappers: ['form-wrapper'] },
                     { name: 'multicheckboxFT', component: MulticheckboxTypeComponent, wrappers: ['form-wrapper'] },
                     { name: 'string', component: StringTypeComponent, wrappers: ['form-wrapper'] },
+                    //{ name: 'string', extends: 'input' },
                     {
                         name: 'number',
                         extends: 'string',

@@ -22,5 +22,6 @@ namespace RazorTest.Domain
         public Contact Contact { get; set; }
         public BidType BidType { get; set; }
         public bool IsActive { get; set; }
+        public string Content { get; set; }
     }
 }
