@@ -1,7 +1,6 @@
 C:\AplusProjects\TestApps\JsonSchemaTestApp\RazorTest.Domain\bin\Debug\netcoreapp3.0\RazorTest.Domain.deps.json
 C:\AplusProjects\TestApps\JsonSchemaTestApp\RazorTest.Domain\bin\Debug\netcoreapp3.0\RazorTest.Domain.dll
 C:\AplusProjects\TestApps\JsonSchemaTestApp\RazorTest.Domain\bin\Debug\netcoreapp3.0\RazorTest.Domain.pdb
-C:\AplusProjects\TestApps\JsonSchemaTestApp\RazorTest.Domain\obj\Debug\netcoreapp3.0\RazorTest.Domain.csprojAssemblyReference.cache
 C:\AplusProjects\TestApps\JsonSchemaTestApp\RazorTest.Domain\obj\Debug\netcoreapp3.0\RazorTest.Domain.AssemblyInfoInputs.cache
 C:\AplusProjects\TestApps\JsonSchemaTestApp\RazorTest.Domain\obj\Debug\netcoreapp3.0\RazorTest.Domain.AssemblyInfo.cs
 C:\AplusProjects\TestApps\JsonSchemaTestApp\RazorTest.Domain\obj\Debug\netcoreapp3.0\RazorTest.Domain.dll

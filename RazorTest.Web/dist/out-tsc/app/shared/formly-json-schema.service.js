@@ -1,4 +1,4 @@
-import { __decorate } from "tslib";
+import { __decorate, __rest } from "tslib";
 import { Injectable } from '@angular/core';
 import { ɵreverseDeepMerge as reverseDeepMerge } from '@ngx-formly/core';
 import { FormControl } from '@angular/forms';
@@ -27,7 +27,7 @@ function isFieldValid(field) {
 }
 let FormlyJsonschemaService = class FormlyJsonschemaService {
     toFieldConfig(schema, options) {
-        return this._toFieldConfig(schema, { schema, ...(options || {}) });
+        return this._toFieldConfig(schema, Object.assign({ schema }, (options || {})));
     }
     _toFieldConfig(schema, options) {
         schema = this.resolveSchema(schema, options);
@@ -97,10 +97,7 @@ let FormlyJsonschemaService = class FormlyJsonschemaService {
                         };
                     }
                     if (schemaDeps[key]) {
-                        field.fieldGroup.push({
-                            ...this._toFieldConfig(schemaDeps[key], options),
-                            hideExpression: m => !m || isEmpty(m[key]),
-                        });
+                        field.fieldGroup.push(Object.assign(Object.assign({}, this._toFieldConfig(schemaDeps[key], options)), { hideExpression: m => !m || isEmpty(m[key]) }));
                     }
                 });
                 if (schema.oneOf) {
@@ -214,7 +211,8 @@ let FormlyJsonschemaService = class FormlyJsonschemaService {
         }
         return schema;
     }
-    resolveAllOf({ allOf, ...baseSchema }, options) {
+    resolveAllOf(_a, options) {
+        var { allOf } = _a, baseSchema = __rest(_a, ["allOf"]);
         if (!allOf.length) {
             throw Error(`allOf array can not be empty ${allOf}.`);
         }
@@ -284,15 +282,12 @@ let FormlyJsonschemaService = class FormlyJsonschemaService {
                     },
                 },
                 {
-                    fieldGroup: schemas.map((s, i) => ({
-                        ...this._toFieldConfig(s, options),
-                        hideExpression: (m, fs, f) => {
+                    fieldGroup: schemas.map((s, i) => (Object.assign(Object.assign({}, this._toFieldConfig(s, options)), { hideExpression: (m, fs, f) => {
                             const control = f.parent.parent.fieldGroup[0].formControl;
                             return !control || (Array.isArray(control.value)
                                 ? !control.value.includes(i)
                                 : control.value !== i);
-                        },
-                    })),
+                        } }))),
                 },
             ],
         };
@@ -309,15 +304,12 @@ let FormlyJsonschemaService = class FormlyJsonschemaService {
         if (definition.$ref) {
             return this.resolveDefinition(definition, options);
         }
-        return {
-            ...definition,
-            ...['title', 'description', 'default'].reduce((annotation, p) => {
-                if (schema.hasOwnProperty(p)) {
-                    annotation[p] = schema[p];
-                }
-                return annotation;
-            }, {}),
-        };
+        return Object.assign(Object.assign({}, definition), ['title', 'description', 'default'].reduce((annotation, p) => {
+            if (schema.hasOwnProperty(p)) {
+                annotation[p] = schema[p];
+            }
+            return annotation;
+        }, {}));
     }
     resolveDependencies(schema) {
         const deps = {};
