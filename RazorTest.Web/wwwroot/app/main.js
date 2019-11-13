@@ -72,7 +72,7 @@ AppRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAvYXBwL2FwcC5jb21wb25lbnQuY3NzIn0= */");
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAvYXBwLmNvbXBvbmVudC5jc3MifQ== */");
 
 /***/ }),
 
@@ -423,8 +423,14 @@ let LotTypeComponent = class LotTypeComponent {
                 },
                 asyncValidators: {
                     checkAllowedModel: {
-                        expression: this.checkAllowedModel,
-                        message: "Model provided is not allowed."
+                        expression: (control) => {
+                            return new Promise((resolve, reject) => {
+                                setTimeout(() => {
+                                    resolve(this.checkAllowedModel);
+                                }, 1000);
+                            });
+                        },
+                        message: '',
                     }
                 },
                 validation: {
@@ -790,14 +796,25 @@ let LotTypeComponent = class LotTypeComponent {
     addValidators() {
         let modelField = this.fields2[0].fieldGroup.find(function (m) { return m.key === "Model"; });
         if (modelField) {
-            modelField.validators = {
-                checkAllowedModel: {
+            modelField.asyncValidators = {
+                /*checkAllowedModel: {
                     expression: this.checkAllowedModel,
                     message: "Model provided is not allowed."
                 }
+                */
+                checkAllowedModel: {
+                    expression: (viewValue, modelValue) => {
+                        return new Promise((resolve, reject) => {
+                            setTimeout(() => {
+                                resolve(this.checkAllowedModel(viewValue, modelValue));
+                            }, 500);
+                        });
+                    },
+                    message: 'Model provided is not allowed.',
+                }
             };
-            modelField.validation = {};
-            modelField.validation.checkAllowedModel = function (viewValue, modelValue, scope) { };
+            //modelField.validation = {};
+            //modelField.validation.checkAllowedModel = function (viewValue, modelValue, scope) { };
         }
     }
     addEvents() {
@@ -1006,7 +1023,7 @@ function isFieldValid(field) {
 }
 let FormlyJsonschemaService = class FormlyJsonschemaService {
     toFieldConfig(schema, options) {
-        return this._toFieldConfig(schema, { schema, ...(options || {}) });
+        return this._toFieldConfig(schema, Object.assign({ schema }, (options || {})));
     }
     _toFieldConfig(schema, options) {
         schema = this.resolveSchema(schema, options);
@@ -1076,10 +1093,7 @@ let FormlyJsonschemaService = class FormlyJsonschemaService {
                         };
                     }
                     if (schemaDeps[key]) {
-                        field.fieldGroup.push({
-                            ...this._toFieldConfig(schemaDeps[key], options),
-                            hideExpression: m => !m || isEmpty(m[key]),
-                        });
+                        field.fieldGroup.push(Object.assign({}, this._toFieldConfig(schemaDeps[key], options), { hideExpression: m => !m || isEmpty(m[key]) }));
                     }
                 });
                 if (schema.oneOf) {
@@ -1193,7 +1207,8 @@ let FormlyJsonschemaService = class FormlyJsonschemaService {
         }
         return schema;
     }
-    resolveAllOf({ allOf, ...baseSchema }, options) {
+    resolveAllOf(_a, options) {
+        var { allOf } = _a, baseSchema = tslib__WEBPACK_IMPORTED_MODULE_0__["__rest"](_a, ["allOf"]);
         if (!allOf.length) {
             throw Error(`allOf array can not be empty ${allOf}.`);
         }
@@ -1263,15 +1278,12 @@ let FormlyJsonschemaService = class FormlyJsonschemaService {
                     },
                 },
                 {
-                    fieldGroup: schemas.map((s, i) => ({
-                        ...this._toFieldConfig(s, options),
-                        hideExpression: (m, fs, f) => {
+                    fieldGroup: schemas.map((s, i) => (Object.assign({}, this._toFieldConfig(s, options), { hideExpression: (m, fs, f) => {
                             const control = f.parent.parent.fieldGroup[0].formControl;
                             return !control || (Array.isArray(control.value)
                                 ? !control.value.includes(i)
                                 : control.value !== i);
-                        },
-                    })),
+                        } }))),
                 },
             ],
         };
@@ -1288,15 +1300,12 @@ let FormlyJsonschemaService = class FormlyJsonschemaService {
         if (definition.$ref) {
             return this.resolveDefinition(definition, options);
         }
-        return {
-            ...definition,
-            ...['title', 'description', 'default'].reduce((annotation, p) => {
-                if (schema.hasOwnProperty(p)) {
-                    annotation[p] = schema[p];
-                }
-                return annotation;
-            }, {}),
-        };
+        return Object.assign({}, definition, ['title', 'description', 'default'].reduce((annotation, p) => {
+            if (schema.hasOwnProperty(p)) {
+                annotation[p] = schema[p];
+            }
+            return annotation;
+        }, {}));
     }
     resolveDependencies(schema) {
         const deps = {};

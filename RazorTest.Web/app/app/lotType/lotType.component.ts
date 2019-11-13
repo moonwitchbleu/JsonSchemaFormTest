@@ -76,8 +76,14 @@ export class LotTypeComponent implements OnInit {
             },
             asyncValidators: {
                 checkAllowedModel: {
-                    expression: this.checkAllowedModel,
-                    message: "Model provided is not allowed."
+                    expression: (control: FormControl) => {
+                        return new Promise((resolve, reject) => {
+                            setTimeout(() => {
+                                resolve(this.checkAllowedModel);
+                            }, 1000);
+                        });
+                    },
+                    message: '',
                 }
             },
             validation: {
@@ -468,15 +474,26 @@ export class LotTypeComponent implements OnInit {
     addValidators() {
         let modelField = this.fields2[0].fieldGroup.find(function (m) { return m.key === "Model" });
         if (modelField) {
-            modelField.validators = {
-                checkAllowedModel: {
+            modelField.asyncValidators = {
+                /*checkAllowedModel: {
                     expression: this.checkAllowedModel,
                     message: "Model provided is not allowed."
                 }
+                */
+                checkAllowedModel: {
+                    expression: (viewValue, modelValue) => {
+                        return new Promise((resolve, reject) => {
+                            setTimeout(() => {
+                                resolve(this.checkAllowedModel(viewValue, modelValue));
+                            }, 500);
+                        });
+                    },
+                    message: 'Model provided is not allowed.',
+                }
             };
 
-            modelField.validation = {};
-            modelField.validation.checkAllowedModel = function (viewValue, modelValue, scope) { };
+            //modelField.validation = {};
+            //modelField.validation.checkAllowedModel = function (viewValue, modelValue, scope) { };
 
         }
     }
