@@ -1,8 +1,9 @@
-import { __decorate } from "tslib";
+import { __decorate, __read } from "tslib";
 import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-let LotTypeComponent = class LotTypeComponent {
-    constructor(route, router, fb, formlyJsonschema, data) {
+var LotTypeComponent = /** @class */ (function () {
+    function LotTypeComponent(route, router, fb, formlyJsonschema, data) {
+        var _this = this;
         this.route = route;
         this.router = router;
         this.fb = fb;
@@ -46,8 +47,8 @@ let LotTypeComponent = class LotTypeComponent {
                 },
                 validation: {
                     messages: {
-                        minLength: (error, field) => `Please enter atleast ${field.templateOptions.minLength} characters.`,
-                        maxLength: (error, field) => `Please enter not more than ${field.templateOptions.maxLength} characters.`
+                        minLength: function (error, field) { return "Please enter atleast " + field.templateOptions.minLength + " characters."; },
+                        maxLength: function (error, field) { return "Please enter not more than " + field.templateOptions.maxLength + " characters."; }
                     }
                 }
             },
@@ -64,10 +65,10 @@ let LotTypeComponent = class LotTypeComponent {
                 },
                 asyncValidators: {
                     checkAllowedModel: {
-                        expression: (control) => {
-                            return new Promise((resolve, reject) => {
-                                setTimeout(() => {
-                                    resolve(this.checkAllowedModel);
+                        expression: function (control) {
+                            return new Promise(function (resolve, reject) {
+                                setTimeout(function () {
+                                    resolve(_this.checkAllowedModel);
                                 }, 1000);
                             });
                         },
@@ -132,8 +133,8 @@ let LotTypeComponent = class LotTypeComponent {
                 },
                 validation: {
                     messages: {
-                        min: (error, field) => `Lot Price should be atleast ${field.templateOptions.min}.`,
-                        max: (error, field) => `Lot Price should be not more than ${field.templateOptions.max}.`
+                        min: function (error, field) { return "Lot Price should be atleast " + field.templateOptions.min + "."; },
+                        max: function (error, field) { return "Lot Price should be not more than " + field.templateOptions.max + "."; }
                     }
                 }
             },
@@ -411,31 +412,35 @@ let LotTypeComponent = class LotTypeComponent {
             "definitions": { "Color": { "type": "string", "description": "", "x-enumNames": ["Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet", "Purple", "Pink", "White", "Black"], "enum": ["Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet", "Purple", "Pink", "White", "Black"] }, "Contact": { "type": "object", "additionalProperties": false, "properties": { "ContactId": { "title": "Contact Id", "type": "integer", "format": "int32" }, "Name": { "title": "Name", "type": ["null", "string"] }, "Phone": { "title": "Phone Number", "type": ["null", "string"] }, "Email": { "title": "Email Address", "type": ["null", "string"], "pattern": "^([\\w\\.\\-]+)@([\\w\\-]+)((\\.(\\w){2,3})+)$" } } } }
         };
     }
-    ngOnInit() {
-        const lotTypeId = +this.route.snapshot.paramMap.get('id');
-        this.data.loadLotTypeData(lotTypeId).subscribe(([schema, data]) => {
-            this.schema2 = schema;
-            this.fields2 = [this.formlyJsonschema.toFieldConfig(this.schema2)];
-            this.model = this.data.lotType;
-            this.addValidators();
-            this.addEvents();
-            console.log("fields: ", this.fields2);
+    LotTypeComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        var lotTypeId = +this.route.snapshot.paramMap.get('id');
+        this.data.loadLotTypeData(lotTypeId).subscribe(function (_a) {
+            var _b = __read(_a, 2), schema = _b[0], data = _b[1];
+            _this.schema2 = schema;
+            _this.fields2 = [_this.formlyJsonschema.toFieldConfig(_this.schema2)];
+            _this.model = _this.data.lotType;
+            _this.addValidators();
+            _this.addEvents();
+            console.log("fields: ", _this.fields2);
         });
         console.log('Form: ', this.form);
-    }
-    submit() {
+    };
+    LotTypeComponent.prototype.submit = function () {
+        var _this = this;
         console.log(JSON.stringify(this.model));
         if (this.form.valid) {
             this.data.saveLotType(this.model)
-                .subscribe(sucess => {
+                .subscribe(function (sucess) {
                 if (sucess) {
-                    this.router.navigate(['/lot-type-list']);
+                    _this.router.navigate(['/lot-type-list']);
                 }
             });
         }
-    }
-    addValidators() {
-        let modelField = this.fields2[0].fieldGroup.find(function (m) { return m.key === "Model"; });
+    };
+    LotTypeComponent.prototype.addValidators = function () {
+        var _this = this;
+        var modelField = this.fields2[0].fieldGroup.find(function (m) { return m.key === "Model"; });
         if (modelField) {
             modelField.asyncValidators = {
                 /*checkAllowedModel: {
@@ -444,10 +449,10 @@ let LotTypeComponent = class LotTypeComponent {
                 }
                 */
                 checkAllowedModel: {
-                    expression: (viewValue, modelValue) => {
-                        return new Promise((resolve, reject) => {
-                            setTimeout(() => {
-                                resolve(this.checkAllowedModel(viewValue, modelValue));
+                    expression: function (viewValue, modelValue) {
+                        return new Promise(function (resolve, reject) {
+                            setTimeout(function () {
+                                resolve(_this.checkAllowedModel(viewValue, modelValue));
                             }, 500);
                         });
                     },
@@ -457,35 +462,36 @@ let LotTypeComponent = class LotTypeComponent {
             //modelField.validation = {};
             //modelField.validation.checkAllowedModel = function (viewValue, modelValue, scope) { };
         }
-    }
-    addEvents() {
-        let agentNameField = this.fields2[0].fieldGroup.find(function (m) { return m.key === "AgentName"; });
-        let agentUserCodeField = this.fields2[0].fieldGroup.find(function (m) { return m.key === "AgentUserCode"; });
+    };
+    LotTypeComponent.prototype.addEvents = function () {
+        var agentNameField = this.fields2[0].fieldGroup.find(function (m) { return m.key === "AgentName"; });
+        var agentUserCodeField = this.fields2[0].fieldGroup.find(function (m) { return m.key === "AgentUserCode"; });
         if (agentNameField && agentUserCodeField) {
             agentUserCodeField.templateOptions.getAgentDetails = "this.getAgentDetails(field, $event)";
             agentUserCodeField.templateOptions.change = Function('field', '$event', agentUserCodeField.templateOptions.getAgentDetails).bind(this);
         }
-    }
-    checkAllowedModel(vv, mv) {
-        let invalidModels = ['M001', 'M002', 'M003', 'M004', 'M005'];
+    };
+    LotTypeComponent.prototype.checkAllowedModel = function (vv, mv) {
+        var invalidModels = ['M001', 'M002', 'M003', 'M004', 'M005'];
         if (invalidModels.includes(vv.value))
             return false;
         return true;
-    }
-    getAgentDetails(field, event) {
+    };
+    LotTypeComponent.prototype.getAgentDetails = function (field, event) {
         if (field) {
             if (field.formControl.valid && field.formControl.value.length > 0) {
                 this.form.get('AgentName').setValue(this.data.getAgentDetails(field.formControl.value));
             }
         }
-    }
-};
-LotTypeComponent = __decorate([
-    Component({
-        selector: 'lot-type',
-        templateUrl: './lotType.component.html',
-        styleUrls: ['../app.component.css']
-    })
-], LotTypeComponent);
+    };
+    LotTypeComponent = __decorate([
+        Component({
+            selector: 'lot-type',
+            templateUrl: './lotType.component.html',
+            styleUrls: ['../app.component.css']
+        })
+    ], LotTypeComponent);
+    return LotTypeComponent;
+}());
 export { LotTypeComponent };
 //# sourceMappingURL=lotType.component.js.map

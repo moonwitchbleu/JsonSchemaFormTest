@@ -3,54 +3,58 @@ import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from "@angular/core";
 import { map } from "rxjs/operators";
 import { forkJoin } from 'rxjs';
-let DataService = class DataService {
-    constructor(http) {
+var DataService = /** @class */ (function () {
+    function DataService(http) {
         this.http = http;
         this.lotTypes = [];
         this.httpOptions = {
             headers: new HttpHeaders({ 'Content-Type': 'application/json' })
         };
     }
-    loadLotTypeData(lotTypeId) {
+    DataService.prototype.loadLotTypeData = function (lotTypeId) {
         return forkJoin([this.loadLotTypeSchema(), this.loadLotType(lotTypeId)]);
-    }
-    loadLotTypeSchema() {
+    };
+    DataService.prototype.loadLotTypeSchema = function () {
+        var _this = this;
         return this.http.get("/api/lotType/lotTypeSchema")
-            .pipe(map((data) => {
-            this.lotTypeSchema = JSON.parse(data);
-            console.log("Schema", this.lotTypeSchema);
-            return this.lotTypeSchema;
+            .pipe(map(function (data) {
+            _this.lotTypeSchema = JSON.parse(data);
+            console.log("Schema", _this.lotTypeSchema);
+            return _this.lotTypeSchema;
         }));
-    }
-    loadLotTypes() {
+    };
+    DataService.prototype.loadLotTypes = function () {
+        var _this = this;
         return this.http.get("/api/lotType/")
-            .pipe(map((data) => {
+            .pipe(map(function (data) {
             console.log('Lot Types: ', data);
-            this.lotTypes = data;
-            return this.lotTypes;
+            _this.lotTypes = data;
+            return _this.lotTypes;
         }));
-    }
-    loadLotType(lotTypeId) {
+    };
+    DataService.prototype.loadLotType = function (lotTypeId) {
+        var _this = this;
         return this.http.get("/api/lotType/" + lotTypeId)
-            .pipe(map((data) => {
-            this.lotType = data;
-            console.log('Lot Type: ', this.lotType);
-            return this.lotType;
+            .pipe(map(function (data) {
+            _this.lotType = data;
+            console.log('Lot Type: ', _this.lotType);
+            return _this.lotType;
         }));
-    }
-    saveLotType(lotType) {
+    };
+    DataService.prototype.saveLotType = function (lotType) {
         return this.http.post("/api/lotType/saveLotType", lotType, this.httpOptions)
-            .pipe(map((data) => {
+            .pipe(map(function (data) {
             console.log("save result: ", data);
             return true;
         }));
-    }
-    getAgentDetails(agentUserCode) {
+    };
+    DataService.prototype.getAgentDetails = function (agentUserCode) {
         return agentUserCode + " Name";
-    }
-};
-DataService = __decorate([
-    Injectable()
-], DataService);
+    };
+    DataService = __decorate([
+        Injectable()
+    ], DataService);
+    return DataService;
+}());
 export { DataService };
 //# sourceMappingURL=data.service.js.map
