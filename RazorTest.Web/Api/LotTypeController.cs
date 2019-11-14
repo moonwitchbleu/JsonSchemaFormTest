@@ -27,7 +27,7 @@ namespace RazorTest.Web.api
         {
             _context = context;
         }
-        
+
         // GET: api/<controller>
         [HttpGet]
         [Produces("application/json")]

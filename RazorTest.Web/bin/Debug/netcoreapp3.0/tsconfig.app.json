@@ -13,6 +13,7 @@
   ],
   "exclude": [
     "app/test.ts",
-    "app/**/*.spec.ts"
+    "app/**/*.spec.ts",
+    "./node_modules/@types/node"
   ]
 }

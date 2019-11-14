@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using RazorTest.Data.Mappings;
 using RazorTest.Domain;
 
 namespace RazorTest.Data
@@ -12,6 +13,12 @@ namespace RazorTest.Data
         public RazorTestContext (DbContextOptions<RazorTestContext> options)
             : base(options)
         {
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            new LotTypeMapping(modelBuilder.Entity<LotType>());
         }
 
         public DbSet<LotType> LotType { get; set; }

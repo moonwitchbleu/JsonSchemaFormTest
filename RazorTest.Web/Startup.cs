@@ -14,6 +14,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 using RazorTest.Data;
+using RazorTest.Data.Repositories;
 
 namespace RazorTest.Web
 {
@@ -33,7 +34,8 @@ namespace RazorTest.Web
                 options.UseSqlServer(
                     Configuration.GetConnectionString("RazorTestContext"))
             );
-
+            ConfigureDependencies(services);
+            
             services.AddRazorPages();
             services.AddControllers();
             services.AddControllers().AddNewtonsoftJson(options =>
@@ -77,6 +79,11 @@ namespace RazorTest.Web
                 endpoints.MapRazorPages();
                 endpoints.MapControllers();
             });
+        }
+
+        public static void ConfigureDependencies(IServiceCollection services)
+        {
+            services.AddTransient<ILotTypeRepository, LotTypeRepository>();
         }
     }
 }
