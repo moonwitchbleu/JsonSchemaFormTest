@@ -22,6 +22,7 @@ namespace RazorTest.Web.api
     public class LotTypeController : Controller
     {
         private readonly RazorTestContext _context;
+        private readonly IUnitOfWork _unitOfWork;
 
         public LotTypeController(RazorTestContext context)
         {

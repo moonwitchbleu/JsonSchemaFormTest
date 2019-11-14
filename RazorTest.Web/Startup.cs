@@ -83,6 +83,7 @@ namespace RazorTest.Web
 
         public static void ConfigureDependencies(IServiceCollection services)
         {
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddTransient<ILotTypeRepository, LotTypeRepository>();
         }
     }

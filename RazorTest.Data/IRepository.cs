@@ -11,7 +11,7 @@ namespace RazorTest.Data
 {
     public interface IRepository<T> where T : class
     {
-        IEnumerable<T> Get(Expression<Func<T, bool>> expression, Func<IQueryable<T>, IIncludableQueryable<T, object>> includes = null);
+        IEnumerable<T> Get(Expression<Func<T, bool>> expression = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, Func<IQueryable<T>, IIncludableQueryable<T, object>> includes = null);
         IEnumerable<T> Get();
         void Add(T entity);
         void Delete(object id);
@@ -21,16 +21,16 @@ namespace RazorTest.Data
 
     public class Repository<T> : IRepository<T> where T : class
     {
-        private RazorTestContext _dbContext;
-        protected DbSet<T> _dbSet;
+        private readonly IUnitOfWork _unitOfWork;
+        private DbSet<T> _dbSet;
 
-        public Repository(RazorTestContext razorTestContext)
+        public Repository(IUnitOfWork unitOfWork)
         {
-            _dbContext = razorTestContext;
-            _dbSet = razorTestContext.Set<T>();
+            _unitOfWork = unitOfWork;
+            _dbSet = _unitOfWork.Context.Set<T>();
         }
 
-        public IEnumerable<T> Get(Expression<Func<T, bool>> expression, Func<IQueryable<T>, IIncludableQueryable<T, object>> includes = null)
+        public IEnumerable<T> Get(Expression<Func<T, bool>> expression = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, Func<IQueryable<T>, IIncludableQueryable<T, object>> includes = null)
         {
             var result = _dbSet.Where(expression);
 
@@ -65,7 +65,7 @@ namespace RazorTest.Data
 
         public void Delete(T entity)
         {
-            if (_dbContext.Entry(entity).State == EntityState.Detached)
+            if (_unitOfWork.Context.Entry(entity).State == EntityState.Detached)
             {
                 _dbSet.Attach(entity);
             }
@@ -75,7 +75,7 @@ namespace RazorTest.Data
         public void Update(T entity)
         {
             _dbSet.Attach(entity);
-            _dbContext.Entry(entity).State = EntityState.Modified;
+            _unitOfWork.Context.Entry(entity).State = EntityState.Modified;
         }
     }
 }

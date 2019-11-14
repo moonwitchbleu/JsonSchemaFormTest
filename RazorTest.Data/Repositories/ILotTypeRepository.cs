@@ -12,8 +12,8 @@ namespace RazorTest.Data.Repositories
 
     public class LotTypeRepository : Repository<LotType>, ILotTypeRepository
     {
-        public LotTypeRepository(RazorTestContext razorTestContext)
-            :base(razorTestContext)
+        public LotTypeRepository(IUnitOfWork unitOfWork)
+            :base(unitOfWork)
         {
         }
     }
